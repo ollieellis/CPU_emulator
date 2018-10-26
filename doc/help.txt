@@ -1,0 +1,8 @@
+if ur github shit fux up, do this in the mips simulator dir in a shell:
+git reset --hard origin/master
+
+
+
+good links:
+
+https://www.eg.bucknell.edu/~csci320/mips_web/ for converting to instructions to binary and finding out info about them
