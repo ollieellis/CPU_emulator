@@ -1,3 +1,6 @@
+MIPS_CC = mips-linux-gnu-gcc
+MIPS_OBJCOPY = mips-linux-gnu-objcopy
+
 build/main.o: src/main.cpp src/main.hpp
 	g++ -std=c++11 -c src/main.cpp -o build/main.o
  
