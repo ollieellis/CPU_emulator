@@ -7,6 +7,6 @@ int main(int argc, char *argv[])
 {
     cout << "programme path: " << argv[0] << endl;
        
-    FileIo::getBinaryFile("instructions.bin");
+    file_io::get_binary_file("instructions.bin");
     return 0;
 }
