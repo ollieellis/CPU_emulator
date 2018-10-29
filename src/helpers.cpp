@@ -8,10 +8,10 @@
 
 using namespace std;
 
-Instructions::Instructions(uint32_t* instructions_in, int size_in){
-    instructions = instructions_in;
-    size = size_in;
-}
+// Instructions::Instructions(uint32_t* instructions_in, int size_in){
+//     instructions = instructions_in;
+//     size = size_in;
+// }
 
 Instructions File_io::get_binary_file(string file_path) 
 {

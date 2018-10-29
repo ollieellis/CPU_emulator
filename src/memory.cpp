@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Memory::load_instructions_into_memory(Instructions instructions_obj)
+void Memory::load_instructions_into_memory(Instructions instructions_obj) 
 { 
     cout << "\npoop " << instructions_obj.instructions[0];
     for (size_t i = 0; i < instructions_obj.size / sizeof(instructions_obj.instructions[0]); i++)

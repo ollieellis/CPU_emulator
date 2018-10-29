@@ -11,7 +11,7 @@ struct Instructions
     int size;
 
   public:
-    Instructions(uint32_t *instructions, int size);
+    Instructions(uint32_t *instructions_in, int size_in) : instructions(instructions_in),  size(size_in) {};  
   };
 
 

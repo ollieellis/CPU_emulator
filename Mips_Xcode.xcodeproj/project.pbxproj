@@ -6,10 +6,29 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXFileReference section */
+		3813ED4D2186BB1F004773B3 /* doc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = doc; sourceTree = "<group>"; };
+		3813ED4E2186BB1F004773B3 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		3813ED4F2186BB1F004773B3 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
+		3813ED502186BB1F004773B3 /* _config.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _config.yml; sourceTree = "<group>"; };
+		3813ED512186BB1F004773B3 /* instructions.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = instructions.bin; sourceTree = "<group>"; };
+		3813ED522186BB1F004773B3 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+		3813ED532186BB1F004773B3 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
+		3813ED542186BB1F004773B3 /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		38BD35022186BADC00525BD8 = {
 			isa = PBXGroup;
 			children = (
+				3813ED502186BB1F004773B3 /* _config.yml */,
+				3813ED532186BB1F004773B3 /* bin */,
+				3813ED4D2186BB1F004773B3 /* doc */,
+				3813ED512186BB1F004773B3 /* instructions.bin */,
+				3813ED4E2186BB1F004773B3 /* makefile */,
+				3813ED542186BB1F004773B3 /* run.sh */,
+				3813ED522186BB1F004773B3 /* src */,
+				3813ED4F2186BB1F004773B3 /* test */,
 			);
 			sourceTree = "<group>";
 		};
@@ -18,11 +37,12 @@
 /* Begin PBXLegacyTarget section */
 		38BD35072186BADC00525BD8 /* Mips_Xcode */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
+			buildArgumentsString = simulator;
 			buildConfigurationList = 38BD350A2186BADC00525BD8 /* Build configuration list for PBXLegacyTarget "Mips_Xcode" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = Mips_Xcode;

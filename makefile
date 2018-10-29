@@ -21,24 +21,15 @@ MIPS_LDFLAGS = -nostdlib -Wl,-melf32btsmip -march=mips1 -nostartfiles -mno-check
  # Disassemble linked object file (.elf), pulling out instructions as MIPS assembly file (.s)
 %.mips.s : %.mips.elf
 	$(MIPS_OBJDUMP) -j .text -D $< > $@
+	
 
+build/%.o : src/%.cpp src/%.hpp
+	mkdir -p build
+	g++ -c $< -o $@
 
-
-build/simulator.o: src/simulator.cpp src/simulator.hpp
-	g++ -std=c++11 -c src/simulator.cpp -o build/simulator.o
- 
-build/helpers.o: src/helpers.cpp src/helpers.hpp
-	g++ -std=c++11 -c src/helpers.cpp -o build/helpers.o
-
-build/memory.o: src/memory.cpp src/memory.hpp
-	g++ -std=c++11 -c src/memory.cpp -o build/memory.o
-
-build/registers.o: src/registers.cpp src/registers.hpp
-	g++ -std=c++11 -c src/registers.cpp -o build/registers.o
-
-simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o
+simulator: build/*.o
 	mkdir -p bin
-	g++ build/simulator.o build/helpers.o build/memory.o build/registers.o -o bin/mips_simulator
+	g++ $^ -o bin/mips_simulator
 
 testbench: 
 	mkdir -p bin
