@@ -9,6 +9,6 @@ class Memory
   public:
     Memory();
     void set_range_of_memory(int start, int end, uint32_t value);
-    void load_instructions_into_memory(Instructions instructions);  
+    void load_instructions_into_memory(uint32_t *instructions, int number_of_instructions);  
     
 };

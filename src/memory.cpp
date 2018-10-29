@@ -3,18 +3,15 @@
 #include "helpers.hpp"
 #include <algorithm>
 
-
 using namespace std;
 
-void Memory::load_instructions_into_memory(Instructions instructions_obj) 
+void Memory::load_instructions_into_memory(uint32_t *instructions, int number_of_instructions)  
 { 
-    cout << "\npoop " << instructions_obj.instructions[0];
-    for (size_t i = 0; i < instructions_obj.size / sizeof(instructions_obj.instructions[0]); i++)
+    for (int i = 0; i < number_of_instructions; i++)
     {
-        cout << "\ninst at i " << instructions_obj.instructions[i];
-        memory[0x10000000 + i*4] = instructions_obj.instructions[i];
+        cout << "\ninstruction loaded into memory: " << instructions[i];
+        memory[0x10000000 + i*4] = instructions[i];
     }
-    cout << hex << "value in mem: " << memory[0x10000000] << endl;
 }
 
 void Memory::set_range_of_memory(int start, int end, uint32_t value)
