@@ -9,7 +9,7 @@ void Memory::load_instructions_into_memory(uint32_t *instructions, int number_of
 { 
     for (int i = 0; i < number_of_instructions; i++)
     {
-        cout << "\ninstruction loaded into memory: " << instructions[i];
+        cout << "instruction loaded into memory: " << instructions[i] << endl;
         memory[0x10000000 + i*4] = instructions[i];
     }
 }
