@@ -8,9 +8,7 @@
 
 using namespace std;
 
-
-
-void File_io::get_binary_file(string file_path) 
+void File_io::get_binary_file(string file_path)
 {
     cout << "getting binary file \n";
     streampos size;
@@ -38,7 +36,6 @@ void File_io::get_binary_file(string file_path)
         }
         cout << endl;
         this->instructions = instructions;
-        
     }
     else
     {
@@ -93,4 +90,17 @@ unsigned int Binary_helper::swap_bytes(unsigned int n, unsigned int p1, unsigned
         result = Binary_helper::swap_bits(result, p1 * 8 + i, p2 * 8 + i);
     }
     return result;
+}
+
+uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t word)
+{
+    unsigned mask;
+    mask = ((1 << length) - 1) << start_position;
+    uint32_t masked = word & mask;
+    return masked >> start_position;
+}
+
+unsigned char Binary_helper::extract_char(int nth_char, uint32_t word) 
+{
+    return extract_bits(nth_char * 8, 8, word);
 }

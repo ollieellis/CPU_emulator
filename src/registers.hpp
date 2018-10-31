@@ -3,7 +3,7 @@
 
 class Registers{
 
-    //programme counter goes here as it is a register
+    //programme counter goes here as it is a register - remember to add an offset to get to the correct block of memory
 
     //array of 32 registers each 32 bits. keep private
 

@@ -5,22 +5,25 @@
 
 using namespace std;
 
-void Memory::load_instructions_into_memory(uint32_t *instructions, int number_of_instructions)  
-{ 
-    for (int i = 0; i < number_of_instructions; i++)
+void Memory::load_instructions_in(uint32_t *instructions, int number_of_instructions)
+{
+    for (size_t i = 0; i < number_of_instructions; i++)
     {
-        cout << "instruction loaded into memory: " << instructions[i] << endl;
-        memory[0x10000000 + i*4] = instructions[i];
+        for (size_t j = 0; j < 4; j++)
+        {
+            memory[0x10000000 + i * 4 + j] = Binary_helper::extract_char(j, instructions[i]);
+            cout << hex << "instruction loaded into memory " << 0x10000000 + i * 4 + j  << ": "<< (int)memory[0x10000000 + i * 4 + j] << endl;
+        }
     }
 }
 
-void Memory::set_range_of_memory(int start, int end, uint32_t value)
+void Memory::fill_range(int start, int end, char value)
 {
-    fill(memory.begin() + start, memory.begin() + end, value);
+    fill(memory.begin() + start, memory.begin() + end + 1, value);
 }
 
 Memory::Memory()
 {
     memory.reserve(0x30000008);
-    set_range_of_memory(0x20000000, 0x24000000, 0);
+    fill_range(0x20000000, 0x24000000, 0);
 }
