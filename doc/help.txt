@@ -6,3 +6,7 @@ git reset --hard origin/master
 good links:
 
 https://www.eg.bucknell.edu/~csci320/mips_web/ for converting to instructions to binary and finding out info about them
+
+https://inst.eecs.berkeley.edu/~cs61c/resources/MIPS_help.html - info about insruction types
+
+ollie u should look up exceptions and error handling

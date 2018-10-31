@@ -1,7 +1,6 @@
 #include <string>
 #pragma once
 
-using namespace std;
 
 
 class File_io
@@ -11,8 +10,9 @@ public:
   uint32_t *instructions;
 
 public:
-  void get_binary_file(string file_path);
+  void get_binary_file(std::string file_path);
 };
+
 
 class Binary_helper
 {

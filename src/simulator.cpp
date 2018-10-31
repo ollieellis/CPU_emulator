@@ -19,7 +19,8 @@ int main(int argc, char *argv[])
     memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);  
     
 
-    cout <<  hex << "lollol " <<  (int)Binary_helper::extract_char(2, 0x8FA80004) << endl;
+    // cout <<  hex << "lollol " <<  (int)Binary_helper::extract_char(2, 0x8FA80004) << endl;
+    //cout << hex << "foob: " << memory->get_instruction(4);
 
     return 0;
 }

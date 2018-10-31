@@ -3,7 +3,6 @@
 
 class Memory
 {
-  //function to load bin file to instruction memory map
   std::vector<unsigned char> memory;
 
 public:
@@ -17,10 +16,12 @@ public:
   static const int ADDR_GETC_LENGTH = 0x4;
   static const int ADDR_PUTC = 0x30000004;
   static const int ADDR_PUTC_LENGTH = 0x4;
-  
+
 public:
   Memory();
+  void set_data(int offset, unsigned char data);
+  unsigned char get_data(int offset);
   void fill_range(int start, int end, char value);
   void load_instructions_in(uint32_t *instructions, int number_of_instructions);
-  void set_data(int address, char data);
+  uint32_t get_instruction(int offset);
 };
