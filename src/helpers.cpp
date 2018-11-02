@@ -8,11 +8,12 @@
 
 using namespace std;
 
+
 void File_io::get_binary_file(string file_path)
 {
     cout << "getting binary file \n";
     streampos size;
-    char *memblock;//dont deconstruct
+    char *memblock; //dont deconstruct
     uint32_t *instructions;
 
     ifstream file(file_path, ios::in | ios::binary | ios::ate);
@@ -99,7 +100,7 @@ uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t wo
     return masked >> start_position;
 }
 
-unsigned char Binary_helper::extract_char(int nth_char, uint32_t word) 
+unsigned char Binary_helper::extract_char(int nth_char, uint32_t word)
 {
     return extract_bits(nth_char * 8, 8, word);
 }

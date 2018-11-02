@@ -1,17 +1,59 @@
 #include <string> //makes vscode recognize uint32_t
+#include "registers.hpp"
 
-class Instructions
+struct R_type
 {
-  public:
-    void execute(uint32_t instruction); 
-  private:
-    //we don't need to split up into r type i type j type, it is useless. when parsing the uint32_t instruction, deSYTHER what type it is there and call the correct function
-    //here are all the functions - obvs the function signature needs editing for each one
+    uint32_t opcode;      //6 bits
+    uint32_t source1;     //5 bits
+    uint32_t source2;     //5 bits
+    uint32_t destination; //5 bits
+    uint32_t shift;       //5 bits
+    uint32_t function;    //6 bits
+
+    R_type(uint32_t instruction); //loads in opcode, source1, source2, etc...
+
+    void deSYTHER();
+
     void ADD();
-    void ADDI();
-    void ADDIU();
     void ADDU();
     void AND();
+    void DIV();
+    void DIVU();
+    void JALR();
+    void JR();
+    void MFHI();
+    void MFLO();
+    void MTHI();
+    void MTLO();
+    void MULT();
+    void MULTU();
+    void OR();
+    void SLL();
+    void SLLV();
+    void SLT();
+    void SLTU();
+    void SRA();
+    void SRAV();
+    void SRL();
+    void SRLV();
+    void SUB();
+    void SUBU();
+    void XOR();
+};
+
+struct I_type
+{
+    uint32_t opcode;      //6 bits
+    uint32_t source;      //5 bits
+    uint32_t destination; //5 bits
+    uint32_t immediate;   //16 bits
+
+    I_type(uint32_t instruction);
+
+    void deSYTHER();
+
+    void ADDI();
+    void ADDIU();
     void ANDI();
     void BEQ();
     void BGEZ();
@@ -21,12 +63,6 @@ class Instructions
     void BLTZ();
     void BLTZAL();
     void BNE();
-    void DIV();
-    void DIVU();
-    void J();
-    void JALR();
-    void JAL();
-    void JR();
     void LB();
     void LBU();
     void LH();
@@ -35,29 +71,42 @@ class Instructions
     void LW();
     void LWL();
     void LWR();
-    void MFHI();
-    void MFLO();
-    void MTHI();
-    void MTLO();
-    void MULT();
-    void MULTU();
-    void OR();
     void ORI();
     void SB();
     void SH();
-    void SLL();
-    void SLLV();
-    void SLT();
     void SLTI();
     void SLTIU();
-    void SLTU();
-    void SRA();
-    void SRAV();
-    void SRL();
-    void SRLV();
-    void SUB();
-    void SUBU();
     void SW();
-    void XOR();
     void XORI();
+};
+
+struct J_type
+{
+    uint32_t opcode;  // 6 bits
+    uint32_t address; //26 bits
+
+    J_type(uint32_t instruction);
+
+    void deSYTHER();
+
+    void J();
+    void JAL();
+};
+
+enum Instruction_type
+{
+    r_type,
+    i_type,
+    j_type
+};
+
+class Instruction_helper
+{
+  public:
+    int number_of_instructions;
+
+  public:
+    Registers *registers;
+    Instruction_type get_type(uint32_t instruction);
+    void execute(uint32_t instruction);
 };
