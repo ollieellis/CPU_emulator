@@ -36,11 +36,11 @@ MIPS_LDFLAGS = -nostdlib -Wl,-melf32btsmip -march=mips1 -nostartfiles -mno-check
 
 build/%.o : src/%.cpp src/%.hpp
 	mkdir -p build
-	g++ -c $< -o $@
+	g++ -std=c++11 -c $< -o $@
 
-simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o
+simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o
 	mkdir -p bin
-	g++ build/simulator.o build/helpers.o build/memory.o build/registers.o -o bin/mips_simulator
+	g++ -std=c++11 build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o -o bin/mips_simulator
 
 testbench: 
 	mkdir -p bin

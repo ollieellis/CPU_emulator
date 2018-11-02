@@ -10,3 +10,5 @@ https://www.eg.bucknell.edu/~csci320/mips_web/ for converting to instructions to
 https://inst.eecs.berkeley.edu/~cs61c/resources/MIPS_help.html - info about insruction types
 
 ollie u should look up exceptions and error handling
+
+registers in mips: http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch05s03.html

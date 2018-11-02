@@ -12,7 +12,7 @@ void File_io::get_binary_file(string file_path)
 {
     cout << "getting binary file \n";
     streampos size;
-    char *memblock;
+    char *memblock;//dont deconstruct
     uint32_t *instructions;
 
     ifstream file(file_path, ios::in | ios::binary | ios::ate);
@@ -42,7 +42,6 @@ void File_io::get_binary_file(string file_path)
         cout << "Unable to open file";
         //throw error
     }
-    delete[] memblock;
 }
 
 template <class T>
