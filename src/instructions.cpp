@@ -1,6 +1,7 @@
 #include "instructions.hpp"
 #include "helpers.hpp"
 #include "registers.hpp"
+#include "exceptions.hpp"
 #include <iostream>
 
 using namespace std;
@@ -277,9 +278,16 @@ void Instruction_helper::execute(uint32_t instruction)
 }
 
 void R_type::ADD() {
-    uint32_t result = source1 + source2;
+
+    uint32_t result = registers->get_register(source1) + registers->get_register(source2);
+    //we need to check for overflow - make exception handler.
+    uint64_t guaranteed_correct_result = registers->get_register(source1) + registers->get_register(source2);
+    if (result != guaranteed_correct_result){
+        throw ArithmeticException();
+    }
     registers->set_register(destination, result);
 }
+
 void R_type::ADDU() {}
 void R_type::AND() {}
 void R_type::DIV() {}

@@ -38,7 +38,7 @@ build/%.o : src/%.cpp src/%.hpp
 	mkdir -p build
 	g++ -std=c++11 -c $< -o $@
 
-simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o
+simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o  
 	mkdir -p bin
 	g++ -std=c++11 build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o -o bin/mips_simulator
 
