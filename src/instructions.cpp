@@ -1,36 +1,45 @@
 #include "instructions.hpp"
 #include "helpers.hpp"
+#include "registers.hpp"
 #include <iostream>
 
 using namespace std;
 
-R_type::R_type(uint32_t instruction)
+Instruction_helper::Instruction_helper(Registers *registers)
 {
-    opcode = Binary_helper::extract_bits(31, 6, instruction);
-    source1 = Binary_helper::extract_bits(25, 5, instruction);
-    source2 = Binary_helper::extract_bits(20, 5, instruction);
-    destination = Binary_helper::extract_bits(15, 5, instruction);
-    shift = Binary_helper::extract_bits(10, 5, instruction);
-    function = Binary_helper::extract_bits(5, 6, instruction);
+    this->registers = registers;
 }
 
-I_type::I_type(uint32_t instruction)
+R_type::R_type(uint32_t instruction, Registers *registers)
 {
-    opcode = Binary_helper::extract_bits(31, 6, instruction);
-    source = Binary_helper::extract_bits(25, 5, instruction);
-    destination = Binary_helper::extract_bits(20, 5, instruction);
-    immediate = Binary_helper::extract_bits(15, 16, instruction);
+    opcode = Binary_helper::extract_bits(26, 6, instruction);
+    // cout << "extracted op code " << dec << opcode << endl;
+    source1 = Binary_helper::extract_bits(21, 5, instruction);
+    source2 = Binary_helper::extract_bits(16, 5, instruction);
+    destination = Binary_helper::extract_bits(11, 5, instruction);
+    shift = Binary_helper::extract_bits(6, 5, instruction);
+    function = Binary_helper::extract_bits(0, 6, instruction);
 }
 
-J_type::J_type(uint32_t instruction)
+I_type::I_type(uint32_t instruction, Registers *registers)
 {
-    opcode = Binary_helper::extract_bits(31, 6, instruction);
-    address = Binary_helper::extract_bits(25, 26, instruction);
+    opcode = Binary_helper::extract_bits(26, 6, instruction);
+        // cout << "extracted op code " << dec << opcode << endl;
+
+    source = Binary_helper::extract_bits(21, 5, instruction);
+    destination = Binary_helper::extract_bits(16, 5, instruction);
+    immediate = Binary_helper::extract_bits(0, 16, instruction);
+}
+
+J_type::J_type(uint32_t instruction, Registers *registers)
+{
+    opcode = Binary_helper::extract_bits(26, 6, instruction);
+    address = Binary_helper::extract_bits(0, 26, instruction);
 }
 
 Instruction_type Instruction_helper::get_type(uint32_t instruction)
 {
-    uint32_t opcode = Binary_helper::extract_bits(31, 6, instruction);
+    uint32_t opcode = Binary_helper::extract_bits(26, 6, instruction);
     if (opcode == 0)
     {
         return r_type;
@@ -245,22 +254,85 @@ void Instruction_helper::execute(uint32_t instruction)
     {
     case r_type:
     {
-        R_type r_instruction = R_type(instruction);
+       // cout << "is r type " << endl;
+        R_type r_instruction = R_type(instruction, registers);
         r_instruction.deSYTHER();
         break;
     }
     case i_type:
     {
-        I_type i_instruction = I_type(instruction);
+        //cout << "is i type" << endl;
+        I_type i_instruction = I_type(instruction, registers);
         i_instruction.deSYTHER();
         break;
     }
 
     case j_type:
     {
-        J_type j_instruction = J_type(instruction);
+        J_type j_instruction = J_type(instruction, registers);
         j_instruction.deSYTHER();
         break;
     }
     }
 }
+
+void R_type::ADD() {
+    uint32_t result = source1 + source2;
+    registers->set_register(destination, result);
+}
+void R_type::ADDU() {}
+void R_type::AND() {}
+void R_type::DIV() {}
+void R_type::DIVU() {}
+void R_type::JALR() {}
+void R_type::JR() {}
+void R_type::MFHI() {}
+void R_type::MFLO() {}
+void R_type::MTHI() {}
+void R_type::MTLO() {}
+void R_type::MULT() {}
+void R_type::MULTU() {}
+void R_type::OR() {}
+void R_type::SLL() {}
+void R_type::SLLV() {}
+void R_type::SLT() {}
+void R_type::SLTU() {}
+void R_type::SRA() {}
+void R_type::SRAV() {}
+void R_type::SRL() {}
+void R_type::SRLV() {}
+void R_type::SUB() {}
+void R_type::SUBU() {}
+void R_type::XOR() {}
+
+void I_type::ADDI() {}
+void I_type::ADDIU() {}
+void I_type::ANDI() {}
+void I_type::BEQ() {}
+void I_type::BGEZ() {}
+void I_type::BGEZAL() {}
+void I_type::BGTZ() {}
+void I_type::BLEZ() {}
+void I_type::BLTZ() {}
+void I_type::BLTZAL() {}
+void I_type::BNE() {}
+void I_type::LB() {}
+void I_type::LBU() {}
+void I_type::LH() {}
+void I_type::LHU() {}
+void I_type::LUI() {}
+void I_type::LW() {
+    cout << "load word called" << endl;
+}
+void I_type::LWL() {}
+void I_type::LWR() {}
+void I_type::ORI() {}
+void I_type::SB() {}
+void I_type::SH() {}
+void I_type::SLTI() {}
+void I_type::SLTIU() {}
+void I_type::SW() {}
+void I_type::XORI() {}
+
+void J_type::J() {}
+void J_type::JAL() {}

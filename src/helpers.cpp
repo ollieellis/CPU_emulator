@@ -98,6 +98,7 @@ uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t wo
     mask = ((1 << length) - 1) << start_position;
     uint32_t masked = word & mask;
     return masked >> start_position;
+    
 }
 
 unsigned char Binary_helper::extract_char(int nth_char, uint32_t word)

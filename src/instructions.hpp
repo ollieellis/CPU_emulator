@@ -10,8 +10,8 @@ struct R_type
     uint32_t shift;       //5 bits
     uint32_t function;    //6 bits
 
-    R_type(uint32_t instruction); //loads in opcode, source1, source2, etc...
-
+    R_type(uint32_t instruction, Registers *registers); //loads in opcode, source1, source2, etc...
+    Registers *registers;
     void deSYTHER();
 
     void ADD();
@@ -48,8 +48,8 @@ struct I_type
     uint32_t destination; //5 bits
     uint32_t immediate;   //16 bits
 
-    I_type(uint32_t instruction);
-
+    I_type(uint32_t instruction, Registers *registers);
+    Registers *registers;
     void deSYTHER();
 
     void ADDI();
@@ -85,10 +85,9 @@ struct J_type
     uint32_t opcode;  // 6 bits
     uint32_t address; //26 bits
 
-    J_type(uint32_t instruction);
-
+    J_type(uint32_t instruction, Registers *registers);
+    Registers *registers;
     void deSYTHER();
-
     void J();
     void JAL();
 };
@@ -102,11 +101,13 @@ enum Instruction_type
 
 class Instruction_helper
 {
+    Registers *registers;
+
   public:
     int number_of_instructions;
 
   public:
-    Registers *registers;
+    Instruction_helper(Registers *registers);
     Instruction_type get_type(uint32_t instruction);
     void execute(uint32_t instruction);
 };
