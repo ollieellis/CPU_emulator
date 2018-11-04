@@ -32,22 +32,29 @@ int main(int argc, char *argv[])
 
         try
         {
-            instruction_helper->execute(memory->get_instruction(registers->get_program_counter()));
+            uint32_t next_instruction = memory->get_n_bytes(4, Memory::ADDR_INSTR + current_program_counter);
+           //cout << "next instruction " << next_instruction;
+            instruction_helper->execute(next_instruction);
         }
-        catch (const ArithmeticException &e)
+        catch (const Arithmetic_exception &e)
         {
             std::cerr << e.what() << '\n';
             std::exit(-10);
         }
-        catch (const MemoryException &e)
+        catch (const Memory_exception &e)
         {
             std::cerr << e.what() << '\n';
             std::exit(-11);
         }
-        catch (const InvalidInstructionException &e)
+        catch (const Invalid_instruction_exception &e)
         {
             std::cerr << e.what() << '\n';
-            std::exit(-12);
+            std::exit(-20);
+        }
+        catch (const Internal_error &e)
+        {
+            std::cerr << e.what() << '\n';
+            std::exit(-21);
         }
 
         registers->set_program_counter(current_program_counter + 4);

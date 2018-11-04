@@ -20,22 +20,25 @@ R_type::R_type(uint32_t instruction, Registers *registers)
     destination = Binary_helper::extract_bits(11, 5, instruction);
     shift = Binary_helper::extract_bits(6, 5, instruction);
     function = Binary_helper::extract_bits(0, 6, instruction);
+    this->registers = registers;
 }
 
 I_type::I_type(uint32_t instruction, Registers *registers)
 {
     opcode = Binary_helper::extract_bits(26, 6, instruction);
-        // cout << "extracted op code " << dec << opcode << endl;
+    // cout << "extracted op code " << dec << opcode << endl;
 
     source = Binary_helper::extract_bits(21, 5, instruction);
     destination = Binary_helper::extract_bits(16, 5, instruction);
     immediate = Binary_helper::extract_bits(0, 16, instruction);
+    this->registers = registers;
 }
 
 J_type::J_type(uint32_t instruction, Registers *registers)
 {
     opcode = Binary_helper::extract_bits(26, 6, instruction);
     address = Binary_helper::extract_bits(0, 26, instruction);
+    this->registers = registers;
 }
 
 Instruction_type Instruction_helper::get_type(uint32_t instruction)
@@ -133,7 +136,8 @@ void R_type::deSYTHER()
         SLTU();
         break;
     default:
-        break; // throw error?
+        throw Internal_error();
+        break;
     }
 }
 
@@ -227,6 +231,7 @@ void I_type::deSYTHER()
         SW();
         break;
     default:
+        throw Internal_error();
         break;
     }
 }
@@ -243,6 +248,7 @@ void J_type::deSYTHER()
         break;
 
     default:
+        throw Internal_error(); //instruction not found
         break;
     }
 }
@@ -255,7 +261,7 @@ void Instruction_helper::execute(uint32_t instruction)
     {
     case r_type:
     {
-       // cout << "is r type " << endl;
+        // cout << "is r type " << endl;
         R_type r_instruction = R_type(instruction, registers);
         r_instruction.deSYTHER();
         break;
@@ -267,7 +273,6 @@ void Instruction_helper::execute(uint32_t instruction)
         i_instruction.deSYTHER();
         break;
     }
-
     case j_type:
     {
         J_type j_instruction = J_type(instruction, registers);
@@ -277,13 +282,14 @@ void Instruction_helper::execute(uint32_t instruction)
     }
 }
 
-void R_type::ADD() {
-
+void R_type::ADD()
+{
     uint32_t result = registers->get_register(source1) + registers->get_register(source2);
-    //we need to check for overflow - make exception handler.
+    //we need to check for overflow
     uint64_t guaranteed_correct_result = registers->get_register(source1) + registers->get_register(source2);
-    if (result != guaranteed_correct_result){
-        throw ArithmeticException();
+    if (result != guaranteed_correct_result)
+    {
+        throw Arithmetic_exception();
     }
     registers->set_register(destination, result);
 }
@@ -329,7 +335,8 @@ void I_type::LBU() {}
 void I_type::LH() {}
 void I_type::LHU() {}
 void I_type::LUI() {}
-void I_type::LW() {
+void I_type::LW()
+{
     cout << "load word called" << endl;
 }
 void I_type::LWL() {}

@@ -8,17 +8,18 @@ using namespace std;
 Memory::Memory()
 {
     memory.reserve(0x30000008);
-    fill_range(0x20000000, 0x24000000, 0);
+    fill_range(Memory::ADDR_DATA, Memory::ADDR_DATA + Memory::ADDR_DATA_LENGTH, 0);
+   // fill_range(Memory::ADDR_INSTR, Memory::ADDR_INSTR + Memory::ADDR_INSTR_LENGTH, 0);
 }
 
-void Memory::set_data(int offset, unsigned char data)
+void Memory::set_address(int address, unsigned char data)
 {
-    memory[Memory::ADDR_DATA + offset] = data; 
+    memory[address] = data; 
 }
 
-unsigned char Memory::get_data(int offset)
+unsigned char Memory::get_address(int address)
 {
-    return memory[Memory::ADDR_DATA + offset];
+    return memory[address];
 }
 
 void Memory::fill_range(int start, int end, char value)
@@ -39,9 +40,22 @@ void Memory::load_instructions_in(uint32_t *instructions, int number_of_instruct
     }
 }
 
-uint32_t Memory::get_instruction(int offset)
+// uint32_t Memory::get_instruction(int offset)
+// {
+//     //offset must be multiple of 4 or throw error
+//     int start_index = Memory::ADDR_INSTR + offset;
+//     return (memory[start_index] << 24) + (memory[start_index + 1] << 16) + (memory[start_index + 2] << 8) + (memory[start_index + 3] << 0);
+// }
+
+
+uint32_t Memory::get_n_bytes(int n, int address)
 {
-    //offset must be multiple of 4 or throw error
-    int start_index = Memory::ADDR_INSTR + offset;
-    return (memory[start_index] << 24) + (memory[start_index + 1] << 16) + (memory[start_index + 2] << 8) + (memory[start_index + 3] << 0);
+    uint32_t result = 0;
+    for(size_t i = 0; i < n; i++)
+    {
+        result += get_address(address + (n - 1 - i)) << (i * 8);
+    }
+    // cout << "Poop";
+    return result;
 }
+

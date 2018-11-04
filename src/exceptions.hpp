@@ -1,21 +1,42 @@
 #include <iostream>
-#include <exception> 
+#include <exception>
 
-
-struct ArithmeticException : public std::exception { 
-   const char * what () const throw () {
-      return "Arithmetic exception";
-   }
+struct Arithmetic_exception : public std::exception
+{
+    const char *what() const throw()
+    {
+        return "Arithmetic exception";
+    }
 };
 
-struct MemoryException : public std::exception { 
-   const char * what () const throw () {
-      return "Memory exception";
-   }
+struct Memory_exception : public std::exception
+{
+    const char *what() const throw()
+    {
+        return "Memory exception";
+    }
 };
 
-struct InvalidInstructionException : public std::exception { 
-   const char * what () const throw () {
-      return "Invalid instruction exception";
-   }
+struct Invalid_instruction_exception : public std::exception
+{
+    const char *what() const throw()
+    {
+        return "Invalid instruction exception";
+    }
+};
+
+struct Internal_error : public std::exception
+{
+    const char *what() const throw()
+    {
+        return "Internal Error";
+    }
+};
+
+struct IO_error : public std::exception
+{
+    const char *what() const throw()
+    {
+        return "IO Error";
+    }
 };

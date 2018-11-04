@@ -19,9 +19,10 @@ public:
 
 public:
   Memory();
-  void set_data(int offset, unsigned char data);
-  unsigned char get_data(int offset);
+  //no get word function because lw is a command, so is lh and lb etc
+  void set_address(int address, unsigned char data);
+  unsigned char get_address(int address);
+  uint32_t get_n_bytes(int n, int address);
   void fill_range(int start, int end, char value);
   void load_instructions_in(uint32_t *instructions, int number_of_instructions);
-  uint32_t get_instruction(int offset);
 };
