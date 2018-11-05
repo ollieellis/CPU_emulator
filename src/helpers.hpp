@@ -1,4 +1,6 @@
 #include <string>
+#include <cstdint>
+
 #pragma once
 
 class File_io

@@ -1,4 +1,6 @@
 #include <vector>
+#include <cstdint>
+
 #pragma once
 
 class Registers

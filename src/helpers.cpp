@@ -45,21 +45,21 @@ void File_io::get_binary_file(string file_path)
     }
 }
 
-template <class T>
-inline T Binary_helper::rotate_left(T v, std::int32_t shift)
-{
-    std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
-    T s = shift >= 0 ? shift % m : -((-shift) % m);
-    return (v << s) | (v >> (m - s));
-}
+// template <class T>
+// inline T Binary_helper::rotate_left(T v, std::int32_t shift)
+// {
+//     std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
+//     T s = shift >= 0 ? shift % m : -((-shift) % m);
+//     return (v << s) | (v >> (m - s));
+// }
 
-template <class T>
-inline T Binary_helper::rotate_right(T v, std::int32_t shift)
-{
-    std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
-    T s = shift >= 0 ? shift % m : -((-shift) % m);
-    return (v >> s) | (v << (m - s));
-}
+// template <class T>
+// inline T Binary_helper::rotate_right(T v, std::int32_t shift)
+// {
+//     std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
+//     T s = shift >= 0 ? shift % m : -((-shift) % m);
+//     return (v >> s) | (v << (m - s));
+// }
 
 // This function swaps bit at positions p1 and p2 in an integer n
 unsigned int Binary_helper::swap_bits(unsigned int n, unsigned int p1, unsigned int p2)

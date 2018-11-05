@@ -1,5 +1,6 @@
 #include "registers.hpp"
 #include "memory.hpp"
+#include <cstdint>
 
 Registers::Registers()
 {

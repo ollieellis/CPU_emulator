@@ -56,15 +56,19 @@ int main(int argc, char *argv[])
         }
         catch (const Invalid_instruction_exception &e)
         {
-            std::cerr << e.what() << '\n';
-            std::exit(-20);
+          //  std::cerr << e.what() << '\n';
+            std::exit(-12);
         }
         catch (const Internal_error &e)
         {
             std::cerr << e.what() << '\n';
-            std::exit(-21);
+            std::exit(-20);
         }
-
+		catch (const IO_error &e)
+		{
+			std::cerr << e.what() << '\n';
+            std::exit(-21);
+		}
         //there are too many occurences of special conditions where we don't wanna nicrease the pc. therefore it should be done at the end of every funciton.
         // if (registers->get_program_counter() == registers->get_program_counter())
         // { //or else a jump or branch has occured so do not increase pc, let it go to the correct instruction next iteration
