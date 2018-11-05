@@ -282,6 +282,7 @@ void Instruction_helper::execute(uint32_t instruction)
     }
 }
 
+
 void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
 {
     uint32_t result = registers->get_register(source1) + registers->get_register(source2);
@@ -301,49 +302,133 @@ void R_type::ADDU()
     registers->set_register(destination, result);
     registers->advance_program_counter();
 }
-void R_type::AND() {}
-void R_type::DIV() {}
-void R_type::DIVU() {}
-void R_type::JALR() {}
+void R_type::AND() 
+{
+	registers->advance_program_counter();
+}
+void R_type::DIV() 
+{	
+	registers->advance_program_counter();
+}
+void R_type::DIVU() 
+{
+	registers->advance_program_counter();
+}
+void R_type::JALR() 
+{
+	registers->advance_program_counter();
+}
 void R_type::JR()
 {
     registers->set_program_counter(registers->get_register(source1));
 }
-void R_type::MFHI() {}
-void R_type::MFLO() {}
-void R_type::MTHI() {}
-void R_type::MTLO() {}
-void R_type::MULT() {}
-void R_type::MULTU() {}
-void R_type::OR() {}
-void R_type::SLL() {}
-void R_type::SLLV() {}
-void R_type::SLT() {}
-void R_type::SLTU() {}
-void R_type::SRA() {}
-void R_type::SRAV() {}
-void R_type::SRL() {}
-void R_type::SRLV() {}
-void R_type::SUB() {}
-void R_type::SUBU() {}
-void R_type::XOR() {}
+void R_type::MFHI() {
+	registers->advance_program_counter();
+}
+void R_type::MFLO() 
+{
+	registers->advance_program_counter();
+}
+void R_type::MTHI() 
+{
+	registers->advance_program_counter();
+}
+void R_type::MTLO() 
+{
+	registers->advance_program_counter();
+}
+void R_type::MULT() 
+{
+	registers->advance_program_counter();
+}
+void R_type::MULTU() 
+{
+	registers->advance_program_counter();
+}
+void R_type::OR() 
+{
+	registers->advance_program_counter();
+}
+void R_type::SLL() {
+	registers->advance_program_counter();
+}
+void R_type::SLLV() {
+	registers->advance_program_counter();}
+void R_type::SLT() {
+	registers->advance_program_counter();}
+void R_type::SLTU() {
+	registers->advance_program_counter();
+	}
+void R_type::SRA() {
+	registers->advance_program_counter();
+	}
+void R_type::SRAV() {
+	registers->advance_program_counter();
+	}
+void R_type::SRL() {
+	registers->advance_program_counter();
+	}
+void R_type::SRLV() {
+	registers->advance_program_counter();
+	}
+void R_type::SUB() {
+	registers->advance_program_counter();
+	}
+void R_type::SUBU() {
+	registers->advance_program_counter();
+	}
+void R_type::XOR() {
+	registers->advance_program_counter();
+}
 
-void I_type::ADDI() {}
-void I_type::ADDIU() {}
-void I_type::ANDI() {}
-void I_type::BEQ() {}
-void I_type::BGEZ() {}
-void I_type::BGEZAL() {}
-void I_type::BGTZ() {}
-void I_type::BLEZ() {}
-void I_type::BLTZ() {}
-void I_type::BLTZAL() {}
-void I_type::BNE() {}
-void I_type::LB() {}
-void I_type::LBU() {}
-void I_type::LH() {}
-void I_type::LHU() {}
-void I_type::LUI() {}
+void I_type::ADDI() {
+	registers->advance_program_counter();
+	}
+void I_type::ADDIU() {
+	registers->advance_program_counter();
+	}
+void I_type::ANDI() {
+	registers->advance_program_counter();
+	}
+void I_type::BEQ() {
+	registers->advance_program_counter();
+	}
+void I_type::BGEZ() {
+	registers->advance_program_counter();
+	}
+void I_type::BGEZAL() {
+	registers->advance_program_counter();
+	}
+void I_type::BGTZ() {
+	registers->advance_program_counter();
+	}
+void I_type::BLEZ() {
+	registers->advance_program_counter();
+	}
+void I_type::BLTZ() {
+	registers->advance_program_counter();
+	}
+void I_type::BLTZAL() {
+	registers->advance_program_counter();
+	}
+void I_type::BNE() {
+	registers->advance_program_counter();
+	}
+void I_type::LB() {
+	registers->advance_program_counter();
+	}
+void I_type::LBU() {
+	registers->advance_program_counter();
+	}
+void I_type::LH() {
+	registers->advance_program_counter();
+	}
+void I_type::LHU() {
+	registers->advance_program_counter();
+}
+void I_type::LUI() {
+	registers->advance_program_counter();
+	}
 void I_type::LW()
 {
     cout << "load word called" << endl;
@@ -359,13 +444,31 @@ void I_type::LWR()
 
     registers->advance_program_counter();
 }
-void I_type::ORI() {}
-void I_type::SB() {}
-void I_type::SH() {}
-void I_type::SLTI() {}
-void I_type::SLTIU() {}
-void I_type::SW() {}
-void I_type::XORI() {}
+void I_type::ORI() {
+	registers->advance_program_counter();
+	}
+void I_type::SB() {
+	registers->advance_program_counter();
+	}
+void I_type::SH() {
+	registers->advance_program_counter();
+	}
+void I_type::SLTI() {
+	registers->advance_program_counter();
+	}
+void I_type::SLTIU() {
+	registers->advance_program_counter();
+	}
+void I_type::SW() {
+	registers->advance_program_counter();
+	}
+void I_type::XORI() {
+	registers->advance_program_counter();
+	}
 
-void J_type::J() {}
-void J_type::JAL() {}
+void J_type::J() {
+	registers->advance_program_counter();
+	}
+void J_type::JAL() {
+	registers->advance_program_counter();
+	}
