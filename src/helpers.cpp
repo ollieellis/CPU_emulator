@@ -8,18 +8,13 @@
 
 using namespace std;
 
-// Instructions::Instructions(uint32_t* instructions_in, int size_in){
-//     instructions = instructions_in;
-//     size = size_in;
-// }
 
-Instructions File_io::get_binary_file(string file_path) 
+void File_io::get_binary_file(string file_path)
 {
     cout << "getting binary file \n";
     streampos size;
-    char *memblock;
+    char *memblock; //dont deconstruct
     uint32_t *instructions;
-    Instructions* instruction_obj;
 
     ifstream file(file_path, ios::in | ios::binary | ios::ate);
     if (file.is_open())
@@ -32,23 +27,22 @@ Instructions File_io::get_binary_file(string file_path)
         file.close();
 
         instructions = reinterpret_cast<uint32_t *>(memblock);
+        this->number_of_instructions = size / sizeof(instructions[0]);
         cout << "instructions: ";
-        for (size_t i = 0; i < size / sizeof(instructions[0]); i++)
+        for (size_t i = 0; i < this->number_of_instructions; i++)
         {
             instructions[i] = Binary_helper::swap_bytes(instructions[i], 0, 3);
             instructions[i] = Binary_helper::swap_bytes(instructions[i], 1, 2);
             cout << hex << uppercase << instructions[i] << " ";
         }
-        instruction_obj = new Instructions(instructions, size);
         cout << endl;
+        this->instructions = instructions;
     }
     else
     {
         cout << "Unable to open file";
         //throw error
     }
-    delete[] memblock;
-    return *instruction_obj;
 }
 
 template <class T>
@@ -96,4 +90,18 @@ unsigned int Binary_helper::swap_bytes(unsigned int n, unsigned int p1, unsigned
         result = Binary_helper::swap_bits(result, p1 * 8 + i, p2 * 8 + i);
     }
     return result;
+}
+
+uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t word)
+{
+    unsigned mask;
+    mask = ((1 << length) - 1) << start_position;
+    uint32_t masked = word & mask;
+    return masked >> start_position;
+    
+}
+
+unsigned char Binary_helper::extract_char(int nth_char, uint32_t word)
+{
+    return extract_bits(nth_char * 8, 8, word);
 }

@@ -3,27 +3,69 @@
 #include "helpers.hpp"
 #include <algorithm>
 
-
 using namespace std;
-
-void Memory::load_instructions_into_memory(Instructions instructions_obj) 
-{ 
-    cout << "\npoop " << instructions_obj.instructions[0];
-    for (size_t i = 0; i < instructions_obj.size / sizeof(instructions_obj.instructions[0]); i++)
-    {
-        cout << "\ninst at i " << instructions_obj.instructions[i];
-        memory[0x10000000 + i*4] = instructions_obj.instructions[i];
-    }
-    cout << hex << "value in mem: " << memory[0x10000000] << endl;
-}
-
-void Memory::set_range_of_memory(int start, int end, uint32_t value)
-{
-    fill(memory.begin() + start, memory.begin() + end, value);
-}
 
 Memory::Memory()
 {
     memory.reserve(0x30000008);
-    set_range_of_memory(0x20000000, 0x24000000, 0);
+    fill_range(Memory::ADDR_DATA, Memory::ADDR_DATA + Memory::ADDR_DATA_LENGTH, 0);
+   // fill_range(Memory::ADDR_INSTR, Memory::ADDR_INSTR + Memory::ADDR_INSTR_LENGTH, 0);
 }
+
+void Memory::set_address(int address, unsigned char data)
+{
+    memory[address] = data; 
+}
+
+unsigned char Memory::get_address(int address)
+{   
+    // if (address == Memory::ADDR_GETC) // do this later, need clarification on all the read operations
+    // {
+    //     unsigned char input;
+    //     cin >> input;
+    //     set_address(Memory::ADDR_GETC, input);
+    // }
+    if (address == Memory::ADDR_NULL) 
+    {
+
+    }
+    return memory[address];
+}
+
+void Memory::fill_range(int start, int end, char value)
+{
+    fill(memory.begin() + start, memory.begin() + end + 1, value);
+}
+
+void Memory::load_instructions_in(uint32_t *instructions, int number_of_instructions)
+{
+    for (size_t i = 0; i < number_of_instructions; i++)
+    {
+        for (size_t j = 0; j < 4; j++)
+        {
+            int index = Memory::ADDR_INSTR + i * 4 + j;
+            memory[index] = Binary_helper::extract_char(3 - j, instructions[i]);
+            cout << hex << "instruction loaded into memory 0x" << index << ": " << (int)memory[index] << endl;
+        }
+    }
+}
+
+// uint32_t Memory::get_instruction(int offset)
+// {
+//     //offset must be multiple of 4 or throw error
+//     int start_index = Memory::ADDR_INSTR + offset;
+//     return (memory[start_index] << 24) + (memory[start_index + 1] << 16) + (memory[start_index + 2] << 8) + (memory[start_index + 3] << 0);
+// }
+
+
+uint32_t Memory::get_n_bytes(int n, int address)
+{
+    uint32_t result = 0;
+    for(size_t i = 0; i < n; i++)
+    {
+        result += get_address(address + (n - 1 - i)) << (i * 8);
+    }
+    // cout << "Poop";
+    return result;
+}
+
