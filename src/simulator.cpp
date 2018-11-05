@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    cout << "programme path: " << argv[0] << endl;
+    cerr << "programme path: " << argv[0] << endl;
 
     // std::shared_ptr<Memory> memory(new Memory()); //smart pointer
     // std::shared_ptr<File_io> file_io(new File_io());
@@ -26,14 +26,22 @@ int main(int argc, char *argv[])
     instruction_helper->number_of_instructions = file_io->number_of_instructions;
 
     bool has_program_finished = false;
+    int test_counter = 0;
     while (!has_program_finished)
     {
-        uint32_t current_program_counter = registers->get_program_counter();
+        test_counter++;
+        uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
+        if (registers->get_program_counter() == Memory::ADDR_NULL)
+        {
+            //terminate execution
+            cerr << "\n terminating execution due to reaching end of binary file";
+            uint8_t exit_code = Binary_helper::extract_char(0, registers->get_register(2));
+            std::exit(exit_code);
+        }
 
         try
         {
-            uint32_t next_instruction = memory->get_n_bytes(4, Memory::ADDR_INSTR + current_program_counter);
-           //cout << "next instruction " << next_instruction;
+            //cout << "next instruction " << next_instruction;
             instruction_helper->execute(next_instruction);
         }
         catch (const Arithmetic_exception &e)
@@ -57,9 +65,13 @@ int main(int argc, char *argv[])
             std::exit(-21);
         }
 
-        registers->set_program_counter(current_program_counter + 4);
+        //there are too many occurences of special conditions where we don't wanna nicrease the pc. therefore it should be done at the end of every funciton.
+        // if (registers->get_program_counter() == registers->get_program_counter())
+        // { //or else a jump or branch has occured so do not increase pc, let it go to the correct instruction next iteration
+        //     registers->set_program_counter(registers->get_program_counter() + 4);
+        // }
 
-        if (registers->get_program_counter() > 100)
+        if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100 )
         {
             has_program_finished = true;
         }

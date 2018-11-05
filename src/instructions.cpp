@@ -282,7 +282,7 @@ void Instruction_helper::execute(uint32_t instruction)
     }
 }
 
-void R_type::ADD()
+void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
 {
     uint32_t result = registers->get_register(source1) + registers->get_register(source2);
     //we need to check for overflow
@@ -292,14 +292,23 @@ void R_type::ADD()
         throw Arithmetic_exception();
     }
     registers->set_register(destination, result);
+    registers->advance_program_counter();
 }
 
-void R_type::ADDU() {}
+void R_type::ADDU()
+{
+    uint32_t result = registers->get_register(source1) + registers->get_register(source2);
+    registers->set_register(destination, result);
+    registers->advance_program_counter();
+}
 void R_type::AND() {}
 void R_type::DIV() {}
 void R_type::DIVU() {}
 void R_type::JALR() {}
-void R_type::JR() {}
+void R_type::JR()
+{
+    registers->set_program_counter(registers->get_register(source1));
+}
 void R_type::MFHI() {}
 void R_type::MFLO() {}
 void R_type::MTHI() {}
@@ -338,9 +347,14 @@ void I_type::LUI() {}
 void I_type::LW()
 {
     cout << "load word called" << endl;
+    registers->advance_program_counter();
 }
-void I_type::LWL() {}
-void I_type::LWR() {}
+void I_type::LWL()
+{
+}
+void I_type::LWR()
+{
+}
 void I_type::ORI() {}
 void I_type::SB() {}
 void I_type::SH() {}

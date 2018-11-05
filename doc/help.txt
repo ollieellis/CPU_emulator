@@ -5,6 +5,8 @@ git reset --hard origin/master
 
 good links:
 
+
+//super useful this one;
 https://www.eg.bucknell.edu/~csci320/mips_web/ for converting to instructions to binary and finding out info about them
 
 https://inst.eecs.berkeley.edu/~cs61c/resources/MIPS_help.html - info about insruction types
@@ -17,3 +19,5 @@ http://www.mrc.uidaho.edu/mrc/people/jff/digital/MIPSir.html
 ollie u should look up exceptions and error handling
 
 registers in mips: http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch05s03.html
+
+linked from the dude http://www.mrc.uidaho.edu/mrc/people/jff/digital/MIPSir.html - good summary of all functions 

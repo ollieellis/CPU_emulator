@@ -18,7 +18,17 @@ void Memory::set_address(int address, unsigned char data)
 }
 
 unsigned char Memory::get_address(int address)
-{
+{   
+    // if (address == Memory::ADDR_GETC) // do this later, need clarification on all the read operations
+    // {
+    //     unsigned char input;
+    //     cin >> input;
+    //     set_address(Memory::ADDR_GETC, input);
+    // }
+    if (address == Memory::ADDR_NULL) 
+    {
+
+    }
     return memory[address];
 }
 
