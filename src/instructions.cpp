@@ -351,9 +351,13 @@ void I_type::LW()
 }
 void I_type::LWL()
 {
+
+    registers->advance_program_counter();
 }
 void I_type::LWR()
 {
+
+    registers->advance_program_counter();
 }
 void I_type::ORI() {}
 void I_type::SB() {}

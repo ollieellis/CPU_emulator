@@ -21,3 +21,9 @@ ollie u should look up exceptions and error handling
 registers in mips: http://www.cs.uwm.edu/classes/cs315/Bacon/Lecture/HTML/ch05s03.html
 
 linked from the dude http://www.mrc.uidaho.edu/mrc/people/jff/digital/MIPSir.html - good summary of all functions 
+
+
+from here  https://github.com/m8pple/arch2-2018-cw/issues/14  ->
+
+A LWL or LWR to the getc address is legal only if the address is aligned
+In other cases it should result in an exception. <-- this acc makes sense after reading about lwl and lwr
