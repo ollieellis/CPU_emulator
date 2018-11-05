@@ -294,6 +294,7 @@ void R_type::ADD() //check to see if this is correct - what if we used negative 
     }
     registers->set_register(destination, result);
     registers->advance_program_counter();
+
 }
 
 void R_type::ADDU()
@@ -304,6 +305,7 @@ void R_type::ADDU()
 }
 void R_type::AND() 
 {
+	uint32_t result = registers->get_register(source1) & registers->get_register(source2);
 	registers->advance_program_counter();
 }
 void R_type::DIV() 
@@ -436,7 +438,6 @@ void I_type::LW()
 }
 void I_type::LWL()
 {
-
     registers->advance_program_counter();
 }
 void I_type::LWR()
