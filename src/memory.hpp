@@ -1,6 +1,8 @@
 #include <vector>
 #include "helpers.hpp"
 
+#pragma once
+
 class Memory
 {
   std::vector<unsigned char> memory;

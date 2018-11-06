@@ -2,7 +2,7 @@ if ur github shit fux up, do this in the mips simulator dir in a shell:
 git reset --hard origin/master
 
 
-
+LOOK AT DATA CARD IN TEXT BOOK
 good links:
 
 

@@ -1,17 +1,19 @@
 #include "instructions.hpp"
 #include "helpers.hpp"
 #include "registers.hpp"
+#include "memory.hpp"
 #include "exceptions.hpp"
 #include <iostream>
 
 using namespace std;
 
-Instruction_helper::Instruction_helper(Registers *registers)
+Instruction_helper::Instruction_helper(Registers *registers, Memory *memory)
 {
 	this->registers = registers;
+	this->memory = memory;
 }
 
-R_type::R_type(uint32_t instruction, Registers *registers)
+R_type::R_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
 {
 	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	// cout << "extracted op code " << dec << opcode << endl;
@@ -21,9 +23,11 @@ R_type::R_type(uint32_t instruction, Registers *registers)
 	shift = Bitwise_helper::extract_bits(6, 5, instruction);
 	function = Bitwise_helper::extract_bits(0, 6, instruction);
 	this->registers = registers;
+	this->memory = memory;
+	this->instruction_helper = instruction_helper;
 }
 
-I_type::I_type(uint32_t instruction, Registers *registers)
+I_type::I_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
 {
 	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	// cout << "extracted op code " << dec << opcode << endl;
@@ -31,16 +35,20 @@ I_type::I_type(uint32_t instruction, Registers *registers)
 	source2_or_destination = Bitwise_helper::extract_bits(16, 5, instruction);
 	immediate = Bitwise_helper::extract_bits(0, 16, instruction);
 	this->registers = registers;
+	this->memory = memory;
+	this->instruction_helper = instruction_helper;
 }
 
-J_type::J_type(uint32_t instruction, Registers *registers)
+J_type::J_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
 {
 	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	address = Bitwise_helper::extract_bits(0, 26, instruction);
 	this->registers = registers;
+	this->memory = memory;
+	this->instruction_helper = instruction_helper;
 }
 
-Instruction_type Instruction_helper::get_type(uint32_t instruction)
+Instruction_helper::Type Instruction_helper::get_type(uint32_t instruction)
 {
 	uint32_t opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	if (opcode == 0)
@@ -261,20 +269,20 @@ void Instruction_helper::execute(uint32_t instruction)
 	case r_type:
 	{
 		// cout << "is r type " << endl;
-		R_type r_instruction = R_type(instruction, registers);
+		R_type r_instruction = R_type(instruction, registers, memory, this);
 		r_instruction.deSYTHER();
 		break;
 	}
 	case i_type:
 	{
 		//cout << "is i type" << endl;
-		I_type i_instruction = I_type(instruction, registers);
+		I_type i_instruction = I_type(instruction, registers, memory, this);
 		i_instruction.deSYTHER();
 		break;
 	}
 	case j_type:
 	{
-		J_type j_instruction = J_type(instruction, registers);
+		J_type j_instruction = J_type(instruction, registers, memory, this);
 		j_instruction.deSYTHER();
 		break;
 	}
@@ -431,8 +439,9 @@ void I_type::BEQ()
 {
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
-		registers->advance_program_counter(); //beq works by adding the offset to the NEXT instruction AFTER beq
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
+		instruction_helper->execute(next_instruction); //branch works by executing the next instruction first
 		registers->set_program_counter(registers->get_program_counter() + offset);
 	}
 	else

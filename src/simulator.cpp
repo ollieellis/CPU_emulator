@@ -7,77 +7,64 @@
 
 using namespace std;
 
+void custom_exit(int exit_code,  Memory *memory, File_io *file_io, Registers *registers, Instruction_helper *instruction_helper)
+{
+    delete memory;
+    delete file_io;
+    delete registers;
+    delete instruction_helper;
+    std::exit(exit_code);
+}
+
 int main(int argc, char *argv[])
 {
-    cerr << "programme path: " << argv[0] << endl;
 
-    // std::shared_ptr<Memory> memory(new Memory()); //smart pointer
-    // std::shared_ptr<File_io> file_io(new File_io());
-    // std::shared_ptr<Registers> registers(new Registers());
-    // std::shared_ptr<Instructions> instructions(new Instructions());
+        cerr << "programme path: " << argv[0] << endl;
 
-    Memory *memory = new Memory();
-    File_io *file_io = new File_io();
-    Registers *registers = new Registers();
-    Instruction_helper *instruction_helper = new Instruction_helper(registers);
+        Memory *memory = new Memory();
+        File_io *file_io = new File_io();
+        Registers *registers = new Registers();
+        Instruction_helper *instruction_helper = new Instruction_helper(registers, memory);
 
+        if (argc != 2)
+            throw Environment_error(); //incorrect number of command line args
 
-    if (argc != 2) throw Internal_error();//incorrect number of command line args
+        file_io->get_binary_file(argv[1]);
+        memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
+        instruction_helper->number_of_instructions = file_io->number_of_instructions;
 
-    file_io->get_binary_file(argv[1]);
-    memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
-    instruction_helper->number_of_instructions = file_io->number_of_instructions;
-
-    bool has_program_finished = false;
-    int test_counter = 0;
-    while (!has_program_finished)
-    {
-        test_counter++;
-        uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
-        if (registers->get_program_counter() == Memory::ADDR_NULL)
+        bool has_program_finished = false;
+        int test_counter = 0;
+        while (!has_program_finished)
         {
-            //terminate execution
-            cerr << "\n*** terminating execution due to reaching end of binary file ***\n";
-            uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
-            std::exit(exit_code);
-        }
+            test_counter++;
+            uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
+            if (registers->get_program_counter() == Memory::ADDR_NULL)
+            {
+                cerr << "\n*** terminating execution due to end of binary file ***\n";
+                has_program_finished = true;
+                uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
+                custom_exit(exit_code, memory, file_io, registers, instruction_helper);
+            }
 
-        try
-        {
-            //cout << "next instruction " << next_instruction;
-            instruction_helper->execute(next_instruction);
-        }
-        catch (const Arithmetic_exception &e)
-        {
-            std::cerr << e.what() << '\n';
-            std::exit(-10);
-        }
-        catch (const Memory_exception &e)
-        {
-            std::cerr << e.what() << '\n';
-            std::exit(-11);
-        }
-        catch (const Invalid_instruction_exception &e)
-        {
-          //  std::cerr << e.what() << '\n';
-            std::exit(-12);
-        }
-        catch (const Internal_error &e)
-        {
-            std::cerr << e.what() << '\n';
-            std::exit(-20);
-        }
-		catch (const IO_error &e)
-		{
-			std::cerr << e.what() << '\n';
-            std::exit(-21);
-		}
+            try
+            {
+                instruction_helper->execute(next_instruction);
+            }
+            catch (const Mips_exception &e)
+            {
+                std::cerr << e.what() << '\n';
+                custom_exit(e.exit_code(), memory, file_io, registers, instruction_helper);
+            }catch (...)
+            {
+                custom_exit(-22, memory, file_io, registers, instruction_helper);
+            }
 
-
-        if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100 )
-        {
-            has_program_finished = true;
+            if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)
+            {
+                has_program_finished = true;
+            }
         }
-    }
+   
     return 0;
 }

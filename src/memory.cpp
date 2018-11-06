@@ -35,7 +35,7 @@ void Memory::fill_range(int start, int end, char value)
 
 void Memory::load_instructions_in(uint32_t *instructions, int number_of_instructions)
 {
-    for (size_t i = 0; i < number_of_instructions; i++)
+    for (int i = 0; i < number_of_instructions; i++)
     {
         for (size_t j = 0; j < 4; j++)
         {
@@ -57,7 +57,7 @@ void Memory::load_instructions_in(uint32_t *instructions, int number_of_instruct
 uint32_t Memory::get_n_bytes(int n, int address)
 {
     uint32_t result = 0;
-    for(size_t i = 0; i < n; i++)
+    for(int i = 0; i < n; i++)
     {
         result += get_address(address + (n - 1 - i)) << (i * 8);
     }

@@ -28,7 +28,7 @@ void File_io::get_binary_file(string file_path)
         instructions = reinterpret_cast<uint32_t *>(memblock);
         this->number_of_instructions = size / sizeof(instructions[0]);
         cout << "instructions: ";
-        for (size_t i = 0; i < this->number_of_instructions; i++)
+        for (int i = 0; i < this->number_of_instructions; i++)
         {
             instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 0, 3);
             instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 1, 2);
