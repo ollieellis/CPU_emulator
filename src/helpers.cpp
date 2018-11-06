@@ -30,8 +30,8 @@ void File_io::get_binary_file(string file_path)
         cout << "instructions: ";
         for (size_t i = 0; i < this->number_of_instructions; i++)
         {
-            instructions[i] = Binary_helper::swap_bytes(instructions[i], 0, 3);
-            instructions[i] = Binary_helper::swap_bytes(instructions[i], 1, 2);
+            instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 0, 3);
+            instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 1, 2);
             cout << hex << uppercase << instructions[i] << " ";
         }
         cout << endl;
@@ -45,7 +45,7 @@ void File_io::get_binary_file(string file_path)
 }
 
 // template <class T>
-// inline T Binary_helper::rotate_left(T v, std::int32_t shift)
+// inline T Bitwise_helper::rotate_left(T v, std::int32_t shift)
 // {
 //     std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
 //     T s = shift >= 0 ? shift % m : -((-shift) % m);
@@ -53,7 +53,7 @@ void File_io::get_binary_file(string file_path)
 // }
 
 // template <class T>
-// inline T Binary_helper::rotate_right(T v, std::int32_t shift)
+// inline T Bitwise_helper::rotate_right(T v, std::int32_t shift)
 // {
 //     std::size_t m = sizeof(v) * std::numeric_limits<T>::digits;
 //     T s = shift >= 0 ? shift % m : -((-shift) % m);
@@ -61,7 +61,7 @@ void File_io::get_binary_file(string file_path)
 // }
 
 // This function swaps bit at positions p1 and p2 in an integer n
-unsigned int Binary_helper::swap_bits(unsigned int n, unsigned int p1, unsigned int p2)
+unsigned int Bitwise_helper::swap_bits(unsigned int n, unsigned int p1, unsigned int p2)
 {
     /* Move p1'th to rightmost side */
     unsigned int bit1 = (n >> p1) & 1;
@@ -81,17 +81,17 @@ unsigned int Binary_helper::swap_bits(unsigned int n, unsigned int p1, unsigned 
     return result;
 }
 
-unsigned int Binary_helper::swap_bytes(unsigned int n, unsigned int p1, unsigned int p2)
+unsigned int Bitwise_helper::swap_bytes(unsigned int n, unsigned int p1, unsigned int p2)
 {
     unsigned int result = n;
     for (size_t i = 0; i < 8; i++)
     {
-        result = Binary_helper::swap_bits(result, p1 * 8 + i, p2 * 8 + i);
+        result = Bitwise_helper::swap_bits(result, p1 * 8 + i, p2 * 8 + i);
     }
     return result;
 }
 
-uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t word)
+uint32_t Bitwise_helper::extract_bits(int start_position, int length, uint32_t word)
 {
     unsigned mask;
     mask = ((1 << length) - 1) << start_position;
@@ -99,27 +99,23 @@ uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t wo
     return masked >> start_position;
 }
 
-unsigned char Binary_helper::extract_char(int nth_char, uint32_t word)
+unsigned char Bitwise_helper::extract_char(int nth_char, uint32_t word)
 {
     return extract_bits(nth_char * 8, 8, word);
 }
 
-uint32_t Binary_helper::set_nth_bit(int index, bool bit, uint32_t value)
+uint32_t Bitwise_helper::set_nth_bit(int index, bool bit, uint32_t value)
 {
     return (value & (~(1 << index))) | (bit << index);
 }
 
-uint32_t Binary_helper::sign_extend_to_32(int size, uint32_t value)
+uint32_t Bitwise_helper::sign_extend_to_32(int size, uint32_t value)
 {
     uint32_t result = value;
-    cerr << hex << "result so far: " << result << endl;
-
     bool sign_bit = extract_bits(size - 1, 1, value);
-    cerr << hex << "sign bit: " << sign_bit << endl;
     for(size_t i = size; i < 32; i++) 
     {
        result = set_nth_bit(i, sign_bit, result);
     }
-    cerr << hex << "result : " << result << endl;
     return result;
 }

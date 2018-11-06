@@ -27,3 +27,7 @@ from here  https://github.com/m8pple/arch2-2018-cw/issues/14  ->
 
 A LWL or LWR to the getc address is legal only if the address is aligned
 In other cases it should result in an exception. <-- this acc makes sense after reading about lwl and lwr
+
+
+interesting stuff about addiu and signed overflow 
+https://stackoverflow.com/a/36274750/6820042

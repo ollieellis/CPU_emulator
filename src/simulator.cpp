@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
         if (registers->get_program_counter() == Memory::ADDR_NULL)
         {
             //terminate execution
-            cerr << "\n***terminating execution due to reaching end of binary file***\n";
-            uint8_t exit_code = Binary_helper::extract_char(0, registers->get_register(2));
+            cerr << "\n*** terminating execution due to reaching end of binary file ***\n";
+            uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
             std::exit(exit_code);
         }
 

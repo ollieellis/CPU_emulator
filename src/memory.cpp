@@ -40,7 +40,7 @@ void Memory::load_instructions_in(uint32_t *instructions, int number_of_instruct
         for (size_t j = 0; j < 4; j++)
         {
             int index = Memory::ADDR_INSTR + i * 4 + j;
-            memory[index] = Binary_helper::extract_char(3 - j, instructions[i]);
+            memory[index] = Bitwise_helper::extract_char(3 - j, instructions[i]);
             cout << hex << "instruction loaded into memory 0x" << index << ": " << (int)memory[index] << endl;
         }
     }

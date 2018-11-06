@@ -44,8 +44,8 @@ struct R_type
 struct I_type
 {
     uint32_t opcode;      //6 bits
-    uint32_t source;      //5 bits
-    uint32_t destination; //5 bits
+    uint32_t source1;      //5 bits
+    uint32_t source2_or_destination; //5 bits
     uint32_t immediate;   //16 bits
 
     I_type(uint32_t instruction, Registers *registers);

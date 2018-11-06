@@ -13,37 +13,36 @@ Instruction_helper::Instruction_helper(Registers *registers)
 
 R_type::R_type(uint32_t instruction, Registers *registers)
 {
-	opcode = Binary_helper::extract_bits(26, 6, instruction);
+	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	// cout << "extracted op code " << dec << opcode << endl;
-	source1 = Binary_helper::extract_bits(21, 5, instruction);
-	source2 = Binary_helper::extract_bits(16, 5, instruction);
-	destination = Binary_helper::extract_bits(11, 5, instruction);
-	shift = Binary_helper::extract_bits(6, 5, instruction);
-	function = Binary_helper::extract_bits(0, 6, instruction);
+	source1 = Bitwise_helper::extract_bits(21, 5, instruction);
+	source2 = Bitwise_helper::extract_bits(16, 5, instruction);
+	destination = Bitwise_helper::extract_bits(11, 5, instruction);
+	shift = Bitwise_helper::extract_bits(6, 5, instruction);
+	function = Bitwise_helper::extract_bits(0, 6, instruction);
 	this->registers = registers;
 }
 
 I_type::I_type(uint32_t instruction, Registers *registers)
 {
-	opcode = Binary_helper::extract_bits(26, 6, instruction);
+	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	// cout << "extracted op code " << dec << opcode << endl;
-
-	source = Binary_helper::extract_bits(21, 5, instruction);
-	destination = Binary_helper::extract_bits(16, 5, instruction);
-	immediate = Binary_helper::extract_bits(0, 16, instruction);
+	source1 = Bitwise_helper::extract_bits(21, 5, instruction);
+	source2_or_destination = Bitwise_helper::extract_bits(16, 5, instruction);
+	immediate = Bitwise_helper::extract_bits(0, 16, instruction);
 	this->registers = registers;
 }
 
 J_type::J_type(uint32_t instruction, Registers *registers)
 {
-	opcode = Binary_helper::extract_bits(26, 6, instruction);
-	address = Binary_helper::extract_bits(0, 26, instruction);
+	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
+	address = Bitwise_helper::extract_bits(0, 26, instruction);
 	this->registers = registers;
 }
 
 Instruction_type Instruction_helper::get_type(uint32_t instruction)
 {
-	uint32_t opcode = Binary_helper::extract_bits(26, 6, instruction);
+	uint32_t opcode = Bitwise_helper::extract_bits(26, 6, instruction);
 	if (opcode == 0)
 	{
 		return r_type;
@@ -146,7 +145,7 @@ void I_type::deSYTHER()
 	switch (opcode)
 	{
 	case 1:
-		switch (destination)
+		switch (source2_or_destination)
 		{
 		case 0:
 			BLTZ();
@@ -284,9 +283,10 @@ void Instruction_helper::execute(uint32_t instruction)
 
 void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
 {
-	uint32_t result = registers->get_register(source1) + registers->get_register(source2);
 	//we need to check for overflow
 	uint64_t guaranteed_correct_result = registers->get_register(source1) + registers->get_register(source2);
+	uint32_t result = guaranteed_correct_result; // trunc to 32 bits
+
 	if (result != guaranteed_correct_result)
 	{
 		throw Arithmetic_exception();
@@ -404,19 +404,41 @@ void R_type::XOR()
 
 void I_type::ADDI()
 {
+	uint64_t guaranteed_correct_result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, registers->get_register(source2_or_destination));
+	uint32_t result = guaranteed_correct_result; //trunc to 32 bits
+
+	if (result != guaranteed_correct_result)
+	{
+		throw Arithmetic_exception();
+	}
+	registers->set_register(source2_or_destination, result);
 	registers->advance_program_counter();
 }
 void I_type::ADDIU()
 {
+	uint32_t result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, registers->get_register(source2_or_destination));
+	registers->set_register(source2_or_destination, result);
 	registers->advance_program_counter();
 }
 void I_type::ANDI()
 {
+	uint32_t result = registers->get_register(source1) & (uint32_t)registers->get_register(source2_or_destination);
+	registers->set_register(source2_or_destination, result);
 	registers->advance_program_counter();
 }
+
 void I_type::BEQ()
 {
-	registers->advance_program_counter();
+	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
+	{
+		registers->advance_program_counter(); //beq works by adding the offset to the NEXT instruction AFTER beq
+		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		registers->set_program_counter(registers->get_program_counter() + offset);
+	}
+	else
+	{
+		registers->advance_program_counter();
+	}
 }
 void I_type::BGEZ()
 {

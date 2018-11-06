@@ -44,7 +44,7 @@ simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o bu
 
 testbench: 
 	mkdir -p bin
-	cp -a testbench.sh bin/mips_testbench
+	cp -a test/testbench.sh bin/mips_testbench
 	chmod 755 bin/mips_testbench
 clean:
 	rm build/*.o

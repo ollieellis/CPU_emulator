@@ -15,7 +15,7 @@ public:
   void get_binary_file(std::string file_path);
 };
 
-class Binary_helper
+class Bitwise_helper
 {
 public:
   // template <class T>
