@@ -366,8 +366,9 @@ void R_type::SLT()
 void R_type::SLTU()
 {
 	uint32_t result = 0;
-	if (registers->get_register(source1) < registers->get_register(source2)){
-	result = 1;
+	if (registers->get_register(source1) < registers->get_register(source2))
+	{
+		result = 1;
 	}
 	registers->set_register(destination, result);
 	registers->advance_program_counter();
@@ -467,7 +468,6 @@ void I_type::LUI()
 }
 void I_type::LW()
 {
-	cout << "load word called" << endl;
 	registers->advance_program_counter();
 }
 void I_type::LWL()

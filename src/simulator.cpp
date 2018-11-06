@@ -21,6 +21,9 @@ int main(int argc, char *argv[])
     Registers *registers = new Registers();
     Instruction_helper *instruction_helper = new Instruction_helper(registers);
 
+
+    if (argc != 2) throw Internal_error();//incorrect number of command line args
+
     file_io->get_binary_file(argv[1]);
     memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
     instruction_helper->number_of_instructions = file_io->number_of_instructions;
@@ -34,7 +37,7 @@ int main(int argc, char *argv[])
         if (registers->get_program_counter() == Memory::ADDR_NULL)
         {
             //terminate execution
-            cerr << "\n terminating execution due to reaching end of binary file";
+            cerr << "\n***terminating execution due to reaching end of binary file***\n";
             uint8_t exit_code = Binary_helper::extract_char(0, registers->get_register(2));
             std::exit(exit_code);
         }
@@ -69,11 +72,7 @@ int main(int argc, char *argv[])
 			std::cerr << e.what() << '\n';
             std::exit(-21);
 		}
-        //there are too many occurences of special conditions where we don't wanna nicrease the pc. therefore it should be done at the end of every funciton.
-        // if (registers->get_program_counter() == registers->get_program_counter())
-        // { //or else a jump or branch has occured so do not increase pc, let it go to the correct instruction next iteration
-        //     registers->set_program_counter(registers->get_program_counter() + 4);
-        // }
+
 
         if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100 )
         {

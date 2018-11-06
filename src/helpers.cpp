@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 void File_io::get_binary_file(string file_path)
 {
     cout << "getting binary file \n";
@@ -98,10 +97,29 @@ uint32_t Binary_helper::extract_bits(int start_position, int length, uint32_t wo
     mask = ((1 << length) - 1) << start_position;
     uint32_t masked = word & mask;
     return masked >> start_position;
-    
 }
 
 unsigned char Binary_helper::extract_char(int nth_char, uint32_t word)
 {
     return extract_bits(nth_char * 8, 8, word);
+}
+
+uint32_t Binary_helper::set_nth_bit(int index, bool bit, uint32_t value)
+{
+    return (value & (~(1 << index))) | (bit << index);
+}
+
+uint32_t Binary_helper::sign_extend_to_32(int size, uint32_t value)
+{
+    uint32_t result = value;
+    cerr << hex << "result so far: " << result << endl;
+
+    bool sign_bit = extract_bits(size - 1, 1, value);
+    cerr << hex << "sign bit: " << sign_bit << endl;
+    for(size_t i = size; i < 32; i++) 
+    {
+       result = set_nth_bit(i, sign_bit, result);
+    }
+    cerr << hex << "result : " << result << endl;
+    return result;
 }

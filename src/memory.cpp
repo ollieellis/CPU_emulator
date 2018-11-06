@@ -25,10 +25,6 @@ unsigned char Memory::get_address(int address)
     //     cin >> input;
     //     set_address(Memory::ADDR_GETC, input);
     // }
-    if (address == Memory::ADDR_NULL) 
-    {
-
-    }
     return memory[address];
 }
 
