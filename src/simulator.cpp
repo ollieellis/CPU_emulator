@@ -32,9 +32,6 @@ int main(int argc, char *argv[])
         file_io->get_binary_file(argv[1]);
         memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
-
-        char hi =  memory->get_address(0x30000000);
-        cout << hex <<"hi " << hi;
         bool has_program_finished = false;
         int test_counter = 0;
         while (!has_program_finished)
@@ -58,7 +55,7 @@ int main(int argc, char *argv[])
                 custom_exit(e.exit_code(), memory, file_io, registers, instruction_helper);
             }catch (...)
             {
-                custom_exit(-22, memory, file_io, registers, instruction_helper);
+                custom_exit(-22, memory, file_io, registers, instruction_helper); //HAX 4 DAYS
             }
 
             if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)

@@ -451,7 +451,17 @@ void I_type::BEQ()
 }
 void I_type::BGEZ()
 {
-	registers->advance_program_counter();
+	if (registers->get_register(source1) >= 0)
+	{
+		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
+		instruction_helper->execute(next_instruction); //branch works by executing the next instruction first
+		registers->set_program_counter(registers->get_program_counter() + offset);//pc wil have been advanced by here
+	}
+	else
+	{
+		registers->advance_program_counter();
+	}
 }
 void I_type::BGEZAL()
 {
@@ -507,7 +517,6 @@ void I_type::LWL()
 }
 void I_type::LWR()
 {
-
 	registers->advance_program_counter();
 }
 void I_type::ORI()

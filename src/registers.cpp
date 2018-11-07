@@ -11,7 +11,10 @@ Registers::Registers()
 
 void Registers::set_register(int index, uint32_t value)
 {
-    registers[index] = value;
+    if (index != 0) //$zero is grounded to zero
+    {
+        registers[index] = value; 
+    }
 }
 uint32_t Registers::get_register(int index)
 {
@@ -26,6 +29,7 @@ uint32_t Registers::get_program_counter()
     return program_counter;
 }
 
-void Registers::advance_program_counter(){
+void Registers::advance_program_counter()
+{
     set_program_counter(get_program_counter() + 4);
 }
