@@ -1,11 +1,12 @@
 #include <vector>
 #include "helpers.hpp"
+#include <unordered_map>
 
 #pragma once
 
 class Memory
 {
-  std::vector<unsigned char> memory;
+  std::unordered_map<int, unsigned char> memory;
 
 public:
   static const int ADDR_NULL = 0x00000000;

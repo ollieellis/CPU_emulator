@@ -1,23 +1,19 @@
 #include <string>
 #include <cstdint>
+#include <unordered_map>
 
 #pragma once
 
-class File_io
+struct File_io
 {
-
-
-public:
   int number_of_instructions;
   uint32_t *instructions;
 
-public:
   void get_binary_file(std::string file_path);
 };
 
-class Bitwise_helper
+struct Bitwise_helper
 {
-public:
   // template <class T>
   // static inline T rotate_left(T v, std::int32_t shift);
   // template <class T>

@@ -7,8 +7,7 @@ using namespace std;
 
 Memory::Memory()
 {
-    memory.reserve(0x30000008);
-    fill_range(Memory::ADDR_DATA, Memory::ADDR_DATA + Memory::ADDR_DATA_LENGTH, 0);
+    //only allocating each element once it is written to, when reading, return 0 if key does not exist
 }
 
 void Memory::set_address(int address, unsigned char data)
@@ -27,13 +26,13 @@ unsigned char Memory::get_address(int address)
         unsigned char input = getchar();
         set_address(address, input); //needed because we return the memory at the address to this function
     }
+    if (memory.find(address) == memory.end())
+    {
+        return 0; //if the address has not been allocated yet
+    }
     return memory[address];
 }
 
-void Memory::fill_range(int start, int end, char value)
-{
-    fill(memory.begin() + start, memory.begin() + end + 1, value);
-}
 
 void Memory::load_instructions_in(uint32_t *instructions, int number_of_instructions)
 {

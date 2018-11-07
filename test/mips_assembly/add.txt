@@ -1,2 +1,5 @@
 addi $2, $zero, 5
-addi $zero, $zero, 5
+addi $3, $zero, 3
+add $4, $2, $3
+jr $zero
+#8

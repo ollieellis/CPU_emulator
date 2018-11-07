@@ -5,12 +5,13 @@
 #include <bitset>
 #include <vector>
 #include <cstdint>
+#include "exceptions.hpp"
 
 using namespace std;
 
 void File_io::get_binary_file(string file_path)
 {
-    cout << "getting binary file \n";
+    cerr << "getting binary file \n";
     streampos size;
     char *memblock; //dont deconstruct
     uint32_t *instructions;
@@ -19,7 +20,7 @@ void File_io::get_binary_file(string file_path)
     if (file.is_open())
     {
         size = file.tellg();
-        cout << "file size: " << size << endl;
+        cerr << "file size: " << size << endl;
         memblock = new char[size];
         file.seekg(0, ios::beg);
         file.read(memblock, size);
@@ -27,19 +28,20 @@ void File_io::get_binary_file(string file_path)
 
         instructions = reinterpret_cast<uint32_t *>(memblock);
         this->number_of_instructions = size / sizeof(instructions[0]);
-        cout << "instructions: ";
+        cerr << "instructions: ";
         for (int i = 0; i < this->number_of_instructions; i++)
         {
             instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 0, 3);
             instructions[i] = Bitwise_helper::swap_bytes(instructions[i], 1, 2);
-            cout << hex << uppercase << instructions[i] << " ";
+            cerr << hex << uppercase << instructions[i] << " ";
         }
-        cout << endl;
+        cerr << endl;
         this->instructions = instructions;
     }
     else
     {
-        cout << "Unable to open file";
+        cerr << "Unable to open file";
+        throw Environment_error();
         //throw error
     }
 }

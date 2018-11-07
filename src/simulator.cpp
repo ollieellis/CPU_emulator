@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
         bool has_program_finished = false;
         int test_counter = 0;
+        //memory->get_address(Memory::ADDR_GETC);
         while (!has_program_finished)
         {
             test_counter++;

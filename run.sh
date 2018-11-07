@@ -1,4 +1,6 @@
 #!/bin/bash
 echo "running programme \n" #comment this out later
 make simulator
-bin/mips_simulator instructions.bin
+sh test/convert_mips.sh
+make testbench
+bin/mips_testbench bin/mips_simulator
