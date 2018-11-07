@@ -440,9 +440,9 @@ void I_type::BEQ()
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
+		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
 		instruction_helper->execute(next_instruction); //branch works by executing the next instruction first
-		registers->set_program_counter(registers->get_program_counter() + offset);
+		registers->set_program_counter(registers->get_program_counter() + offset);//pc wil have been advanced by here
 	}
 	else
 	{

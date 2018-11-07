@@ -33,6 +33,8 @@ int main(int argc, char *argv[])
         memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
 
+        char hi =  memory->get_address(0x30000000);
+        cout << hex <<"hi " << hi;
         bool has_program_finished = false;
         int test_counter = 0;
         while (!has_program_finished)
@@ -46,7 +48,6 @@ int main(int argc, char *argv[])
                 uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
                 custom_exit(exit_code, memory, file_io, registers, instruction_helper);
             }
-
             try
             {
                 instruction_helper->execute(next_instruction);

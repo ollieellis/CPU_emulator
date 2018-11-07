@@ -9,22 +9,24 @@ Memory::Memory()
 {
     memory.reserve(0x30000008);
     fill_range(Memory::ADDR_DATA, Memory::ADDR_DATA + Memory::ADDR_DATA_LENGTH, 0);
-   // fill_range(Memory::ADDR_INSTR, Memory::ADDR_INSTR + Memory::ADDR_INSTR_LENGTH, 0);
 }
 
 void Memory::set_address(int address, unsigned char data)
 {
-    memory[address] = data; 
+    if (address >= Memory::ADDR_PUTC && address < Memory::ADDR_PUTC + 4)
+    {
+        putchar(data);
+    }
+    memory[address] = data;
 }
 
 unsigned char Memory::get_address(int address)
-{   
-    // if (address == Memory::ADDR_GETC) // do this later, need clarification on all the read operations
-    // {
-    //     unsigned char input;
-    //     cin >> input;
-    //     set_address(Memory::ADDR_GETC, input);
-    // }
+{
+    if (address >= Memory::ADDR_GETC && address < Memory::ADDR_GETC + 4) // do this later, need clarification on all the read operations
+    {
+        unsigned char input = getchar();
+        set_address(address, input); //needed because we return the memory at the address to this function
+    }
     return memory[address];
 }
 
@@ -53,15 +55,13 @@ void Memory::load_instructions_in(uint32_t *instructions, int number_of_instruct
 //     return (memory[start_index] << 24) + (memory[start_index + 1] << 16) + (memory[start_index + 2] << 8) + (memory[start_index + 3] << 0);
 // }
 
-
 uint32_t Memory::get_n_bytes(int n, int address)
 {
     uint32_t result = 0;
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         result += get_address(address + (n - 1 - i)) << (i * 8);
     }
     // cout << "Poop";
     return result;
 }
-
