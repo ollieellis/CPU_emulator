@@ -1,0 +1,7 @@
+The assembly files are stored in test/mips_assembly, with the file name as the name of the instruction being tested. 
+
+If the same instruction is being tested twice, the second file name will have a number appended. 
+
+The instruction column in the csv file should be the file name stripped of the letters, and the id should be the file name (without the extention obs)
+
+The actual converted binary files are stored in test/mips_binary. However, the txt files with the actual assembly will still be used in the testbench as the last line contains a commented expected value of the result of the output from the simulator. This can be determined for writing pass or fail

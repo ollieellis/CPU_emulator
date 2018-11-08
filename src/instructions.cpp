@@ -16,7 +16,7 @@ Instruction_helper::Instruction_helper(Registers *registers, Memory *memory)
 R_type::R_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
 {
 	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
-	// cout << "extracted op code " << dec << opcode << endl;
+	// cerr << "extracted op code " << dec << opcode << endl;
 	source1 = Bitwise_helper::extract_bits(21, 5, instruction);
 	source2 = Bitwise_helper::extract_bits(16, 5, instruction);
 	destination = Bitwise_helper::extract_bits(11, 5, instruction);
@@ -30,7 +30,7 @@ R_type::R_type(uint32_t instruction, Registers *registers, Memory *memory, Instr
 I_type::I_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
 {
 	opcode = Bitwise_helper::extract_bits(26, 6, instruction);
-	// cout << "extracted op code " << dec << opcode << endl;
+	// cerr << "extracted op code " << dec << opcode << endl;
 	source1 = Bitwise_helper::extract_bits(21, 5, instruction);
 	source2_or_destination = Bitwise_helper::extract_bits(16, 5, instruction);
 	immediate = Bitwise_helper::extract_bits(0, 16, instruction);
@@ -262,20 +262,20 @@ void J_type::deSYTHER()
 
 void Instruction_helper::execute(uint32_t instruction)
 {
-	cout << "executing instruction: " << hex << instruction << endl;
+	cerr << "executing instruction: " << hex << instruction << endl;
 
 	switch (get_type(instruction))
 	{
 	case r_type:
 	{
-		// cout << "is r type " << endl;
+		// cerr << "is r type " << endl;
 		R_type r_instruction = R_type(instruction, registers, memory, this);
 		r_instruction.deSYTHER();
 		break;
 	}
 	case i_type:
 	{
-		//cout << "is i type" << endl;
+		//cerr << "is i type" << endl;
 		I_type i_instruction = I_type(instruction, registers, memory, this);
 		i_instruction.deSYTHER();
 		break;

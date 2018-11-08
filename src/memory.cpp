@@ -36,7 +36,7 @@ void Memory::set_n_bytes(int n, int start_address, uint32_t value) //maximum of 
 {
     if (is_output(n, start_address))
     {
-        cerr << dec <<"putchar should be: " << value << endl;
+        cerr << dec << "putchar should be: " << value << endl;
         cerr << "putchar result: ";
         putchar(value); //gets least significant 8 bits i think
         cerr << endl;
