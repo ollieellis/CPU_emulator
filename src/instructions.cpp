@@ -412,7 +412,7 @@ void R_type::XOR()
 
 void I_type::ADDI()
 {
-	uint64_t guaranteed_correct_result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, registers->get_register(source2_or_destination));
+	uint64_t guaranteed_correct_result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	uint32_t result = guaranteed_correct_result; //trunc to 32 bits
 
 	if (result != guaranteed_correct_result)
@@ -424,13 +424,13 @@ void I_type::ADDI()
 }
 void I_type::ADDIU()
 {
-	uint32_t result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, registers->get_register(source2_or_destination));
+	uint32_t result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	registers->set_register(source2_or_destination, result);
 	registers->advance_program_counter();
 }
 void I_type::ANDI()
 {
-	uint32_t result = registers->get_register(source1) & (uint32_t)registers->get_register(source2_or_destination);
+	uint32_t result = registers->get_register(source1) & immediate;
 	registers->set_register(source2_or_destination, result);
 	registers->advance_program_counter();
 }
@@ -441,8 +441,8 @@ void I_type::BEQ()
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
-		instruction_helper->execute(next_instruction); //branch works by executing the next instruction first
-		registers->set_program_counter(registers->get_program_counter() + offset);//pc wil have been advanced by here
+		instruction_helper->execute(next_instruction);							   //branch works by executing the next instruction first
+		registers->set_program_counter(registers->get_program_counter() + offset); //pc wil have been advanced by here
 	}
 	else
 	{
@@ -455,8 +455,8 @@ void I_type::BGEZ()
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
-		instruction_helper->execute(next_instruction); //branch works by executing the next instruction first
-		registers->set_program_counter(registers->get_program_counter() + offset);//pc wil have been advanced by here
+		instruction_helper->execute(next_instruction);							   //branch works by executing the next instruction first
+		registers->set_program_counter(registers->get_program_counter() + offset); //pc wil have been advanced by here
 	}
 	else
 	{
@@ -541,6 +541,12 @@ void I_type::SLTIU()
 }
 void I_type::SW()
 {
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
+	{
+		throw Memory_exception();
+	}
+	memory->set_n_bytes(4, address, registers->get_register(source2_or_destination));
 	registers->advance_program_counter();
 }
 void I_type::XORI()

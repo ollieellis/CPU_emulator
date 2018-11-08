@@ -18,7 +18,6 @@ void custom_exit(int exit_code,  Memory *memory, File_io *file_io, Registers *re
 
 int main(int argc, char *argv[])
 {
-
         cerr << "programme path: " << argv[0] << endl;
 
         Memory *memory = new Memory();
@@ -48,7 +47,7 @@ int main(int argc, char *argv[])
             }
             try
             {
-                instruction_helper->execute(next_instruction);
+                instruction_helper->execute(next_instruction);//THE BIG BOI FUNCTION
             }
             catch (const Mips_exception &e)
             {
@@ -56,7 +55,7 @@ int main(int argc, char *argv[])
                 custom_exit(e.exit_code(), memory, file_io, registers, instruction_helper);
             }catch (...)
             {
-                custom_exit(-22, memory, file_io, registers, instruction_helper); //HAX 4 DAYS
+                custom_exit(Internal_error().exit_code(), memory, file_io, registers, instruction_helper); //HAX 4 DAYS
             }
 
             if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)
