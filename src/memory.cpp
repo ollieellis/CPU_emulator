@@ -1,6 +1,7 @@
 #include "memory.hpp"
 #include <iostream>
 #include "helpers.hpp"
+#include "exceptions.hpp"
 #include <algorithm>
 
 using namespace std;
@@ -9,6 +10,8 @@ Memory::Memory()
 {
     //only allocating each element once it is written to, when reading, return 0 if key does not exist
 }
+
+//==============================================private functions==============================================
 
 void Memory::set_address(int address, unsigned char data)
 {
@@ -24,24 +27,8 @@ unsigned char Memory::get_address(int address)
     return memory[address];
 }
 
-void Memory::load_instructions_in(uint32_t *instructions, int number_of_instructions)
-{
-    for (int i = 0; i < number_of_instructions; i++)
-    {
-        set_n_bytes(4, Memory::ADDR_INSTR + i * 4, instructions[i]);
-    }
-}
-
 void Memory::set_n_bytes(int n, int start_address, uint32_t value) //maximum of 4 bytes
 {
-    if (is_output(n, start_address))
-    {
-        cerr << dec << "putchar should be: " << value << endl;
-        cerr << "putchar result: ";
-        putchar(value); //gets least significant 8 bits i think
-        cerr << endl;
-    }
-
     for (int i = 0; i < n; i++)
     {
         int index = start_address + i;
@@ -52,12 +39,6 @@ void Memory::set_n_bytes(int n, int start_address, uint32_t value) //maximum of 
 
 uint32_t Memory::get_n_bytes(int n, int start_address) //maximum of 4 bytes
 {
-    if (is_input(n, start_address))
-    {
-        unsigned char input = getchar();
-        set_address(start_address, input); //needed because we return the memory at this address to this function
-    }
-
     uint32_t result = 0;
     for (int i = 0; i < n; i++)
     {
@@ -66,26 +47,98 @@ uint32_t Memory::get_n_bytes(int n, int start_address) //maximum of 4 bytes
     return result;
 }
 
-bool Memory::is_input(int number_of_bytes_being_got, int start_address)//checks if any bytes being gotten are in the getc range
-{   
-    for(int i = start_address; i < start_address + number_of_bytes_being_got; i++)
+//==============================================public functions==============================================
+
+void Memory::set_instructions(uint32_t *instructions, int number_of_instructions)
+{
+    for (int i = 0; i < number_of_instructions; i++)
     {
-       if (i >= Memory::ADDR_GETC && i < Memory::ADDR_GETC + Memory::ADDR_GETC_LENGTH)
-       {
-           return true;
-       }
+        set_n_bytes(4, Memory::ADDR_INSTR + i * 4, instructions[i]);
+    }
+}
+
+uint32_t Memory::get_instruction(int address)
+{
+    if (!is_in_addr_instr_range(address))
+    {
+        throw Memory_exception();
+    }
+    return get_n_bytes(4, address);
+}
+
+void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
+{
+    if (is_trying_to_set_stoud(n, start_address))
+    {
+        cerr << dec << "putchar should be: " << value << endl;
+        cerr << "putchar result: ";
+        putchar(value); //gets least significant 8 bits i think
+        cerr << endl;
+        return;
+    } //must be before range check or will throw as its out of range
+
+    if (!is_in_addr_data_range(start_address))
+    {
+        throw Memory_exception();
+    }
+
+    set_n_bytes(n, start_address, value);
+}
+
+uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
+{
+    if (is_trying_to_read_stdin(n, start_address)) //should be in get data function because its 'part' of it... so is addr null set
+    {
+        unsigned char input = getchar();
+        return input;
+    } //must be before range check
+
+    if (!is_in_addr_data_range(start_address))
+    {
+        throw Memory_exception();
+    }
+
+    return get_n_bytes(n, start_address);
+}
+
+bool Memory::is_in_addr_data_range(int address) //applies to both read and write
+{
+    if (address >= Memory::ADDR_DATA && address < Memory::ADDR_DATA + Memory::ADDR_DATA_LENGTH) //not <= or we'd be validating address outside the range
+    {
+        return true;
     }
     return false;
 }
 
-bool Memory::is_output(int number_of_bytes_being_set, int start_address)//checks if any bytes being set are in the putc range
+bool Memory::is_in_addr_instr_range(int address)
 {
-    for(int i = start_address; i < start_address + number_of_bytes_being_set; i++)
+    if (address >= Memory::ADDR_INSTR && address < Memory::ADDR_INSTR + Memory::ADDR_INSTR_LENGTH) //not <= or we'd be validating address outside the range
     {
-       if (i >= Memory::ADDR_PUTC && i < Memory::ADDR_PUTC + Memory::ADDR_PUTC_LENGTH)
-       {
-           return true;
-       }
+        return true;
+    }
+    return false;
+}
+
+bool Memory::is_trying_to_read_stdin(int number_of_bytes_being_got, int start_address) //checks if any bytes being gotten are in the getc range
+{
+    for (int i = start_address; i < start_address + number_of_bytes_being_got; i++)
+    {
+        if (i >= Memory::ADDR_GETC && i < Memory::ADDR_GETC + Memory::ADDR_GETC_LENGTH)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Memory::is_trying_to_set_stoud(int number_of_bytes_being_set, int start_address) //checks if any bytes being set are in the putc range
+{
+    for (int i = start_address; i < start_address + number_of_bytes_being_set; i++)
+    {
+        if (i >= Memory::ADDR_PUTC && i < Memory::ADDR_PUTC + Memory::ADDR_PUTC_LENGTH)
+        {
+            return true;
+        }
     }
     return false;
 }

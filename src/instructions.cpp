@@ -339,7 +339,7 @@ void R_type::JR()
 	{
 		throw Memory_exception();
 	}
-	int32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
+	int32_t next_instruction = memory->get_instruction(registers->get_program_counter() + 4);
 	instruction_helper->execute(next_instruction);
 	registers->set_program_counter(jump_address);
 }
@@ -453,7 +453,7 @@ void I_type::BEQ()
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + 4 + offset; //ensure we store the correct address before executing delay slot
-		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
+		uint32_t next_instruction = memory->get_instruction(registers->get_program_counter() + 4);
 		instruction_helper->execute(next_instruction);  //branch works by executing the next instruction first
 		registers->set_program_counter(branch_address); //pc wil have been advanced by here
 	}
@@ -467,7 +467,7 @@ void I_type::BGEZ()
 	if (registers->get_register(source1) >= 0)
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
+		uint32_t next_instruction = memory->get_instruction(registers->get_program_counter() + 4);
 		instruction_helper->execute(next_instruction);							   //branch works by executing the next instruction first
 		registers->set_program_counter(registers->get_program_counter() + offset); //pc wil have been advanced by here
 	}
@@ -559,7 +559,7 @@ void I_type::SW()
 	{
 		throw Memory_exception();
 	}
-	memory->set_n_bytes(4, address, registers->get_register(source2_or_destination));
+	memory->set_n_bytes_of_data(4, address, registers->get_register(source2_or_destination));
 	registers->advance_program_counter();
 }
 void I_type::XORI()

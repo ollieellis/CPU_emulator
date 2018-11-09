@@ -32,15 +32,14 @@ int main(int argc, char *argv[])
             throw Environment_error(); //incorrect number of command line args
 
         file_io->get_binary_file(argv[1]);
-        memory->load_instructions_in(file_io->instructions, file_io->number_of_instructions);
+        memory->set_instructions(file_io->instructions, file_io->number_of_instructions);
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
         bool has_program_finished = false;
-        int test_counter = 0;
+       // int test_counter = 0;
         //memory->get_address(Memory::ADDR_GETC);
         while (!has_program_finished)
         {
-            test_counter++;
-            uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter());
+            //test_counter++;
             if (registers->get_program_counter() == Memory::ADDR_NULL)
             {
                 cerr << "\n*** terminating execution due to end of binary file ***\n";
@@ -48,12 +47,13 @@ int main(int argc, char *argv[])
                 uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
                 custom_exit(exit_code, memory, file_io, registers, instruction_helper);
             }
+            uint32_t next_instruction = memory->get_instruction(registers->get_program_counter());
             instruction_helper->execute(next_instruction); //THE BIG BOI FUNCTION
 
-            if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)
-            {
-                has_program_finished = true;
-            }
+            // if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)
+            // {
+            //     has_program_finished = true;
+            // }
         }
     }
     catch (const Mips_exception &e)
