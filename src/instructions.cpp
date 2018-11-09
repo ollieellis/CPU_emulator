@@ -264,6 +264,11 @@ void Instruction_helper::execute(uint32_t instruction)
 {
 	cerr << "executing instruction: " << hex << instruction << endl;
 
+	if (registers->get_program_counter() > Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || registers->get_program_counter() < Memory::ADDR_INSTR) //check if pc is still in range where instructions are. should be here and not in main while loop because execute can be called from other instructions coz of branch delay slot for example. but acc we aren't actually increasing the pc when calling instructions in the delay slot. still, i think it's better practice to keep it here.
+	{
+		throw Invalid_instruction_exception();
+	}
+
 	switch (get_type(instruction))
 	{
 	case r_type:
@@ -329,7 +334,14 @@ void R_type::JALR()
 }
 void R_type::JR()
 {
-	registers->set_program_counter(registers->get_register(source1));
+	uint32_t jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
+	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
+	{
+		throw Memory_exception();
+	}
+	int32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
+	instruction_helper->execute(next_instruction);
+	registers->set_program_counter(jump_address);
 }
 void R_type::MFHI()
 {
@@ -440,9 +452,10 @@ void I_type::BEQ()
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		uint32_t branch_address = registers->get_program_counter() + 4 + offset; //ensure we store the correct address before executing delay slot
 		uint32_t next_instruction = memory->get_n_bytes(4, registers->get_program_counter() + 4);
-		instruction_helper->execute(next_instruction);							   //branch works by executing the next instruction first
-		registers->set_program_counter(registers->get_program_counter() + offset); //pc wil have been advanced by here
+		instruction_helper->execute(next_instruction);  //branch works by executing the next instruction first
+		registers->set_program_counter(branch_address); //pc wil have been advanced by here
 	}
 	else
 	{

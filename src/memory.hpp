@@ -27,10 +27,9 @@ public:
 public:
   Memory();
   //no get word function because lw is a command, so is lh and lb etc
-
   void load_instructions_in(uint32_t *instructions, int number_of_instructions);
   uint32_t get_n_bytes(int n, int start_address);
   void set_n_bytes(int n, int start_address, uint32_t value);
-  bool is_input(int number_of_bytes_being_got, int start_address);
-  bool is_output(int number_of_bytes_being_set, int start_address);
+  bool is_input(int number_of_bytes_being_got, int start_address);//tryna read user input
+  bool is_output(int number_of_bytes_being_set, int start_address);//tryna read user output
 };

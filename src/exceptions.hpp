@@ -63,7 +63,7 @@ struct Internal_error : public Mips_exception
     }
     int exit_code() const override
     {
-        return -22;
+        return -20;
     }
 };
 
