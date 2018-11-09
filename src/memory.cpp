@@ -112,6 +112,7 @@ bool Memory::is_in_addr_data_range(int address) //applies to both read and write
 
 bool Memory::is_in_addr_instr_range(int address)
 {
+    //if address is greater tan number of instructions loaded in then it should be invalid instruction
     if (address >= Memory::ADDR_INSTR && address < Memory::ADDR_INSTR + Memory::ADDR_INSTR_LENGTH) //not <= or we'd be validating address outside the range
     {
         return true;
