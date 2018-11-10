@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
                 custom_exit(exit_code, memory, file_io, registers, instruction_helper);
             }
             uint32_t next_instruction = memory->get_instruction(registers->get_program_counter());
-            instruction_helper->execute(next_instruction); //THE BIG BOI FUNCTION
+            instruction_helper->decode_and_execute(next_instruction); //THE BIG BOI FUNCTION
 
             // if (registers->get_program_counter() > Memory::ADDR_INSTR + 100 || test_counter > 100)
             // {

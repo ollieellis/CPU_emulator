@@ -1,8 +1,9 @@
 #!/bin/bash
-echo "testbench started" #comment this out later
+# echo "testbench started" #comment this out later
 simulator=$1
 binary_files=test/mips_binary
 assembly_files=test/mips_assembly
+log_files=test/output
 
 function extract_info {
     file=$1
@@ -24,7 +25,8 @@ function extract_info {
     done < "$file"
 }
 
-
+csv_lines=()
+mkdir -p $log_files
 for binary_file in $binary_files/*
 do
     sim_stdout=$($simulator $binary_file)
@@ -40,8 +42,10 @@ do
     test_id=$(basename -- "${binary_file%.*}")
     instruction=${test_id//[[:digit:]]/}
 
-    echo $test_id, $instruction, pass/fail, $author, "expected value: " $expected_value "actual value: " TEMP_ACTUAL_VALUE " expected exit code:" TEMP_EXIT_CODE "actual exit code:" $exit_code
+    csv_line="$test_id, $instruction, pass/fail, $author, expected value: $expected_value actual value: TEMP_ACTUAL_VALUE expected exit code: TEMP_EXIT_CODE actual exit code: $exit_code"
+    csv_lines+=($csv_line)
+    > "$log_files/$test_id.csv" cat <<< $csv_line
 done
-
+printf '%s\n' "${csv_lines[@]}"
 # printf '%d\n' "'$sim_stdout" #for printing decimal value of ascii
 

@@ -90,7 +90,7 @@ uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
     if (is_trying_to_read_stdin(n, start_address)) //should be in get data function because its 'part' of it... so is addr null set
     {
         unsigned char input = getchar();
-        return input;
+        return input;//will be in lsb of return result
     } //must be before range check
 
     if (!is_in_addr_data_range(start_address))

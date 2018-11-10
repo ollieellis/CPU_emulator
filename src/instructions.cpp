@@ -260,15 +260,15 @@ void J_type::deSYTHER()
 	}
 }
 
-void Instruction_helper::execute(uint32_t instruction)
+void Instruction_helper::decode_and_execute(uint32_t instruction)
 {
 	cerr << "executing instruction: " << hex << instruction << endl;
 
-	if (registers->get_program_counter() > Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || registers->get_program_counter() < Memory::ADDR_INSTR) //check if pc is still in range where instructions are. should be here and not in main while loop because execute can be called from other instructions coz of branch delay slot for example. but acc we aren't actually increasing the pc when calling instructions in the delay slot. still, i think it's better practice to keep it here.
+	if (registers->get_program_counter() > Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || registers->get_program_counter() < Memory::ADDR_INSTR) //check if pc is still in range where instructions are. should be here and not in main while loop because decode_and_execute can be called from other instructions coz of branch delay slot for example. but acc we aren't actually increasing the pc when calling instructions in the delay slot. still, i think it's better practice to keep it here. also keep it here and not in the get instruction function because we don't have access to number_of_instructions there (with the current implementation.). also now we are advancing pc here if that has anything to do with it idk
 	{
 		throw Invalid_instruction_exception();
 	}
-
+	registers->advance_program_counter(); //technically happens after decode (deSYTHER), but same thing in this case, just much more clean in code.
 	switch (get_type(instruction))
 	{
 	case r_type:
@@ -305,85 +305,85 @@ void R_type::ADD() //check to see if this is correct - what if we used negative 
 		throw Arithmetic_exception();
 	}
 	registers->set_register(destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 
 void R_type::ADDU()
 {
 	uint32_t result = registers->get_register(source1) + registers->get_register(source2);
 	registers->set_register(destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::AND()
 {
 	uint32_t result = registers->get_register(source1) & registers->get_register(source2);
 	registers->set_register(destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::DIV()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::DIVU()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void R_type::JALR()
+void R_type::JALR() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void R_type::JR()
+void R_type::JR() //has delay slot
 {
 	uint32_t jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
-	uint32_t next_instruction_address = registers->get_program_counter() + 4;
+	uint32_t next_instruction_address = registers->get_program_counter();
+
 	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
 	{
 		throw Memory_exception();
 	}
-	
 	int32_t next_instruction = memory->get_instruction(next_instruction_address);
-	instruction_helper->execute(next_instruction);
+	instruction_helper->decode_and_execute(next_instruction);
+
 	registers->set_program_counter(jump_address);
 }
 void R_type::MFHI()
 {
-	registers->advance_program_counter();
 }
 void R_type::MFLO()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::MTHI()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::MTLO()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::MULT()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::MULTU()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::OR()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SLL()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SLLV()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SLT()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SLTU()
 {
@@ -393,35 +393,35 @@ void R_type::SLTU()
 		result = 1;
 	}
 	registers->set_register(destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SRA()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SRAV()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SRL()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SRLV()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SUB()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::SUBU()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void R_type::XOR()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 
 void I_type::ADDI()
@@ -434,128 +434,121 @@ void I_type::ADDI()
 		throw Arithmetic_exception();
 	}
 	registers->set_register(source2_or_destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::ADDIU()
 {
 	uint32_t result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	registers->set_register(source2_or_destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::ANDI()
 {
 	uint32_t result = registers->get_register(source1) & immediate;
 	registers->set_register(source2_or_destination, result);
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 
-void I_type::BEQ()
+void I_type::BEQ() //has delay slot
 {
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction_address = registers->get_program_counter() + 4;
+		uint32_t next_instruction_address = registers->get_program_counter();
 		uint32_t branch_address = next_instruction_address + offset; //ensure we store the correct address before executing delay slot
 		uint32_t next_instruction = memory->get_instruction(next_instruction_address);
-		instruction_helper->execute(next_instruction);  //branch works by executing the next instruction first
-		registers->set_program_counter(branch_address); //pc wil have been advanced by here
-	}
-	else
-	{
-		registers->advance_program_counter();
+		instruction_helper->decode_and_execute(next_instruction); //branch works by executing the next instruction first
+		registers->set_program_counter(branch_address);			  //pc wil have been advanced by here
 	}
 }
-void I_type::BGEZ()
+void I_type::BGEZ() //has delay slot
 {
 	if (registers->get_register(source1) >= 0)
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction_address = registers->get_program_counter() + 4;
+		uint32_t next_instruction_address = registers->get_program_counter();
 		uint32_t branch_address = next_instruction_address + offset; //ensure we store the correct address before executing delay slot
 		uint32_t next_instruction = memory->get_instruction(next_instruction_address);
-		instruction_helper->execute(next_instruction);  //branch works by executing the next instruction first
-		registers->set_program_counter(branch_address); //pc wil have been advanced by here
-	}
-	else
-	{
-		registers->advance_program_counter();
+		instruction_helper->decode_and_execute(next_instruction); //branch works by executing the next instruction first
+		registers->set_program_counter(branch_address);			  //pc wil have been advanced by here
 	}
 }
-void I_type::BGEZAL()
+void I_type::BGEZAL() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::BGTZ()
+void I_type::BGTZ() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::BLEZ()
+void I_type::BLEZ() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::BLTZ()
+void I_type::BLTZ() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::BLTZAL()
+void I_type::BLTZAL() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::BNE()
+void I_type::BNE() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LB()
+void I_type::LB() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LBU()
+void I_type::LBU() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LH()
+void I_type::LH() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LHU()
+void I_type::LHU() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LUI()
+void I_type::LUI() 
 {
-	registers->advance_program_counter();
+	uint32_t result = immediate << 16;
+	registers->set_register(source2_or_destination, result);
 }
-void I_type::LW()
+void I_type::LW() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LWL()
+void I_type::LWL() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void I_type::LWR()
+void I_type::LWR() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::ORI()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::SB()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::SH()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::SLTI()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::SLTIU()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::SW()
 {
@@ -565,18 +558,18 @@ void I_type::SW()
 		throw Memory_exception();
 	}
 	memory->set_n_bytes_of_data(4, address, registers->get_register(source2_or_destination));
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 void I_type::XORI()
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
 
-void J_type::J()
+void J_type::J() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }
-void J_type::JAL()
+void J_type::JAL() //has delay slot
 {
-	registers->advance_program_counter();
+	//pc+4 woz here
 }

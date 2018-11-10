@@ -19,7 +19,7 @@ class Instruction_helper
     Instruction_helper(Registers *registers, Memory *memory);
     int number_of_instructions;
     Type get_type(uint32_t instruction);
-    void execute(uint32_t instruction);
+    void decode_and_execute(uint32_t instruction);//convenient to have it in the same function
 };
 
 struct R_type
