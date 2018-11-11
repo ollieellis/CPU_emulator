@@ -63,8 +63,8 @@ do
     extract_info $text_file author
     author=$extracted_info_field
     
-    extract_info $text_file expected_value
-    expected_value=$extracted_info_field
+    extract_info $text_file expected_output
+    expected_output=$extracted_info_field
     
     extract_info $text_file expected_exit_code
     expected_exit_code=$extracted_info_field
@@ -82,10 +82,10 @@ do
         fi
     fi
     
-    if [ -n "${expected_value}" ];
+    if [ -n "${expected_output}" ];
     then
-        debug_message="$debug_message expected value: $expected_value actual value: $sim_stdout"
-        if [[ $expected_value != $sim_stdout ]]; then
+        debug_message="$debug_message expected output: $expected_output actual output: $sim_stdout"
+        if [[ $expected_output != $sim_stdout ]]; then
             pass_fail_string="Fail"
         fi
     fi

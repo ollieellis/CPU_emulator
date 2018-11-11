@@ -1,5 +1,5 @@
 #author: ES5017
-#expected_value: 13
+#expected_output: 13
 #expected_exit_code: 9
 
 

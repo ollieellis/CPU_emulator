@@ -1,5 +1,5 @@
 #author: ES5017
 #expected_exit_code: -12
 
-addi $2, $0, 9
-addi $2, $0, 9
+addi $3, $0, 9
+

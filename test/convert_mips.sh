@@ -1,4 +1,4 @@
-#!/bin/bash  
+#!/bin/bash
 #cd test/mips-parser
 #make parser
 
@@ -7,5 +7,5 @@ mkdir -p test/mips_binary
 for assembly_file in test/mips_assembly/*
 do
     
-   test/mips-parser/bin/parser $assembly_file test/mips_binary/#
+    test/mips-parser/bin/parser $assembly_file test/mips_binary/# >/dev/null
 done
