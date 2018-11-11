@@ -47,7 +47,7 @@ struct IO_error : public Mips_exception
 {
     const char *what() const throw() override
     {
-        return "IO Error";
+        return "IO error";
     }
     int exit_code() const override
     {
@@ -59,7 +59,7 @@ struct Internal_error : public Mips_exception
 {
     const char *what() const throw() override
     {
-        return "Internal Error";
+        return "Internal error";
     }
     int exit_code() const override
     {
@@ -71,6 +71,14 @@ struct Environment_error : public Internal_error
 {
     const char *what() const throw() override
     {
-        return "Environment Error";
+        return "Environment error";
+    }
+};
+
+struct Address_exception : public Memory_exception
+{
+    const char *what() const throw() override
+    {
+        return "Address exception";
     }
 };

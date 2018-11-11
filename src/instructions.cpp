@@ -268,6 +268,9 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 	{
 		throw Invalid_instruction_exception();
 	}
+
+	bool should_perform_delayed_load_after_execution = Load_delay::should_delayed_load; //determine before, execute after.
+
 	registers->advance_program_counter(); //technically happens after decode (deSYTHER), but same thing in this case, just much more clean in code.
 	switch (get_type(instruction))
 	{
@@ -291,6 +294,11 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 		j_instruction.deSYTHER();
 		break;
 	}
+	}
+	if (should_perform_delayed_load_after_execution)
+	{
+		registers->set_register(Load_delay::register_index, Load_delay::register_value);
+		Load_delay::should_delayed_load = false;
 	}
 }
 
@@ -513,14 +521,21 @@ void I_type::LHU() //has delay slot
 {
 	//pc+4 woz here
 }
-void I_type::LUI() 
+void I_type::LUI()
 {
 	uint32_t result = immediate << 16;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LW() //has delay slot
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
+	{
+		throw Address_exception();
+	}
+	Load_delay::should_delayed_load = true;
+	Load_delay::register_index = source2_or_destination;
+	Load_delay::register_value = memory->get_n_bytes_of_data(4, address);
 }
 void I_type::LWL() //has delay slot
 {
@@ -555,7 +570,7 @@ void I_type::SW()
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
 	{
-		throw Memory_exception();
+		throw Address_exception();
 	}
 	memory->set_n_bytes_of_data(4, address, registers->get_register(source2_or_destination));
 	//pc+4 woz here

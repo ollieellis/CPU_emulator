@@ -20,6 +20,13 @@ class Instruction_helper
     int number_of_instructions;
     Type get_type(uint32_t instruction);
     void decode_and_execute(uint32_t instruction);//convenient to have it in the same function
+    
+};
+
+struct Load_delay{
+    static bool should_delayed_load; //if true, immediately set to false once the new register was set
+    static int register_index;
+    static uint32_t register_value;
 };
 
 struct R_type

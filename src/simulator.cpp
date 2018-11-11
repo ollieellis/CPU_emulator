@@ -34,6 +34,9 @@ int main(int argc, char *argv[])
         file_io->get_binary_file(argv[1]);
         memory->set_instructions(file_io->instructions, file_io->number_of_instructions);
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
+        Load_delay::should_delayed_load = false;
+        
+        
         bool has_program_finished = false;
        // int test_counter = 0;
         //memory->get_address(Memory::ADDR_GETC);
