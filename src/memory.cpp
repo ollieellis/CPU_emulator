@@ -67,11 +67,10 @@ uint32_t Memory::get_instruction(int address)
 }
 
 void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
-{
-    if (is_trying_to_set_stoud(n, start_address))
+{ 
+    if (is_trying_to_set_stdout(n, start_address))   
     {
-        cerr << dec << "putchar should be: " << value << endl;
-        cerr << "putchar result: ";
+        cerr << dec << "putchar should be: " << value;
         putchar(value); //gets least significant 8 bits i think
         cerr << endl;
         return;
@@ -132,7 +131,7 @@ bool Memory::is_trying_to_read_stdin(int number_of_bytes_being_got, int start_ad
     return false;
 }
 
-bool Memory::is_trying_to_set_stoud(int number_of_bytes_being_set, int start_address) //checks if any bytes being set are in the putc range
+bool Memory::is_trying_to_set_stdout(int number_of_bytes_being_set, int start_address) //checks if any bytes being set are in the putc range
 {
     for (int i = start_address; i < start_address + number_of_bytes_being_set; i++)
     {

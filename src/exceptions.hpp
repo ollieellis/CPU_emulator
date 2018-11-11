@@ -6,6 +6,15 @@ struct Mips_exception : public std::exception
     virtual int exit_code() const = 0;
 };
 
+struct End_of_program : public std::exception //much easier to implement as exception as we want to ignore delay slot forcefully
+{
+    const char *what() const throw() override
+    {
+        return "End of program";
+    }
+};
+
+
 struct Arithmetic_exception : public Mips_exception
 {
     const char *what() const throw() override

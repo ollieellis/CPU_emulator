@@ -1,1 +1,1 @@
-add, add, pass/fail, ES5017, expected value: 8 actual value: TEMP_ACTUAL_VALUE expected exit code: TEMP_EXIT_CODE actual exit code: 5
+add, add, Pass, ES5017,  expected value: 8 actual value: 8

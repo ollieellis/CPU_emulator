@@ -39,3 +39,6 @@ https://www.cs.cornell.edu/courses/cs3410/2008fa/MIPS_Vol2.pdf
 
 very good info
 http://chortle.ccsu.edu/assemblytutorial/index.html#part4
+
+2s complement converter for exit codes
+https://www.exploringbinary.com/twos-complement-converter/

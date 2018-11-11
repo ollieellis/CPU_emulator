@@ -40,5 +40,5 @@ public:
   bool is_in_addr_instr_range(int address);
 
   bool is_trying_to_read_stdin(int number_of_bytes_being_got, int start_address);  //tryna read user input
-  bool is_trying_to_set_stoud(int number_of_bytes_being_set, int start_address); //tryna read user output
+  bool is_trying_to_set_stdout(int number_of_bytes_being_set, int start_address); //tryna read user output
 };

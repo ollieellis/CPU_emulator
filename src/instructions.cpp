@@ -11,6 +11,7 @@ Instruction_helper::Instruction_helper(Registers *registers, Memory *memory)
 {
 	this->registers = registers;
 	this->memory = memory;
+	this->branch_delay_helper = Branch_delay();
 }
 
 R_type::R_type(uint32_t instruction, Registers *registers, Memory *memory, Instruction_helper *instruction_helper)
@@ -262,16 +263,36 @@ void J_type::deSYTHER()
 
 void Instruction_helper::decode_and_execute(uint32_t instruction)
 {
+	// cerr << hex <<"pc value: " << registers->get_program_counter() << endl;
+	// cerr << "cond : " << Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 << endl;
 	cerr << "executing instruction: " << hex << instruction << endl;
 
-	if (registers->get_program_counter() > Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || registers->get_program_counter() < Memory::ADDR_INSTR) //check if pc is still in range where instructions are. should be here and not in main while loop because decode_and_execute can be called from other instructions coz of branch delay slot for example. but acc we aren't actually increasing the pc when calling instructions in the delay slot. still, i think it's better practice to keep it here. also keep it here and not in the get instruction function because we don't have access to number_of_instructions there (with the current implementation.). also now we are advancing pc here if that has anything to do with it idk
+	//bool should_perform_delayed_load_after_execution = Load_delay::should_delayed_load; //determine before, execute after. commented out because it is apparently undefined behaviour and is up to me how to implement it
+
+	uint32_t current_instruction_program_counter = registers->get_program_counter();
+	cerr << "set needs branch: " << branch_delay_helper.set_needs_branch << endl;
+	if (branch_delay_helper.set_needs_branch)
+	{
+		cerr << "\nbranching\n";
+		registers->set_program_counter(branch_delay_helper.address);
+		branch_delay_helper.set_needs_branch = false;
+	}
+	else
+	{
+		registers->advance_program_counter(); //technically happens after decode (deSYTHER), but same thing in this case, just much more clean in code. its he same thing because the decode no longer requries the programme counter from this point on as we have the next instruction.
+	}
+
+	if (registers->get_program_counter() == Memory::ADDR_NULL) //if the NEXT instruction address is 0x000...
+	{
+		throw End_of_program();
+	}
+
+	//this is meant to be down here, because jr to 0 will only acc happen in the branch delay slot, and the instruction in the delay slot doesn't exist as the jr was the last one, so it would otherwise throw an error before having the chnace to set the correct next address and detect end of program
+	if (current_instruction_program_counter >= Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || current_instruction_program_counter < Memory::ADDR_INSTR) //if the CURRENT instruction address is out of range
 	{
 		throw Invalid_instruction_exception();
 	}
 
-	bool should_perform_delayed_load_after_execution = Load_delay::should_delayed_load; //determine before, execute after.
-
-	registers->advance_program_counter(); //technically happens after decode (deSYTHER), but same thing in this case, just much more clean in code.
 	switch (get_type(instruction))
 	{
 	case r_type:
@@ -295,11 +316,11 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 		break;
 	}
 	}
-	if (should_perform_delayed_load_after_execution)
-	{
-		registers->set_register(Load_delay::register_index, Load_delay::register_value);
-		Load_delay::should_delayed_load = false;
-	}
+	// if (should_perform_delayed_load_after_execution)
+	// {
+	// 	registers->set_register(Load_delay::register_index, Load_delay::register_value);
+	// 	Load_delay::should_delayed_load = false;
+	// }
 }
 
 void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
@@ -343,16 +364,20 @@ void R_type::JALR() //has delay slot
 void R_type::JR() //has delay slot
 {
 	uint32_t jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
-	uint32_t next_instruction_address = registers->get_program_counter();
+	// uint32_t next_instruction_address = registers->get_program_counter();
 
 	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
 	{
 		throw Memory_exception();
 	}
-	int32_t next_instruction = memory->get_instruction(next_instruction_address);
-	instruction_helper->decode_and_execute(next_instruction);
 
-	registers->set_program_counter(jump_address);
+	instruction_helper->branch_delay_helper.set_needs_branch = true;
+	instruction_helper->branch_delay_helper.address = jump_address;
+	cerr << "jr needs branch: " << instruction_helper->branch_delay_helper.set_needs_branch << endl;
+	// int32_t next_instruction = memory->get_instruction(next_instruction_address);
+	// instruction_helper->decode_and_execute(next_instruction);
+
+	// registers->set_program_counter(jump_address);
 }
 void R_type::MFHI()
 {
@@ -462,11 +487,9 @@ void I_type::BEQ() //has delay slot
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction_address = registers->get_program_counter();
-		uint32_t branch_address = next_instruction_address + offset; //ensure we store the correct address before executing delay slot
-		uint32_t next_instruction = memory->get_instruction(next_instruction_address);
-		instruction_helper->decode_and_execute(next_instruction); //branch works by executing the next instruction first
-		registers->set_program_counter(branch_address);			  //pc wil have been advanced by here
+		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
+		instruction_helper->branch_delay_helper.set_needs_branch = true;
+		instruction_helper->branch_delay_helper.address = branch_address;
 	}
 }
 void I_type::BGEZ() //has delay slot
@@ -474,11 +497,9 @@ void I_type::BGEZ() //has delay slot
 	if (registers->get_register(source1) >= 0)
 	{
 		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t next_instruction_address = registers->get_program_counter();
-		uint32_t branch_address = next_instruction_address + offset; //ensure we store the correct address before executing delay slot
-		uint32_t next_instruction = memory->get_instruction(next_instruction_address);
-		instruction_helper->decode_and_execute(next_instruction); //branch works by executing the next instruction first
-		registers->set_program_counter(branch_address);			  //pc wil have been advanced by here
+		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
+		instruction_helper->branch_delay_helper.set_needs_branch = true;
+		instruction_helper->branch_delay_helper.address = branch_address;
 	}
 }
 void I_type::BGEZAL() //has delay slot
@@ -505,19 +526,20 @@ void I_type::BNE() //has delay slot
 {
 	//pc+4 woz here
 }
-void I_type::LB() //has delay slot
+void I_type::LB()
 {
 	//pc+4 woz here
 }
-void I_type::LBU() //has delay slot
+void I_type::LBU()
 {
 	//pc+4 woz here
 }
-void I_type::LH() //has delay slot
+void I_type::LH()
 {
 	//pc+4 woz here
 }
-void I_type::LHU() //has delay slot
+
+void I_type::LHU()
 {
 	//pc+4 woz here
 }
@@ -526,22 +548,23 @@ void I_type::LUI()
 	uint32_t result = immediate << 16;
 	registers->set_register(source2_or_destination, result);
 }
-void I_type::LW() //has delay slot
+void I_type::LW()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
 	{
 		throw Address_exception();
 	}
-	Load_delay::should_delayed_load = true;
-	Load_delay::register_index = source2_or_destination;
-	Load_delay::register_value = memory->get_n_bytes_of_data(4, address);
+	registers->set_register(address, memory->get_n_bytes_of_data(4, address));
+	// Load_delay::should_delayed_load = true;
+	// Load_delay::register_index = source2_or_destination;
+	// Load_delay::register_value = memory->get_n_bytes_of_data(4, address);
 }
-void I_type::LWL() //has delay slot
+void I_type::LWL()
 {
 	//pc+4 woz here
 }
-void I_type::LWR() //has delay slot
+void I_type::LWR()
 {
 	//pc+4 woz here
 }

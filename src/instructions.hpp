@@ -2,8 +2,7 @@
 #include "registers.hpp"
 #include "memory.hpp"
 
-class Instruction_helper
-
+struct Instruction_helper
 {
     enum Type
     {
@@ -12,22 +11,29 @@ class Instruction_helper
         j_type
     };
 
+    struct Branch_delay
+    {
+        bool set_needs_branch = false;
+        uint32_t address;
+    };
+
+  private:
     Registers *registers;
     Memory *memory;
 
   public:
     Instruction_helper(Registers *registers, Memory *memory);
     int number_of_instructions;
+    Branch_delay branch_delay_helper;
     Type get_type(uint32_t instruction);
-    void decode_and_execute(uint32_t instruction);//convenient to have it in the same function
-    
+    void decode_and_execute(uint32_t instruction); //convenient to have it in the same function
 };
 
-struct Load_delay{
-    static bool should_delayed_load; //if true, immediately set to false once the new register was set
-    static int register_index;
-    static uint32_t register_value;
-};
+// struct Load_delay{//don't need to do this if i don't want to
+//     static bool should_delayed_load; //if true, immediately set to false once the new register was set
+//     static int register_index;
+//     static uint32_t register_value;
+// };
 
 struct R_type
 
@@ -114,7 +120,7 @@ struct I_type
     void XORI();
 };
 
-struct J_type 
+struct J_type
 
 {
     uint32_t opcode;  // 6 bits

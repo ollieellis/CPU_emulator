@@ -14,12 +14,16 @@ void custom_exit(int exit_code, Memory *memory, File_io *file_io, Registers *reg
     delete file_io;
     delete registers;
     delete instruction_helper;
+    cerr << endl
+         << endl;
     std::exit(exit_code);
 }
 
 int main(int argc, char *argv[])
 {
-    cerr << "programme path: " << argv[0] << endl;
+    cerr << endl
+         << endl
+         << "programme path: " << argv[0] << endl;
 
     Memory *memory = new Memory();
     File_io *file_io = new File_io();
@@ -34,22 +38,13 @@ int main(int argc, char *argv[])
         file_io->get_binary_file(argv[1]);
         memory->set_instructions(file_io->instructions, file_io->number_of_instructions);
         instruction_helper->number_of_instructions = file_io->number_of_instructions;
-        Load_delay::should_delayed_load = false;
-        
-        
-        bool has_program_finished = false;
-       // int test_counter = 0;
-        //memory->get_address(Memory::ADDR_GETC);
-        while (!has_program_finished)
+        //Load_delay::should_delayed_load = false;
+
+        // bool has_program_finished = false;
+        // int test_counter = 0;
+        while (true)
         {
             //test_counter++;
-            if (registers->get_program_counter() == Memory::ADDR_NULL)
-            {
-                cerr << "\n*** terminating execution due to end of binary file ***\n";
-                has_program_finished = true;
-                uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
-                custom_exit(exit_code, memory, file_io, registers, instruction_helper);
-            }
             uint32_t next_instruction = memory->get_instruction(registers->get_program_counter());
             instruction_helper->decode_and_execute(next_instruction); //THE BIG BOI FUNCTION
 
@@ -59,9 +54,15 @@ int main(int argc, char *argv[])
             // }
         }
     }
+    catch (const End_of_program &e)
+    {
+        cerr << "\n*** terminating execution due to end of binary file ***\n";
+        uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
+        custom_exit(exit_code, memory, file_io, registers, instruction_helper);
+    }
     catch (const Mips_exception &e)
     {
-        cerr << "mips exception catch block executing" << endl;
+        cerr << "Mips exception thrown: ";
         std::cerr << e.what() << '\n';
         custom_exit(e.exit_code(), memory, file_io, registers, instruction_helper);
     }
