@@ -1,5 +1,4 @@
-#author: ES5017
-#expected_value: 8
+#expected_output: 8
 
 addi $2, $0, 5
 addi $3, $0, 3

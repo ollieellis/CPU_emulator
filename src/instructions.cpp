@@ -270,10 +270,9 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 	//bool should_perform_delayed_load_after_execution = Load_delay::should_delayed_load; //determine before, execute after. commented out because it is apparently undefined behaviour and is up to me how to implement it
 
 	uint32_t current_instruction_program_counter = registers->get_program_counter();
-	cerr << "set needs branch: " << branch_delay_helper.set_needs_branch << endl;
+
 	if (branch_delay_helper.set_needs_branch)
 	{
-		cerr << "\nbranching\n";
 		registers->set_program_counter(branch_delay_helper.address);
 		branch_delay_helper.set_needs_branch = false;
 	}
@@ -373,7 +372,7 @@ void R_type::JR() //has delay slot
 
 	instruction_helper->branch_delay_helper.set_needs_branch = true;
 	instruction_helper->branch_delay_helper.address = jump_address;
-	cerr << "jr needs branch: " << instruction_helper->branch_delay_helper.set_needs_branch << endl;
+	//cerr << "jr needs branch: " << instruction_helper->branch_delay_helper.set_needs_branch << endl;
 	// int32_t next_instruction = memory->get_instruction(next_instruction_address);
 	// instruction_helper->decode_and_execute(next_instruction);
 
@@ -555,7 +554,7 @@ void I_type::LW()
 	{
 		throw Address_exception();
 	}
-	registers->set_register(address, memory->get_n_bytes_of_data(4, address));
+	registers->set_register(source2_or_destination, memory->get_n_bytes_of_data(4, address));
 	// Load_delay::should_delayed_load = true;
 	// Load_delay::register_index = source2_or_destination;
 	// Load_delay::register_value = memory->get_n_bytes_of_data(4, address);

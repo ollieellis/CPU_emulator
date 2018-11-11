@@ -62,6 +62,11 @@ do
     #extract info
     extract_info $text_file author
     author=$extracted_info_field
+    if [[ -z $author ]];
+    then
+        author=$USER #default value 
+    fi
+    
     
     extract_info $text_file expected_output
     expected_output=$extracted_info_field
