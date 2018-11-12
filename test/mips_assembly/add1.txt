@@ -1,12 +1,15 @@
 #author: ES5017
-#expected_output: 13
-#expected_exit_code: 9
+#expected_exit_code: -10
+#expected_output: 0
+#extra_info: tests that add correctly traps overflow
 
 
-addi $2, $0, 9
-addi $3, $0, 4
-
+addi $2, $0, 0xFFFF
+lui $3, 0xFFFF
+addi $6, $0, 1
 add $4, $2, $3
 
-sw $4, 12($0)
+add $5, $4, $6
+sw $5, 12($0)
+
 jr $0

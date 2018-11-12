@@ -1,0 +1,46 @@
+
+
+programme path: bin/mips_simulator
+getting binary file 
+file size: 24
+instructions: 20030009 3C042000 AC830008 8C820008 0 8 
+address set at 0x10000000: 20
+address set at 0x10000001: 3
+address set at 0x10000002: 0
+address set at 0x10000003: 9
+address set at 0x10000004: 3C
+address set at 0x10000005: 4
+address set at 0x10000006: 20
+address set at 0x10000007: 0
+address set at 0x10000008: AC
+address set at 0x10000009: 83
+address set at 0x1000000A: 0
+address set at 0x1000000B: 8
+address set at 0x1000000C: 8C
+address set at 0x1000000D: 82
+address set at 0x1000000E: 0
+address set at 0x1000000F: 8
+address set at 0x10000010: 0
+address set at 0x10000011: 0
+address set at 0x10000012: 0
+address set at 0x10000013: 0
+address set at 0x10000014: 0
+address set at 0x10000015: 0
+address set at 0x10000016: 0
+address set at 0x10000017: 8
+executing instruction: 20030009
+executing instruction: 3C042000
+executing instruction: AC830008
+address set at 0x20000008: 0
+address set at 0x20000009: 0
+address set at 0x2000000A: 0
+address set at 0x2000000B: 9
+executing instruction: 8C820008
+executing instruction: 0
+executing instruction: 8
+executing instruction: 0
+
+*** terminating execution due to end of binary file ***
+
+
+lw, lw, Fail, ES5017, | expected exit code: 9 actual exit code: 0 | extra info: tests simple case for load word |

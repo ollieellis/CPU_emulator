@@ -6,6 +6,7 @@ sh test/convert_mips.sh #this is part of the testbench
 binary_files=test/mips_binary
 assembly_files=test/mips_assembly
 log_files=test/output
+temp_files=test/temp
 
 function extract_info {
     file=$1
@@ -43,6 +44,7 @@ function convert_8_bit_dec_to_2s_complement {
 
 csv_lines=()
 mkdir -p $log_files
+mkdir -p $temp_files
 
 if [[ $# -ne 1 ]];
 then
@@ -52,7 +54,9 @@ fi
 
 for binary_file in $binary_files/*
 do
-    sim_stdout=$($simulator $binary_file)
+    temp_stderr_file="$temp_files/tmp_err.txt"
+    sim_stdout=$($simulator $binary_file 2>$temp_stderr_file)
+    sim_stderr=$(< $temp_stderr_file)
     exit_code=$?
     convert_8_bit_dec_to_2s_complement $exit_code
     exit_code=$converted_result
@@ -74,6 +78,9 @@ do
     extract_info $text_file expected_exit_code
     expected_exit_code=$extracted_info_field
     
+    extract_info $text_file extra_info
+    extra_info=$extracted_info_field
+
     test_id=$(basename -- "${binary_file%.*}")
     instruction=${test_id//[[:digit:]]/}
     
@@ -81,7 +88,7 @@ do
     pass_fail_string="Pass"
     if [ -n "${expected_exit_code}" ];
     then
-        debug_message="$debug_message expected exit code: $expected_exit_code actual exit code: $exit_code"
+        debug_message="$debug_message | expected exit code: $expected_exit_code actual exit code: $exit_code"
         if [[ $expected_exit_code != $exit_code ]]; then
             pass_fail_string="Fail"
         fi
@@ -89,16 +96,26 @@ do
     
     if [ -n "${expected_output}" ];
     then
-        debug_message="$debug_message expected output: $expected_output actual output: $sim_stdout"
+        debug_message="$debug_message | expected output: $expected_output actual output: $sim_stdout"
         if [[ $expected_output != $sim_stdout ]]; then
             pass_fail_string="Fail"
         fi
     fi
+
+     if [ -n "${extra_info}" ];
+    then
+        debug_message="$debug_message | extra info: $extra_info"
+    fi
     
     
-    csv_line="$test_id, $instruction, $pass_fail_string, $author, $debug_message"
+    csv_line="$test_id, $instruction, $pass_fail_string, $author,${debug_message//,} |"
     csv_lines+=($csv_line)
-    echo $csv_line > "$log_files/$test_id.csv"
+
+    # echo $csv_line > "$log_files/$test_id.txt"
+    this_test_log_file="$log_files/$test_id.txt"
+    cp -f $temp_stderr_file $this_test_log_file
+    echo $csv_line >> $this_test_log_file
 done
 printf '%s\n' "${csv_lines[@]}"
+rm -rf $temp_files #uncomment later
 # printf '%d\n' "'$sim_stdout" #for printing decimal value of ascii
