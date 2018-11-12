@@ -37,12 +37,58 @@ address set at 0x1000001F: 8
 executing instruction: 3C093000
 executing instruction: 2001FFFF
 executing instruction: 8D250000
-start address: 30000000
-is trying to read stdin
+stdin: 104
 executing instruction: 0
 executing instruction: AD250004
 store word address: 30000004
 putchar should be: 104
+
+executing instruction: 1425FFFC
+executing instruction: 0
+executing instruction: 8D250000
+stdin: 101
+executing instruction: 0
+executing instruction: AD250004
+store word address: 30000004
+putchar should be: 101
+
+executing instruction: 1425FFFC
+executing instruction: 0
+executing instruction: 8D250000
+stdin: 108
+executing instruction: 0
+executing instruction: AD250004
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFC
+executing instruction: 0
+executing instruction: 8D250000
+stdin: 108
+executing instruction: 0
+executing instruction: AD250004
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFC
+executing instruction: 0
+executing instruction: 8D250000
+stdin: 111
+executing instruction: 0
+executing instruction: AD250004
+store word address: 30000004
+putchar should be: 111
+
+executing instruction: 1425FFFC
+executing instruction: 0
+executing instruction: 8D250000
+stdin: -1
+eof reached
+executing instruction: 0
+executing instruction: AD250004
+store word address: 30000004
+putchar should be: 4294967295
+
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8

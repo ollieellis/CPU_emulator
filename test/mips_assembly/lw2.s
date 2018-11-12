@@ -10,6 +10,7 @@
 #expected_output_2: 108
 #expected_output_3: 108
 #expected_output_4: 111
+#expected_output_5: -1
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
 #cat test/wibble.txt | bin/mips_simulator test/mips_binary/lw2.bin

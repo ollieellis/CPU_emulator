@@ -67,8 +67,8 @@ uint32_t Memory::get_instruction(int address)
 }
 
 void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
-{ 
-    if (is_trying_to_set_stdout(n, start_address))   
+{
+    if (is_trying_to_set_stdout(n, start_address))
     {
         cerr << dec << "putchar should be: " << value << endl;
         putchar(value); //gets least significant 8 bits i think
@@ -86,13 +86,19 @@ void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
 
 uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
 {
-   // cerr << "start address: " << start_address << endl;
+    // cerr << "start address: " << start_address << endl;
     if (is_trying_to_read_stdin(n, start_address)) //should be in get data function because its 'part' of it... so is addr null set
     {
         //cerr << "is trying to read stdin" << endl;
-        unsigned char input = getchar();
-        return input;//will be in lsb of return result
-    } //must be before range check
+        int input = getchar();
+        cerr << dec << "stdin: " << input << endl;
+        if (input == EOF)
+        {
+            cerr << "eof reached" << endl;
+            return -1;
+        }
+        return input; //will be in lsb of return result
+    }                 //must be before range check
 
     if (!is_in_addr_data_range(start_address))
     {

@@ -531,7 +531,13 @@ void I_type::BLTZAL() //has delay slot
 }
 void I_type::BNE() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) != registers->get_register(source2_or_destination))
+	{
+		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		uint32_t branch_address = registers->get_program_counter() + offset;
+		instruction_helper->branch_delay_helper.set_needs_branch = true;
+		instruction_helper->branch_delay_helper.address = branch_address;
+	}
 }
 void I_type::LB()
 {

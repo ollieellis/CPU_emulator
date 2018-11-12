@@ -35,7 +35,6 @@ address set at 0x20000009: 0
 address set at 0x2000000A: 0
 address set at 0x2000000B: 9
 executing instruction: 8C820008
-start address: 20000008
 executing instruction: 0
 executing instruction: 8
 executing instruction: 0
