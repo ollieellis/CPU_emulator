@@ -21,12 +21,10 @@ address set at 0x1000000F: 8
 executing instruction: 20020005
 executing instruction: 20030003
 executing instruction: 432020
-source1: 5 source2: 3
-result: 8
 executing instruction: 8
 executing instruction: 0
 
 *** terminating execution due to end of binary file ***
 
 
-add, add, Pass, ethansarif-kattan, | expected exit code: 5 actual exit code: 5 | extra info: tests simple case for add |
+add, add, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests simple case for add |

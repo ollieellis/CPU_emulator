@@ -1,7 +1,7 @@
 programme path: bin/mips_simulator
 getting binary file 
-file size: 20
-instructions: 3C067FFF 3C046FFF 862820 AC05000C 8 
+file size: 24
+instructions: 3C067FFF 3C046FFF 862820 3C093000 AD250004 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 6
 address set at 0x10000002: 7F
@@ -14,19 +14,21 @@ address set at 0x10000008: 0
 address set at 0x10000009: 86
 address set at 0x1000000A: 28
 address set at 0x1000000B: 20
-address set at 0x1000000C: AC
-address set at 0x1000000D: 5
-address set at 0x1000000E: 0
-address set at 0x1000000F: C
-address set at 0x10000010: 0
-address set at 0x10000011: 0
+address set at 0x1000000C: 3C
+address set at 0x1000000D: 9
+address set at 0x1000000E: 30
+address set at 0x1000000F: 0
+address set at 0x10000010: AD
+address set at 0x10000011: 25
 address set at 0x10000012: 0
-address set at 0x10000013: 8
+address set at 0x10000013: 4
+address set at 0x10000014: 0
+address set at 0x10000015: 0
+address set at 0x10000016: 0
+address set at 0x10000017: 8
 executing instruction: 3C067FFF
 executing instruction: 3C046FFF
 executing instruction: 862820
-source1: 6FFF0000 source2: 7FFF0000
-result: EFFE0000
 Mips exception thrown: Arithmetic exception
 
 

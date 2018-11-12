@@ -29,6 +29,7 @@ address set at 0x10000017: 8
 executing instruction: 20030009
 executing instruction: 3C043000
 executing instruction: AC830008
+store word address: 30000008
 Mips exception thrown: Memory exception
 
 

@@ -29,11 +29,13 @@ address set at 0x10000017: 8
 executing instruction: 20030009
 executing instruction: 3C042000
 executing instruction: AC830008
+store word address: 20000008
 address set at 0x20000008: 0
 address set at 0x20000009: 0
 address set at 0x2000000A: 0
 address set at 0x2000000B: 9
 executing instruction: 8C820008
+start address: 20000008
 executing instruction: 0
 executing instruction: 8
 executing instruction: 0

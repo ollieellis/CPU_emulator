@@ -343,13 +343,13 @@ void R_type::ADD() //check to see if this is correct - what if we used negative 
 
 void R_type::ADDU()
 {
-	uint32_t result = registers->get_register(source1) + registers->get_register(source2);
+	int result = registers->get_register(source1) + registers->get_register(source2);
 	registers->set_register(destination, result);
 	//pc+4 woz here
 }
 void R_type::AND()
 {
-	uint32_t result = registers->get_register(source1) & registers->get_register(source2);
+	int result = registers->get_register(source1) & registers->get_register(source2);
 	registers->set_register(destination, result);
 	//pc+4 woz here
 }
@@ -367,7 +367,7 @@ void R_type::JALR() //has delay slot
 }
 void R_type::JR() //has delay slot
 {
-	uint32_t jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
+	int jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
 	// uint32_t next_instruction_address = registers->get_program_counter();
 
 	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
@@ -424,7 +424,7 @@ void R_type::SLT()
 }
 void R_type::SLTU()
 {
-	uint32_t result = 0;
+	int result = 0;
 	if (registers->get_register(source1) < registers->get_register(source2))
 	{
 		result = 1;
@@ -463,10 +463,13 @@ void R_type::XOR()
 
 void I_type::ADDI()
 {
-	uint64_t guaranteed_correct_result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
-	uint32_t result = guaranteed_correct_result; //trunc to 32 bits
+	int result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate); // trunc to 32 bits
+	bool overflow_condition_1 = (registers->get_register(source1) < 0 && immediate < 0 && result > 0);
+	bool overflow_condition_2 = (registers->get_register(source1) > 0 && immediate > 0 && result < 0);
+	//overflow can't physically happen if both sources have different signs to each other
+	// cerr << "result: " << result << endl;
 
-	if (result != guaranteed_correct_result)
+	if (overflow_condition_1 || overflow_condition_2)
 	{
 		throw Arithmetic_exception();
 	}
@@ -475,13 +478,13 @@ void I_type::ADDI()
 }
 void I_type::ADDIU()
 {
-	uint32_t result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	int result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	registers->set_register(source2_or_destination, result);
 	//pc+4 woz here
 }
 void I_type::ANDI()
 {
-	uint32_t result = registers->get_register(source1) & immediate;
+	int result = registers->get_register(source1) & immediate;
 	registers->set_register(source2_or_destination, result);
 	//pc+4 woz here
 }
@@ -549,7 +552,7 @@ void I_type::LHU()
 }
 void I_type::LUI()
 {
-	uint32_t result = immediate << 16;
+	int result = immediate << 16;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LW()
@@ -595,6 +598,7 @@ void I_type::SLTIU()
 void I_type::SW()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	cerr << hex << "store word address: " << address << endl;
 	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
 	{
 		throw Address_exception();

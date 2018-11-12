@@ -23,7 +23,7 @@ public:
   static const int ADDR_DATA_LENGTH = 0x4000000;
   static const int ADDR_GETC = 0x30000000;
   static const int ADDR_GETC_LENGTH = 0x4;
-  static const int ADDR_PUTC = 12; //0x30000004
+  static const int ADDR_PUTC = 0x30000004;
   static const int ADDR_PUTC_LENGTH = 0x4;
 
 public:

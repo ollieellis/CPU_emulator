@@ -63,7 +63,7 @@ fi
 for binary_file in $binary_files/*
 do
     temp_stderr_file="$temp_files/tmp_err.txt"
-    sim_stdout=$($simulator $binary_file 2>$temp_stderr_file)
+    sim_stdout=$(cat test/wibble.txt | $simulator $binary_file 2>$temp_stderr_file)
     exit_code=$?
     convert_8_bit_dec_to_2s_complement $exit_code
     exit_code=$converted_result
