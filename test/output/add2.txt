@@ -1,15 +1,15 @@
 programme path: bin/mips_simulator
 getting binary file 
 file size: 20
-instructions: 3C067FFF 3C046FFF 862820 AC05000C 8 
+instructions: 3C06FFFF 3C048000 862820 AC05000C 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 6
-address set at 0x10000002: 7F
+address set at 0x10000002: FF
 address set at 0x10000003: FF
 address set at 0x10000004: 3C
 address set at 0x10000005: 4
-address set at 0x10000006: 6F
-address set at 0x10000007: FF
+address set at 0x10000006: 80
+address set at 0x10000007: 0
 address set at 0x10000008: 0
 address set at 0x10000009: 86
 address set at 0x1000000A: 28
@@ -22,12 +22,12 @@ address set at 0x10000010: 0
 address set at 0x10000011: 0
 address set at 0x10000012: 0
 address set at 0x10000013: 8
-executing instruction: 3C067FFF
-executing instruction: 3C046FFF
+executing instruction: 3C06FFFF
+executing instruction: 3C048000
 executing instruction: 862820
-source1: 6FFF0000 source2: 7FFF0000
-result: EFFE0000
+source1: 80000000 source2: FFFF0000
+result: 7FFF0000
 Mips exception thrown: Arithmetic exception
 
 
-add1, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | expected output: 0 actual output: 0 | extra info: tests that add correctly traps overflow |
+add2, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | expected output: 0 actual output: 0 | extra info: tests that add correctly traps overflow with negative numbers |

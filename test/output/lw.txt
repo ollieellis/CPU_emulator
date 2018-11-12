@@ -1,5 +1,3 @@
-
-
 programme path: bin/mips_simulator
 getting binary file 
 file size: 24
@@ -43,4 +41,4 @@ executing instruction: 0
 *** terminating execution due to end of binary file ***
 
 
-lw, lw, Fail, ES5017, | expected exit code: 9 actual exit code: 0 | extra info: tests simple case for load word |
+lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |

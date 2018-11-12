@@ -325,10 +325,15 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
 {
 	//we need to check for overflow
-	uint64_t guaranteed_correct_result = registers->get_register(source1) + registers->get_register(source2);
-	uint32_t result = guaranteed_correct_result; // trunc to 32 bits
+	//cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << registers->get_register(source2) << endl;
+	int result = registers->get_register(source1) + registers->get_register(source2); // trunc to 32 bits
 
-	if (result != guaranteed_correct_result)
+	bool overflow_condition_1 = (registers->get_register(source1) < 0 && registers->get_register(source2) < 0 && result > 0);
+	bool overflow_condition_2 = (registers->get_register(source1) > 0 && registers->get_register(source2) > 0 && result < 0);
+	//overflow can't physically happen if both sources have different signs to each other
+	// cerr << "result: " << result << endl;
+
+	if (overflow_condition_1 || overflow_condition_2)
 	{
 		throw Arithmetic_exception();
 	}

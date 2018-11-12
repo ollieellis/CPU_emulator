@@ -21,9 +21,7 @@ void custom_exit(int exit_code, Memory *memory, File_io *file_io, Registers *reg
 
 int main(int argc, char *argv[])
 {
-    cerr << endl
-         << endl
-         << "programme path: " << argv[0] << endl;
+    cerr << "programme path: " << argv[0] << endl;
 
     Memory *memory = new Memory();
     File_io *file_io = new File_io();

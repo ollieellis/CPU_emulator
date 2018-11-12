@@ -10,15 +10,15 @@ Registers::Registers()
     fill(registers.begin(), registers.end(), 0); //init to 0
 }
 
-void Registers::set_register(int index, uint32_t value)
+void Registers::set_register(int index, int value)
 {
     if (index != 0) //$zero is grounded to zero
     {
         registers[index] = value; 
     }
 }
-uint32_t Registers::get_register(int index)
-{
+int Registers::get_register(int index)  
+{ 
     return registers[index];
 }
 void Registers::set_program_counter(uint32_t value)

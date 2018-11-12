@@ -2,7 +2,15 @@
 # echo "testbench started" #comment this out later
 
 simulator=$1
-sh test/convert_mips.sh #this is part of the testbench
+
+#convert mips
+rm -rf test/mips_binary #refresh the binaries and remove the old ones
+mkdir -p test/mips_binary
+for assembly_file in test/mips_assembly/*
+do
+    test/mips-parser/bin/parser $assembly_file test/mips_binary/# >/dev/null
+done
+
 binary_files=test/mips_binary
 assembly_files=test/mips_assembly
 log_files=test/output
@@ -16,7 +24,7 @@ function extract_info {
     #echo "filename: " $file
     while IFS= read -r line
     do
-        if [[ ${line:0:1} == '#' ]];
+        if [[ $line == '#'* ]];
         then
             without_hashtag=${line#*#}
             field_from_line=${without_hashtag%:*}
@@ -56,31 +64,31 @@ for binary_file in $binary_files/*
 do
     temp_stderr_file="$temp_files/tmp_err.txt"
     sim_stdout=$($simulator $binary_file 2>$temp_stderr_file)
-    sim_stderr=$(< $temp_stderr_file)
     exit_code=$?
     convert_8_bit_dec_to_2s_complement $exit_code
     exit_code=$converted_result
+    sim_stderr=$(< $temp_stderr_file) #this line needs to be places below exit code for exit code to be correct for some reason
     sim_stdout=$(printf '%d' "'$sim_stdout")
-    text_file=$assembly_files/$(basename -- "${binary_file%.*}").txt
+    assembly_file=$assembly_files/$(basename -- "${binary_file%.*}").s
     
     #extract info
-    extract_info $text_file author
+    extract_info $assembly_file author
     author=$extracted_info_field
     if [[ -z $author ]];
     then
-        author=$USER #default value 
+        author=$USER #default value
     fi
     
     
-    extract_info $text_file expected_output
+    extract_info $assembly_file expected_output
     expected_output=$extracted_info_field
     
-    extract_info $text_file expected_exit_code
+    extract_info $assembly_file expected_exit_code
     expected_exit_code=$extracted_info_field
     
-    extract_info $text_file extra_info
+    extract_info $assembly_file extra_info
     extra_info=$extracted_info_field
-
+    
     test_id=$(basename -- "${binary_file%.*}")
     instruction=${test_id//[[:digit:]]/}
     
@@ -101,8 +109,8 @@ do
             pass_fail_string="Fail"
         fi
     fi
-
-     if [ -n "${extra_info}" ];
+    
+    if [ -n "${extra_info}" ];
     then
         debug_message="$debug_message | extra info: $extra_info"
     fi
@@ -110,7 +118,7 @@ do
     
     csv_line="$test_id, $instruction, $pass_fail_string, $author,${debug_message//,} |"
     csv_lines+=($csv_line)
-
+    
     # echo $csv_line > "$log_files/$test_id.txt"
     this_test_log_file="$log_files/$test_id.txt"
     cp -f $temp_stderr_file $this_test_log_file

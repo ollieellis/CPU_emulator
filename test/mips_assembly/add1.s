@@ -3,13 +3,12 @@
 #expected_output: 0
 #extra_info: tests that add correctly traps overflow
 
-
-addi $2, $0, 0xFFFF
-lui $3, 0xFFFF
-addi $6, $0, 1
-add $4, $2, $3
+lui $6, 0x7FFF
+lui $4, 0x6FFF
 
 add $5, $4, $6
+
+#if the exception was thrown, this should not trigger an output ie its = 0
 sw $5, 12($0)
 
 jr $0
