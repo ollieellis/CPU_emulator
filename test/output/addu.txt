@@ -19,7 +19,9 @@ address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
 executing instruction: 20070064
+addi result: 64
 executing instruction: 2003FFBB
+addi result: FFFFFFBB
 executing instruction: E31021
 executing instruction: 8
 executing instruction: 0

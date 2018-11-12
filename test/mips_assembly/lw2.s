@@ -1,16 +1,9 @@
 #author: ES5017
-#expected_exit_code: -11
-#extra_info: test memory mapped input 
+#expected_exit_code: 0
+#extra_info: test memory mapped input assuming memory mapped output works
 
-#testing quickly:
-#expected_output: 69
+#expected_output: 104 101 108 108 111 -1
 
-#expected_output_0: 104
-#expected_output_1: 101
-#expected_output_2: 108
-#expected_output_3: 108
-#expected_output_4: 111
-#expected_output_5: -1
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
 #cat test/wibble.txt | bin/mips_simulator test/mips_binary/lw2.bin

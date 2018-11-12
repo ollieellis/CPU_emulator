@@ -1,0 +1,27 @@
+programme path: bin/mips_simulator
+getting binary file 
+file size: 12
+instructions: 2003F073 30620FFF 8 
+address set at 0x10000000: 20
+address set at 0x10000001: 3
+address set at 0x10000002: F0
+address set at 0x10000003: 73
+address set at 0x10000004: 30
+address set at 0x10000005: 62
+address set at 0x10000006: F
+address set at 0x10000007: FF
+address set at 0x10000008: 0
+address set at 0x10000009: 0
+address set at 0x1000000A: 0
+address set at 0x1000000B: 8
+executing instruction: 2003F073
+addi result: FFFFF073
+executing instruction: 30620FFF
+andi result: 73
+executing instruction: 8
+executing instruction: 0
+
+*** terminating execution due to end of binary file ***
+
+
+andi, andi, Pass, ES5017, | expected exit code: 115 actual exit code: 115 | extra info: tests simple case for add |

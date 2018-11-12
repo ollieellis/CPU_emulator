@@ -32,4 +32,4 @@ executing instruction: 862820
 Mips exception thrown: Arithmetic exception
 
 
-add2, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | expected output: 0 actual output: 0 | extra info: tests that add correctly traps overflow with negative numbers |
+add2, add, Fail, ES5017, | expected exit code: -10 actual exit code: -10 | expected output: 0 actual output:  | extra info: tests that add correctly traps overflow with negative numbers |

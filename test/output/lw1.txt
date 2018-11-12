@@ -27,6 +27,7 @@ address set at 0x10000015: 0
 address set at 0x10000016: 0
 address set at 0x10000017: 8
 executing instruction: 20030009
+addi result: 9
 executing instruction: 3C043000
 executing instruction: AC830008
 store word address: 30000008

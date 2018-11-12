@@ -1,7 +1,7 @@
 programme path: bin/mips_simulator
 getting binary file 
 file size: 32
-instructions: 3C093000 2001FFFF 8D250000 0 AD250004 1425FFFC 0 8 
+instructions: 3C093000 2001FFFF 8D250000 0 451021 1425FFFC 0 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 9
 address set at 0x10000002: 30
@@ -18,10 +18,10 @@ address set at 0x1000000C: 0
 address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 0
-address set at 0x10000010: AD
-address set at 0x10000011: 25
-address set at 0x10000012: 0
-address set at 0x10000013: 4
+address set at 0x10000010: 0
+address set at 0x10000011: 45
+address set at 0x10000012: 10
+address set at 0x10000013: 21
 address set at 0x10000014: 14
 address set at 0x10000015: 25
 address set at 0x10000016: FF
@@ -40,56 +40,38 @@ addi result: FFFFFFFF
 executing instruction: 8D250000
 stdin: 104
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 104
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8D250000
 stdin: 101
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 101
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8D250000
 stdin: 108
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 108
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8D250000
 stdin: 108
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 108
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8D250000
 stdin: 111
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 111
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8D250000
 stdin: -1
 eof reached
 executing instruction: 0
-executing instruction: AD250004
-store word address: 30000004
-putchar should be: 4294967295
-
+executing instruction: 451021
 executing instruction: 1425FFFC
 executing instruction: 0
 executing instruction: 8
@@ -98,4 +80,4 @@ executing instruction: 0
 *** terminating execution due to end of binary file ***
 
 
-lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | extra info: test memory mapped input assuming memory mapped output works |
+lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
