@@ -18,15 +18,16 @@ address set at 0x1000000C: 0
 address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
-executing instruction: 20070064
+executing instruction: 20070064 at address: 0x10000000
 addi result: 64
-executing instruction: 2003FFBB
+executing instruction: 2003FFBB at address: 0x10000004
 addi result: FFFFFFBB
-executing instruction: E31021
-executing instruction: 8
-executing instruction: 0
+executing instruction: E31021 at address: 0x10000008
+executing instruction: 8 at address: 0x1000000C
+executing instruction: 0 at address: 0x10000010
 
 *** terminating execution due to end of binary file ***
 
 
 addu, addu, Pass, ES5017, | expected exit code: 31 actual exit code: 31 | extra info: does a simple test of addu |
+Test conducted on:  13/11/2018 01:49:00

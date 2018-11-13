@@ -11,11 +11,15 @@ do
     test/mips-parser/bin/parser $assembly_file test/mips_binary/# >/dev/null
 done
 
+#must be after mips conversion to get all files
 binary_files=test/mips_binary
 assembly_files=test/mips_assembly
 log_files=test/output
 temp_files=test/temp
 test_input_file=test/wibble.txt
+test_output_csv=test/output/all_results.csv
+temp_stderr_file="$temp_files/tmp_err.txt"
+temp_stdout_file="$temp_files/tmp_out.txt"
 
 function extract_info {
     file=$1
@@ -60,7 +64,7 @@ function convert_ascii_string_to_decimal {
         decimal=$(printf '%d' "'$char")
         converted_result="$converted_result $decimal"
     done < <(printf %s "$ascii")
-    converted_result=$(echo $converted_result | xargs) #strip leading and trailing whitespace
+    converted_result=$(echo $converted_result | xargs) #strip leading and trailing
     
     
 }
@@ -72,23 +76,21 @@ mkdir -p $temp_files
 if [[ $# -ne 1 ]];
 then
     echo "invalid number of command line arguments"
-    exit -20
+    exit
 fi
-
 for binary_file in $binary_files/*
 do
-    temp_stderr_file="$temp_files/tmp_err.txt"
-    temp_stdout_file="$temp_files/tmp_out.txt"
-    sim_stdout=$(cat $test_input_file | $simulator $binary_file 2>$temp_stderr_file 1>$temp_stdout_file)
+    basename=$(basename -- "${binary_file%.*}")
+
+    cat $test_input_file | $simulator $binary_file 2>$temp_stderr_file 1>$temp_stdout_file
     exit_code=$?
     convert_8_bit_dec_to_2s_complement $exit_code
     exit_code=$converted_result
     sim_stderr=$(< $temp_stderr_file) #this line needs to be places below exit code for exit code to be correct for some reason
     sim_stdout=$(< $temp_stdout_file)
-    # echo $sim_stdout
     convert_ascii_string_to_decimal $sim_stdout
     sim_stdout=$converted_result
-    assembly_file=$assembly_files/$(basename -- "${binary_file%.*}").s
+    assembly_file="$assembly_files/$basename".s
     
     #extract info
     extract_info $assembly_file author
@@ -134,17 +136,6 @@ do
         debug_message="$debug_message | extra info: $extra_info"
     fi
     
-    #multiple input chars give multiple output that needs to all be checked sequentially
-    #need to while true and break if extract info doesn't retur nanything for that number
-    
-    # while IFS= read -r -n1 char
-    # do
-    #     # display one character at a time
-    #     echo  "$char"
-    #     # extract_info $assembly_file expected_output // DO THIS NEXT
-    #     # expected_output=$extracted_info_field
-    # done < "$temp_stdout_file"
-    
     csv_line="$test_id, $instruction, $pass_fail_string, $author,${debug_message//,} |"
     csv_lines+=($csv_line)
     
@@ -152,7 +143,10 @@ do
     this_test_log_file="$log_files/$test_id.txt"
     cp -f $temp_stderr_file $this_test_log_file
     echo $csv_line >> $this_test_log_file
+    echo $csv_line >> $test_output_csv
+    echo "Test conducted on: " $(date '+%d/%m/%Y %H:%M:%S') >> $this_test_log_file
+    echo $csv_line
 done
-printf '%s\n' "${csv_lines[@]}"
-# rm -rf $temp_files
+# printf '%s\n' "${csv_lines[@]}"
+rm -rf $temp_files
 # printf '%d\n' "'$sim_stdout" #for printing decimal value of ascii

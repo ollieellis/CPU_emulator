@@ -61,7 +61,7 @@ uint32_t Memory::get_instruction(int address)
 {
     if (!is_in_addr_instr_range(address))
     {
-        throw Memory_exception();
+        throw Invalid_instruction_exception();
     }
     return get_n_bytes(4, address);
 }
@@ -114,6 +114,8 @@ bool Memory::is_in_addr_data_range(int address) //applies to both read and write
     {
         return true;
     }
+    cerr << "address is not in data range" << address << endl;
+
     return false;
 }
 
@@ -124,6 +126,8 @@ bool Memory::is_in_addr_instr_range(int address)
     {
         return true;
     }
+    cerr << "address is not in instruction range " << address << endl;
+
     return false;
 }
 

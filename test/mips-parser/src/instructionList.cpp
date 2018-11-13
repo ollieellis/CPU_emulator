@@ -12,7 +12,7 @@ std::map<std::string, uint32_t> regMap = {
     {"$v1", 3},
     {"$a0", 4},
     {"$a1", 5},
-    {"$a2", 6},
+    {"$a2", 6}, 
     {"$a3", 7},
     {"$t0", 8},
     {"$t1", 9},
@@ -101,15 +101,6 @@ bool indRegCheck(std::string reg) {
     return (regMap.find(reg) != regMap.end());
 }
 
-bool validIntStr(std::string arg, int32_t& returnVal){
-    std::size_t pos;
-    returnVal = std::stoi(arg, &pos,0);
-    if(pos != arg.length()){
-        return false;
-    }
-    return true;
-}
-
 uint32_t R_TYPE(std::vector<std::string>& argVec, const std::vector<OP_TYPE>& opcodes, int fn, int pc) {
     uint32_t returnNum = fn;
     std::vector<int> index;
@@ -163,7 +154,7 @@ uint32_t I_TYPE(std::vector<std::string>& argVec, const std::vector<OP_TYPE>& op
                         exitError("Invalid instruction argument \"" + giveStr(argVec) + "\" on instruction number " + std::to_string(pc+1), 5);
                 }
                 if (branch)
-                    immediate = immediate >> 2;
+                    immediate = immediate;
                 returnNum = returnNum | (immediate & 0xFFFF);
                 break;
             case $t:

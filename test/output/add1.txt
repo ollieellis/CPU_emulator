@@ -1,7 +1,7 @@
 programme path: bin/mips_simulator
 getting binary file 
-file size: 24
-instructions: 3C067FFF 3C046FFF 862820 3C093000 AD250004 8 
+file size: 16
+instructions: 3C067FFF 3C046FFF 862820 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 6
 address set at 0x10000002: 7F
@@ -14,22 +14,15 @@ address set at 0x10000008: 0
 address set at 0x10000009: 86
 address set at 0x1000000A: 28
 address set at 0x1000000B: 20
-address set at 0x1000000C: 3C
-address set at 0x1000000D: 9
-address set at 0x1000000E: 30
-address set at 0x1000000F: 0
-address set at 0x10000010: AD
-address set at 0x10000011: 25
-address set at 0x10000012: 0
-address set at 0x10000013: 4
-address set at 0x10000014: 0
-address set at 0x10000015: 0
-address set at 0x10000016: 0
-address set at 0x10000017: 8
-executing instruction: 3C067FFF
-executing instruction: 3C046FFF
-executing instruction: 862820
+address set at 0x1000000C: 0
+address set at 0x1000000D: 0
+address set at 0x1000000E: 0
+address set at 0x1000000F: 8
+executing instruction: 3C067FFF at address: 0x10000000
+executing instruction: 3C046FFF at address: 0x10000004
+executing instruction: 862820 at address: 0x10000008
 Mips exception thrown: Arithmetic exception
 
 
-add1, add, Fail, ES5017, | expected exit code: -10 actual exit code: -10 | expected output: 0 actual output:  | extra info: tests that add correctly traps overflow |
+add1, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that add correctly traps overflow |
+Test conducted on:  13/11/2018 01:49:00

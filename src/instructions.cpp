@@ -265,11 +265,11 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 {
 	// cerr << hex <<"pc value: " << registers->get_program_counter() << endl;
 	// cerr << "cond : " << Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 << endl;
-	cerr << "executing instruction: " << hex << instruction << endl;
+	uint32_t current_instruction_program_counter = registers->get_program_counter();
+
+	cerr << "executing instruction: " << hex << instruction << " at address: 0x" << current_instruction_program_counter << endl;
 
 	//bool should_perform_delayed_load_after_execution = Load_delay::should_delayed_load; //determine before, execute after. commented out because it is apparently undefined behaviour and is up to me how to implement it
-
-	uint32_t current_instruction_program_counter = registers->get_program_counter();
 
 	if (branch_delay_helper.set_needs_branch)
 	{
@@ -463,7 +463,7 @@ void R_type::XOR()
 
 void I_type::ADDI()
 {
-	// cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << Bitwise_helper::sign_extend_to_32(16, immediate) << endl; 
+	// cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << Bitwise_helper::sign_extend_to_32(16, immediate) << endl;
 	int result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate); // trunc to 32 bits
 	bool overflow_condition_1 = (registers->get_register(source1) < 0 && immediate < 0 && result > 0);
 	bool overflow_condition_2 = (registers->get_register(source1) > 0 && immediate > 0 && result < 0);
@@ -495,7 +495,7 @@ void I_type::BEQ() //has delay slot
 {
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
-		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
 		instruction_helper->branch_delay_helper.set_needs_branch = true;
 		instruction_helper->branch_delay_helper.address = branch_address;
@@ -505,7 +505,7 @@ void I_type::BGEZ() //has delay slot
 {
 	if (registers->get_register(source1) >= 0)
 	{
-		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
 		instruction_helper->branch_delay_helper.set_needs_branch = true;
 		instruction_helper->branch_delay_helper.address = branch_address;
@@ -535,8 +535,9 @@ void I_type::BNE() //has delay slot
 {
 	if (registers->get_register(source1) != registers->get_register(source2_or_destination))
 	{
-		uint32_t offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + offset;
+		cerr << "bne branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << endl;
 		instruction_helper->branch_delay_helper.set_needs_branch = true;
 		instruction_helper->branch_delay_helper.address = branch_address;
 	}

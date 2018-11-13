@@ -1,7 +1,7 @@
 programme path: bin/mips_simulator
 getting binary file 
 file size: 32
-instructions: 3C093000 2001FFFF 8D250000 0 451021 1425FFFC 0 8 
+instructions: 3C093000 2001FFFF 8D250000 0 451021 1425FFF0 0 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 9
 address set at 0x10000002: 30
@@ -25,7 +25,7 @@ address set at 0x10000013: 21
 address set at 0x10000014: 14
 address set at 0x10000015: 25
 address set at 0x10000016: FF
-address set at 0x10000017: FC
+address set at 0x10000017: F0
 address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
@@ -34,50 +34,19 @@ address set at 0x1000001C: 0
 address set at 0x1000001D: 0
 address set at 0x1000001E: 0
 address set at 0x1000001F: 8
-executing instruction: 3C093000
-executing instruction: 2001FFFF
+executing instruction: 3C093000 at address: 0x10000000
+executing instruction: 2001FFFF at address: 0x10000004
 addi result: FFFFFFFF
-executing instruction: 8D250000
+executing instruction: 8D250000 at address: 0x10000008
 stdin: 104
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8D250000
-stdin: 101
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8D250000
-stdin: 108
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8D250000
-stdin: 108
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8D250000
-stdin: 111
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8D250000
-stdin: -1
-eof reached
-executing instruction: 0
-executing instruction: 451021
-executing instruction: 1425FFFC
-executing instruction: 0
-executing instruction: 8
-executing instruction: 0
-
-*** terminating execution due to end of binary file ***
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 451021 at address: 0x10000010
+executing instruction: 1425FFF0 at address: 0x10000014
+bne branch address: FFFFFD8, program counter: 10000018, immediate: FFF0 offset: FFFFFFC0
+executing instruction: 0 at address: 0x10000018
+address is not in instruction range FFFFFD8
+Mips exception thrown: Invalid instruction exception
 
 
-lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
+lw3, lw, Fail, ES5017, | expected exit code: 19 actual exit code: -12 | extra info: test memory mapped input without memory mapped output |
+Test conducted on:  13/11/2018 01:49:00
