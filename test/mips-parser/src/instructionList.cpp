@@ -149,6 +149,7 @@ uint32_t I_TYPE(std::vector<std::string>& argVec, const std::vector<OP_TYPE>& op
             case imm:
                 if (branch && labelReturn(argVec[i+1], immediate)) {
                     immediate = immediate - ((pc+1)*4 + 0x10000000);
+                    immediate = immediate >> 2;
                 } else {
                     if (!validIntStr(argVec[i+1], immediate))
                         exitError("Invalid instruction argument \"" + giveStr(argVec) + "\" on instruction number " + std::to_string(pc+1), 5);

@@ -1,7 +1,7 @@
 programme path: bin/mips_simulator
 getting binary file 
 file size: 32
-instructions: 3C093000 2001FFFF 8D250000 0 AD250004 1425FFF0 0 8 
+instructions: 3C093000 2001FFFF 8D250000 0 AD250004 1425FFFC 0 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 9
 address set at 0x10000002: 30
@@ -25,7 +25,7 @@ address set at 0x10000013: 4
 address set at 0x10000014: 14
 address set at 0x10000015: 25
 address set at 0x10000016: FF
-address set at 0x10000017: F0
+address set at 0x10000017: FC
 address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
@@ -44,12 +44,64 @@ executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
 putchar should be: 104
 
-executing instruction: 1425FFF0 at address: 0x10000014
-bne branch address: FFFFFD8, program counter: 10000018, immediate: FFF0 offset: FFFFFFC0
+executing instruction: 1425FFFC at address: 0x10000014
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
 executing instruction: 0 at address: 0x10000018
-address is not in instruction range FFFFFD8
-Mips exception thrown: Invalid instruction exception
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 101
+executing instruction: 0 at address: 0x1000000C
+executing instruction: AD250004 at address: 0x10000010
+store word address: 30000004
+putchar should be: 101
+
+executing instruction: 1425FFFC at address: 0x10000014
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 108
+executing instruction: 0 at address: 0x1000000C
+executing instruction: AD250004 at address: 0x10000010
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFC at address: 0x10000014
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 108
+executing instruction: 0 at address: 0x1000000C
+executing instruction: AD250004 at address: 0x10000010
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFC at address: 0x10000014
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 111
+executing instruction: 0 at address: 0x1000000C
+executing instruction: AD250004 at address: 0x10000010
+store word address: 30000004
+putchar should be: 111
+
+executing instruction: 1425FFFC at address: 0x10000014
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8D250000 at address: 0x10000008
+stdin: -1
+eof reached
+executing instruction: 0 at address: 0x1000000C
+executing instruction: AD250004 at address: 0x10000010
+store word address: 30000004
+putchar should be: 4294967295
+
+executing instruction: 1425FFFC at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8 at address: 0x1000001C
+executing instruction: 0 at address: 0x10000020
+
+*** terminating execution due to end of binary file ***
 
 
-lw2, lw, Fail, ES5017, | expected exit code: 0 actual exit code: -12 | expected output: 104 101 108 108 111 -1 actual output: 104 | extra info: test memory mapped input assuming memory mapped output works |
-Test conducted on:  13/11/2018 01:49:00
+lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | extra info: test memory mapped input assuming memory mapped output works |
+Test conducted on:  13/11/2018 04:34:40

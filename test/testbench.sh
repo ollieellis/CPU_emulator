@@ -72,6 +72,7 @@ function convert_ascii_string_to_decimal {
 csv_lines=()
 mkdir -p $log_files
 mkdir -p $temp_files
+rm -f $test_output_csv
 
 if [[ $# -ne 1 ]];
 then
