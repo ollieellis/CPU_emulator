@@ -6,10 +6,18 @@ simulator=$1
 #convert mips
 rm -rf test/mips_binary #refresh the binaries and remove the old ones
 mkdir -p test/mips_binary
+
+cd test/mips-parser
+# rm -f test/mips-parserbin/parser #instead, put in gitignore, otherwise takes too long to recompile every time
+make parser
+cd ..
+cd ..
+
 for assembly_file in test/mips_assembly/*
 do
-    test/mips-parser/bin/parser $assembly_file test/mips_binary/# >/dev/null
+    test/mips-parser/bin/parser 2>&1 >/dev/null $assembly_file 'test/mips_binary/#' 2>&1 >/dev/null
 done
+
 
 #must be after mips conversion to get all files
 binary_files=test/mips_binary
@@ -60,13 +68,15 @@ function convert_ascii_string_to_decimal {
     ascii=$1
     converted_result=""
     
-    while IFS='' read -r -d '' -n 1 char; do
+    while IFS="" read -r -n 1 char; do
         decimal=$(printf '%d' "'$char")
+        # echo $decimal
         converted_result="$converted_result $decimal"
     done < <(printf %s "$ascii")
     converted_result=$(echo $converted_result | xargs) #strip leading and trailing
     
-    
+    #converted_result=$(echo -ne $ascii | xxd -p)
+    #converted_result=$(echo $(( 16#$hex )))
 }
 
 csv_lines=()
@@ -82,7 +92,7 @@ fi
 for binary_file in $binary_files/*
 do
     basename=$(basename -- "${binary_file%.*}")
-
+    
     cat $test_input_file | $simulator $binary_file 2>$temp_stderr_file 1>$temp_stdout_file
     exit_code=$?
     convert_8_bit_dec_to_2s_complement $exit_code
@@ -111,7 +121,7 @@ do
     extract_info $assembly_file extra_info
     extra_info=$extracted_info_field
     
-    test_id=$(basename -- "${binary_file%.*}")
+    test_id=$(echo "${basename%%.*}")
     instruction=${test_id//[[:digit:]]/}
     
     debug_message=""

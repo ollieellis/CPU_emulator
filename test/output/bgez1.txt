@@ -1,0 +1,46 @@
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 24
+instructions: 2003FFFF 4610002 20040007 20050002 20A20003 8 
+address set at 0x10000000: 20
+address set at 0x10000001: 3
+address set at 0x10000002: FF
+address set at 0x10000003: FF
+address set at 0x10000004: 4
+address set at 0x10000005: 61
+address set at 0x10000006: 0
+address set at 0x10000007: 2
+address set at 0x10000008: 20
+address set at 0x10000009: 4
+address set at 0x1000000A: 0
+address set at 0x1000000B: 7
+address set at 0x1000000C: 20
+address set at 0x1000000D: 5
+address set at 0x1000000E: 0
+address set at 0x1000000F: 2
+address set at 0x10000010: 20
+address set at 0x10000011: A2
+address set at 0x10000012: 0
+address set at 0x10000013: 3
+address set at 0x10000014: 0
+address set at 0x10000015: 0
+address set at 0x10000016: 0
+address set at 0x10000017: 8
+executing instruction: 2003FFFF at address: 0x10000000
+addi result: FFFFFFFF
+executing instruction: 4610002 at address: 0x10000004
+executing instruction: 20040007 at address: 0x10000008
+addi result: 7
+executing instruction: 20050002 at address: 0x1000000C
+addi result: 2
+executing instruction: 20A20003 at address: 0x10000010
+addi result: 5
+executing instruction: 8 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+
+*** terminating execution due to end of binary file ***
+
+
+bgez1, bgez, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bgez1 doesnt occur when register in negative |
+Test conducted on:  14/11/2018 05:43:06

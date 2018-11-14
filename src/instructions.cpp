@@ -351,7 +351,6 @@ void R_type::AND()
 {
 	int result = registers->get_register(source1) & registers->get_register(source2);
 	registers->set_register(destination, result);
-	//pc+4 woz here
 }
 void R_type::DIV()
 {
@@ -408,15 +407,18 @@ void R_type::MULTU()
 }
 void R_type::OR()
 {
-	//pc+4 woz here
+	int result = registers->get_register(source1) | registers->get_register(source2);
+	registers->set_register(destination, result);
 }
 void R_type::SLL()
 {
-	//pc+4 woz here
+	int result = (uint32_t)registers->get_register(source2) << shift;
+	registers->set_register(destination, result);
 }
 void R_type::SLLV()
 {
-	//pc+4 woz here
+	int result = (uint32_t)registers->get_register(source2) << Bitwise_helper::extract_bits(0, 5, registers->get_register(source1));
+	registers->set_register(destination, result);
 }
 void R_type::SLT()
 {
@@ -424,41 +426,49 @@ void R_type::SLT()
 }
 void R_type::SLTU()
 {
-	int result = 0;
-	if (registers->get_register(source1) < registers->get_register(source2))
-	{
-		result = 1;
-	}
+	bool result = (registers->get_register(source1) < registers->get_register(source2));
 	registers->set_register(destination, result);
-	//pc+4 woz here
 }
 void R_type::SRA()
 {
-	//pc+4 woz here
+	uint32_t unsigned_result = registers->get_register(source2) >> shift;
+	int result = Bitwise_helper::sign_extend_to_32(32 - shift, unsigned_result); //max shift is 31 bits (2^5 -1)
+	registers->set_register(destination, result);
 }
 void R_type::SRAV()
 {
-	//pc+4 woz here
+	uint32_t unsigned_result = registers->get_register(source2) >> Bitwise_helper::extract_bits(0, 5, registers->get_register(source1));
+	int result = Bitwise_helper::sign_extend_to_32(32 - shift, unsigned_result); //max shift is 31 bits (2^5 -1)
+	registers->set_register(destination, result);
 }
 void R_type::SRL()
 {
-	//pc+4 woz here
+	int result = (uint32_t)registers->get_register(source2) >> shift;
+	registers->set_register(destination, result);
 }
 void R_type::SRLV()
 {
-	//pc+4 woz here
+	int result = (uint32_t)registers->get_register(source2) >> Bitwise_helper::extract_bits(0, 5, registers->get_register(source1));
+	registers->set_register(destination, result);
 }
 void R_type::SUB()
 {
-	//pc+4 woz here
+	int result = registers->get_register(source1) - registers->get_register(source2);		   // trunc to 32 bits
+	if ((result < registers->get_register(source1)) != (registers->get_register(source2) > 0)) //got this method of checking for overflow from some dude on stack overflow
+	{
+		throw Arithmetic_exception();
+	}
+	registers->set_register(destination, result);
 }
 void R_type::SUBU()
 {
-	//pc+4 woz here
+	// int result = registers->get_register(source1) - registers->get_register(source2); // trunc to 32 bits
+	// registers->set_register(destination, result);
 }
 void R_type::XOR()
 {
-	//pc+4 woz here
+	int result = registers->get_register(source1) ^ registers->get_register(source2);
+	registers->set_register(destination, result);
 }
 
 void I_type::ADDI()
@@ -497,6 +507,8 @@ void I_type::BEQ() //has delay slot
 	{
 		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
+		cerr << "beq branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << hex << " source1 reg: " << registers->get_register(source1) << " source2 reg: " << registers->get_register(source2_or_destination) << endl;
+
 		instruction_helper->branch_delay_helper.set_needs_branch = true;
 		instruction_helper->branch_delay_helper.address = branch_address;
 	}
@@ -537,7 +549,7 @@ void I_type::BNE() //has delay slot
 	{
 		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
 		uint32_t branch_address = registers->get_program_counter() + offset;
-		cerr << "bne branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << endl;
+		cerr << "bne branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << hex << " source1 reg: " << registers->get_register(source1) << " source2 reg: " << registers->get_register(source2_or_destination) << endl;
 		instruction_helper->branch_delay_helper.set_needs_branch = true;
 		instruction_helper->branch_delay_helper.address = branch_address;
 	}
@@ -619,7 +631,8 @@ void I_type::SW()
 }
 void I_type::XORI()
 {
-	//pc+4 woz here
+	int result = registers->get_register(source1) ^ immediate;
+	registers->set_register(source2_or_destination, result);
 }
 
 void J_type::J() //has delay slot

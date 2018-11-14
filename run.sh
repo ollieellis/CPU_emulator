@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "running programme \n" #comment this out later
+echo "run.sh started \n" #comment this out later
 make simulator
 #sh test/convert_mips.sh #done in testbench
 make testbench

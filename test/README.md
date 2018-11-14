@@ -1,3 +1,5 @@
+THE MIPS PARSER LISCENCE IS IN THE LISCENCE FILE IN test/mips-parser
+
 Tests are written in assembly and stored in txt files in test/mips_assembly
 
 The file name must be of the instruction being tested, multiple files testing the same instruction must have a numerical identifier at the end, for example, add1.txt, lw3.txt
@@ -11,3 +13,12 @@ information about the test is denoted by a hashtag, the name of the info field, 
 
 These fields will be placed in the message column of the output csv. Each field is separated by the | character
 
+to write to stdout, use this snippet:
+
+lui $9, 0x3000
+sw $5 4($9)
+
+stdin is 
+
+lui $9, 0x3000
+sw $5 0($9)

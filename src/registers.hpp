@@ -9,7 +9,7 @@ class Registers
     uint32_t program_counter;
 
   public:
-    Registers();
+    Registers(); 
     void set_register(int index, int value);
     int get_register(int index);
     void set_program_counter(uint32_t value); //should enforce multiple of 4 or throw exception??

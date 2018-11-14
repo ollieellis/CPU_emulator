@@ -3,13 +3,36 @@ add1, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra
 add2, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that add correctly traps overflow with negative numbers |
 addi, addi, Pass, ES5017, | expected exit code: 25 actual exit code: 25 | extra info: tests simple case for addi |
 addi1, addi, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that addi correctly traps overflow |
+addiu, addiu, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: does a simple test of addiu that includes overflow |
 addu, addu, Pass, ES5017, | expected exit code: 31 actual exit code: 31 | extra info: does a simple test of addu |
-andi, andi, Pass, ES5017, | expected exit code: 115 actual exit code: 115 | extra info: tests simple case for add |
+and, and, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for and |
+andi, andi, Pass, ES5017, | expected exit code: 115 actual exit code: 115 | extra info: tests simple case for andi |
+beq, beq, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for beq and branch delay slot |
+beq2, beq, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if beq doesnt occur when registers are not equal |
+bgez, bgez, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for bgez and branch delay slot |
+bgez1, bgez, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bgez1 doesnt occur when register in negative |
 bne, bne, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | expected output: 7 actual output: 7 | extra info: tests simple case for bne and branch delay slot |
-bne1, bne, Pass, ES5017, | expected exit code: -12 actual exit code: -12 | extra info: tests out of range branch |
+bne1, bne, Pass, ES5017, | expected exit code: -12 actual exit code: -12 | extra info: tests out of instruction range branch |
+bne2, bne, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bne doesnt occur when registers are equal |
+lui, lui, Pass, ES5017, | expected output: 103 actual output: 103 | extra info: tests simple case for lui |
 lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |
 lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
 lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | extra info: test memory mapped input assuming memory mapped output works |
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
+or, or, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for or |
+ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
+sll, sll, Pass, ES5017, | expected exit code: 24 actual exit code: 24 | extra info: tests simple case for sll |
+sllv, sllv, Pass, ES5017, | expected exit code: 96 actual exit code: 96 | extra info: tests case for sllv making sure to only use low 5 order bits of gpr |
+sltu, sltu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu |
+sltu1, sltu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for sltu condition not met |
+sra, sra, Pass, ES5017, | expected output: -2 actual output: -2 | extra info: tests simple case for sra |
+srav, srav, Pass, ES5017, | expected output: -2 actual output: -2 | extra info: tests simple case for srav |
+srl, srl, Pass, ES5017, | expected exit code: 7 actual exit code: 7 | extra info: tests simple case for srl |
+srl1, srl, Pass, ES5017, | expected output: 2 actual output: 2 | extra info: tests another simple case for srl |
+srlv, srlv, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | extra info: tests case for srlv making sure to only use low 5 order bits of gpr |
+sub, sub, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for sub |
+sub1, sub, Fail, ES5017, | expected exit code: -10 actual exit code: 0 | extra info: tests that add correctly traps overflow |
+xor, xor, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xor |
+xori, xori, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xori |

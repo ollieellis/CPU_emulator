@@ -1,4 +1,5 @@
 programme path: bin/mips_simulator
+initialising registers 
 getting binary file 
 file size: 20
 instructions: 20030009 3C042000 8C820050 0 8 
@@ -34,4 +35,4 @@ executing instruction: 0 at address: 0x10000014
 
 
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
-Test conducted on:  13/11/2018 04:34:41
+Test conducted on:  14/11/2018 05:43:06

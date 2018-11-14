@@ -70,8 +70,12 @@ void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
 {
     if (is_trying_to_set_stdout(n, start_address))
     {
-        cerr << dec << "putchar should be: " << value << endl;
-        putchar(value); //gets least significant 8 bits i think
+        cerr << dec << "putchar should be: " <<  (int)(char)value << endl; //only use char for printing, putchar auto truncates, and we might need to use the whole value for eof things idk
+        putchar(value); //gets least significant 8 bits i think 
+        if (ferror(stdout))
+        {
+            throw IO_error(); 
+        }
         cerr << endl;
         return;
     } //must be before range check or will throw as its out of range
@@ -92,6 +96,10 @@ uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
         //cerr << "is trying to read stdin" << endl;
         int input = getchar();
         cerr << dec << "stdin: " << input << endl;
+        if (ferror(stdin))
+        {
+            throw IO_error(); 
+        }
         if (input == EOF)
         {
             cerr << "eof reached" << endl;

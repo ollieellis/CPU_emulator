@@ -1,6 +1,6 @@
 #author: ES5017
 #expected_exit_code: -12
-#extra_info: tests out of range branch
+#extra_info: tests out of instruction range branch
 
 addi $3, $0, 8
 

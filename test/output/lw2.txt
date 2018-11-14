@@ -1,4 +1,5 @@
 programme path: bin/mips_simulator
+initialising registers 
 getting binary file 
 file size: 32
 instructions: 3C093000 2001FFFF 8D250000 0 AD250004 1425FFFC 0 8 
@@ -45,7 +46,7 @@ store word address: 30000004
 putchar should be: 104
 
 executing instruction: 1425FFFC at address: 0x10000014
-bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0 source1 reg: FFFFFFFF source2 reg: 68
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 101
@@ -55,7 +56,7 @@ store word address: 30000004
 putchar should be: 101
 
 executing instruction: 1425FFFC at address: 0x10000014
-bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0 source1 reg: FFFFFFFF source2 reg: 65
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
@@ -65,7 +66,7 @@ store word address: 30000004
 putchar should be: 108
 
 executing instruction: 1425FFFC at address: 0x10000014
-bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0 source1 reg: FFFFFFFF source2 reg: 6C
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
@@ -75,7 +76,7 @@ store word address: 30000004
 putchar should be: 108
 
 executing instruction: 1425FFFC at address: 0x10000014
-bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0 source1 reg: FFFFFFFF source2 reg: 6C
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 111
@@ -85,7 +86,7 @@ store word address: 30000004
 putchar should be: 111
 
 executing instruction: 1425FFFC at address: 0x10000014
-bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0
+bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset: FFFFFFF0 source1 reg: FFFFFFFF source2 reg: 6F
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: -1
@@ -93,7 +94,7 @@ eof reached
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
-putchar should be: 4294967295
+putchar should be: -1
 
 executing instruction: 1425FFFC at address: 0x10000014
 executing instruction: 0 at address: 0x10000018
@@ -104,4 +105,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | extra info: test memory mapped input assuming memory mapped output works |
-Test conducted on:  13/11/2018 04:34:40
+Test conducted on:  14/11/2018 05:43:06
