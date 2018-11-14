@@ -462,8 +462,8 @@ void R_type::SUB()
 }
 void R_type::SUBU()
 {
-	// int result = registers->get_register(source1) - registers->get_register(source2); // trunc to 32 bits
-	// registers->set_register(destination, result);
+	int result = registers->get_register(source1) - registers->get_register(source2); // trunc to 32 bits
+	registers->set_register(destination, result);
 }
 void R_type::XOR()
 {

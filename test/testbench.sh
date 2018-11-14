@@ -9,7 +9,7 @@ mkdir -p test/mips_binary
 
 cd test/mips-parser
 # rm -f test/mips-parserbin/parser #instead, put in gitignore, otherwise takes too long to recompile every time
-make parser
+#make parser #UNCOMMENT THIS LINE BEFORE SUBMITTING - IT ENSURES WE COMPILE FOR THE CORRECT TARGET
 cd ..
 cd ..
 

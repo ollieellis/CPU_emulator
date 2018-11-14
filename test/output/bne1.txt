@@ -33,4 +33,4 @@ Mips exception thrown: Invalid instruction exception
 
 
 bne1, bne, Pass, ES5017, | expected exit code: -12 actual exit code: -12 | extra info: tests out of instruction range branch |
-Test conducted on:  14/11/2018 05:43:06
+Test conducted on:  14/11/2018 05:59:32

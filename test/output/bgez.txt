@@ -54,4 +54,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 bgez, bgez, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for bgez and branch delay slot |
-Test conducted on:  14/11/2018 05:43:06
+Test conducted on:  14/11/2018 05:59:32

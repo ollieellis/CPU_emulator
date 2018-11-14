@@ -26,4 +26,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 addi, addi, Pass, ES5017, | expected exit code: 25 actual exit code: 25 | extra info: tests simple case for addi |
-Test conducted on:  14/11/2018 05:43:05
+Test conducted on:  14/11/2018 05:59:31
