@@ -60,4 +60,4 @@ executing instruction: 0 at address: 0x10000024
 
 
 sh, sh, Pass, ES5017, | expected exit code: -85 actual exit code: -85 | extra info: tests simple case for sh |
-Test conducted on:  15/11/2018 17:00:57
+Test conducted on:  15/11/2018 17:04:13

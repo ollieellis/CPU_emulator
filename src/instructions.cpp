@@ -475,9 +475,10 @@ void R_type::XOR()
 void I_type::ADDI()
 {
 	// cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << Bitwise_helper::sign_extend_to_32(16, immediate) << endl;
-	int result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate); // trunc to 32 bits
-	bool overflow_condition_1 = (registers->get_register(source1) < 0 && immediate < 0 && result > 0);
-	bool overflow_condition_2 = (registers->get_register(source1) > 0 && immediate > 0 && result < 0);
+	int signed_immediate = Bitwise_helper::sign_extend_to_32(16, immediate);
+	int result = registers->get_register(source1) + signed_immediate; // trunc to 32 bits
+	bool overflow_condition_1 = (registers->get_register(source1) < 0 && signed_immediate < 0 && result > 0);
+	bool overflow_condition_2 = (registers->get_register(source1) > 0 && signed_immediate > 0 && result < 0);
 	//overflow can't physically happen if both sources have different signs to each other
 	cerr << "addi result: " << result << endl;
 
