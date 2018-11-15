@@ -1,3 +1,57 @@
-bin/mips_testbench: line 100: bin/mips_simulator: cannot execute binary file
-bgez, bgez, Fail, ES5017, | expected exit code: 4 actual exit code: 126 | expected output: 7 actual output:  | extra info: tests simple case for bgez and branch delay slot |
-Test conducted on:  15/11/2018 16:24:42
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 32
+instructions: 20030006 4610002 20040007 20050002 20A20004 3C093000 AD240004 8 
+address set at 0x10000000: 20
+address set at 0x10000001: 3
+address set at 0x10000002: 0
+address set at 0x10000003: 6
+address set at 0x10000004: 4
+address set at 0x10000005: 61
+address set at 0x10000006: 0
+address set at 0x10000007: 2
+address set at 0x10000008: 20
+address set at 0x10000009: 4
+address set at 0x1000000A: 0
+address set at 0x1000000B: 7
+address set at 0x1000000C: 20
+address set at 0x1000000D: 5
+address set at 0x1000000E: 0
+address set at 0x1000000F: 2
+address set at 0x10000010: 20
+address set at 0x10000011: A2
+address set at 0x10000012: 0
+address set at 0x10000013: 4
+address set at 0x10000014: 3C
+address set at 0x10000015: 9
+address set at 0x10000016: 30
+address set at 0x10000017: 0
+address set at 0x10000018: AD
+address set at 0x10000019: 24
+address set at 0x1000001A: 0
+address set at 0x1000001B: 4
+address set at 0x1000001C: 0
+address set at 0x1000001D: 0
+address set at 0x1000001E: 0
+address set at 0x1000001F: 8
+executing instruction: 20030006 at address: 0x10000000
+addi result: 6
+executing instruction: 4610002 at address: 0x10000004
+executing instruction: 20040007 at address: 0x10000008
+addi result: 7
+executing instruction: 20A20004 at address: 0x10000010
+addi result: 4
+executing instruction: 3C093000 at address: 0x10000014
+executing instruction: AD240004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 7
+
+executing instruction: 8 at address: 0x1000001C
+executing instruction: 0 at address: 0x10000020
+
+*** terminating execution due to end of binary file ***
+
+
+bgez, bgez, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for bgez and branch delay slot |
+Test conducted on:  15/11/2018 17:00:56

@@ -1,3 +1,137 @@
-bin/mips_testbench: line 100: bin/mips_simulator: cannot execute binary file
-lhu2, lhu, Fail, ES5017, | expected exit code: 0 actual exit code: 126 | expected output: 104 101 108 108 111 -1 actual output:  | extra info: test memory mapped input with lh assuming memory mapped output works |
-Test conducted on:  15/11/2018 16:24:42
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 44
+instructions: 3C093000 35290002 2001FFFF 95250000 0 10250002 0 A5250004 1425FFFA 0 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 9
+address set at 0x10000002: 30
+address set at 0x10000003: 0
+address set at 0x10000004: 35
+address set at 0x10000005: 29
+address set at 0x10000006: 0
+address set at 0x10000007: 2
+address set at 0x10000008: 20
+address set at 0x10000009: 1
+address set at 0x1000000A: FF
+address set at 0x1000000B: FF
+address set at 0x1000000C: 95
+address set at 0x1000000D: 25
+address set at 0x1000000E: 0
+address set at 0x1000000F: 0
+address set at 0x10000010: 0
+address set at 0x10000011: 0
+address set at 0x10000012: 0
+address set at 0x10000013: 0
+address set at 0x10000014: 10
+address set at 0x10000015: 25
+address set at 0x10000016: 0
+address set at 0x10000017: 2
+address set at 0x10000018: 0
+address set at 0x10000019: 0
+address set at 0x1000001A: 0
+address set at 0x1000001B: 0
+address set at 0x1000001C: A5
+address set at 0x1000001D: 25
+address set at 0x1000001E: 0
+address set at 0x1000001F: 4
+address set at 0x10000020: 14
+address set at 0x10000021: 25
+address set at 0x10000022: FF
+address set at 0x10000023: FA
+address set at 0x10000024: 0
+address set at 0x10000025: 0
+address set at 0x10000026: 0
+address set at 0x10000027: 0
+address set at 0x10000028: 0
+address set at 0x10000029: 0
+address set at 0x1000002A: 0
+address set at 0x1000002B: 8
+executing instruction: 3C093000 at address: 0x10000000
+executing instruction: 35290002 at address: 0x10000004
+ori result: 30000002
+executing instruction: 2001FFFF at address: 0x10000008
+addi result: FFFFFFFF
+executing instruction: 95250000 at address: 0x1000000C
+stdin: 104
+loading halfword unsigned at 0x30000002: 68
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: A5250004 at address: 0x1000001C
+store halfword address: 30000006
+putchar should be: 104
+
+executing instruction: 1425FFFA at address: 0x10000020
+bne branch address: 1000000C, program counter: 10000024, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 68
+executing instruction: 0 at address: 0x10000024
+executing instruction: 95250000 at address: 0x1000000C
+stdin: 101
+loading halfword unsigned at 0x30000002: 65
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: A5250004 at address: 0x1000001C
+store halfword address: 30000006
+putchar should be: 101
+
+executing instruction: 1425FFFA at address: 0x10000020
+bne branch address: 1000000C, program counter: 10000024, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 65
+executing instruction: 0 at address: 0x10000024
+executing instruction: 95250000 at address: 0x1000000C
+stdin: 108
+loading halfword unsigned at 0x30000002: 6C
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: A5250004 at address: 0x1000001C
+store halfword address: 30000006
+putchar should be: 108
+
+executing instruction: 1425FFFA at address: 0x10000020
+bne branch address: 1000000C, program counter: 10000024, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6C
+executing instruction: 0 at address: 0x10000024
+executing instruction: 95250000 at address: 0x1000000C
+stdin: 108
+loading halfword unsigned at 0x30000002: 6C
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: A5250004 at address: 0x1000001C
+store halfword address: 30000006
+putchar should be: 108
+
+executing instruction: 1425FFFA at address: 0x10000020
+bne branch address: 1000000C, program counter: 10000024, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6C
+executing instruction: 0 at address: 0x10000024
+executing instruction: 95250000 at address: 0x1000000C
+stdin: 111
+loading halfword unsigned at 0x30000002: 6F
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+executing instruction: 0 at address: 0x10000018
+executing instruction: A5250004 at address: 0x1000001C
+store halfword address: 30000006
+putchar should be: 111
+
+executing instruction: 1425FFFA at address: 0x10000020
+bne branch address: 1000000C, program counter: 10000024, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6F
+executing instruction: 0 at address: 0x10000024
+executing instruction: 95250000 at address: 0x1000000C
+stdin: -1
+eof reached
+loading halfword unsigned at 0x30000002: FFFFFFFF
+executing instruction: 0 at address: 0x10000010
+executing instruction: 10250002 at address: 0x10000014
+beq branch address: 10000020, program counter: 10000018, immediate: 2 offset: 8 source1 reg: FFFFFFFF source2 reg: FFFFFFFF
+executing instruction: 0 at address: 0x10000018
+executing instruction: 1425FFFA at address: 0x10000020
+executing instruction: 0 at address: 0x10000024
+executing instruction: 8 at address: 0x10000028
+executing instruction: 0 at address: 0x1000002C
+
+*** terminating execution due to end of binary file ***
+
+
+lhu2, lhu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lh assuming memory mapped output works |
+Test conducted on:  15/11/2018 17:00:57

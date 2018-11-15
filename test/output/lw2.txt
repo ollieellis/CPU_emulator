@@ -1,3 +1,131 @@
-bin/mips_testbench: line 100: bin/mips_simulator: cannot execute binary file
-lw2, lw, Fail, ES5017, | expected exit code: 0 actual exit code: 126 | expected output: 104 101 108 108 111 -1 actual output:  | extra info: test memory mapped input with lw assuming memory mapped output works |
-Test conducted on:  15/11/2018 16:24:42
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 40
+instructions: 3C093000 2001FFFF 8D250000 0 10250002 0 AD250004 1425FFFA 0 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 9
+address set at 0x10000002: 30
+address set at 0x10000003: 0
+address set at 0x10000004: 20
+address set at 0x10000005: 1
+address set at 0x10000006: FF
+address set at 0x10000007: FF
+address set at 0x10000008: 8D
+address set at 0x10000009: 25
+address set at 0x1000000A: 0
+address set at 0x1000000B: 0
+address set at 0x1000000C: 0
+address set at 0x1000000D: 0
+address set at 0x1000000E: 0
+address set at 0x1000000F: 0
+address set at 0x10000010: 10
+address set at 0x10000011: 25
+address set at 0x10000012: 0
+address set at 0x10000013: 2
+address set at 0x10000014: 0
+address set at 0x10000015: 0
+address set at 0x10000016: 0
+address set at 0x10000017: 0
+address set at 0x10000018: AD
+address set at 0x10000019: 25
+address set at 0x1000001A: 0
+address set at 0x1000001B: 4
+address set at 0x1000001C: 14
+address set at 0x1000001D: 25
+address set at 0x1000001E: FF
+address set at 0x1000001F: FA
+address set at 0x10000020: 0
+address set at 0x10000021: 0
+address set at 0x10000022: 0
+address set at 0x10000023: 0
+address set at 0x10000024: 0
+address set at 0x10000025: 0
+address set at 0x10000026: 0
+address set at 0x10000027: 8
+executing instruction: 3C093000 at address: 0x10000000
+executing instruction: 2001FFFF at address: 0x10000004
+addi result: FFFFFFFF
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 104
+loading word at 0x30000000: 68
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+executing instruction: 0 at address: 0x10000014
+executing instruction: AD250004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 104
+
+executing instruction: 1425FFFA at address: 0x1000001C
+bne branch address: 10000008, program counter: 10000020, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 68
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 101
+loading word at 0x30000000: 65
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+executing instruction: 0 at address: 0x10000014
+executing instruction: AD250004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 101
+
+executing instruction: 1425FFFA at address: 0x1000001C
+bne branch address: 10000008, program counter: 10000020, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 65
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 108
+loading word at 0x30000000: 6C
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+executing instruction: 0 at address: 0x10000014
+executing instruction: AD250004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFA at address: 0x1000001C
+bne branch address: 10000008, program counter: 10000020, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6C
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 108
+loading word at 0x30000000: 6C
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+executing instruction: 0 at address: 0x10000014
+executing instruction: AD250004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 108
+
+executing instruction: 1425FFFA at address: 0x1000001C
+bne branch address: 10000008, program counter: 10000020, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6C
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8D250000 at address: 0x10000008
+stdin: 111
+loading word at 0x30000000: 6F
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+executing instruction: 0 at address: 0x10000014
+executing instruction: AD250004 at address: 0x10000018
+store word address: 30000004
+putchar should be: 111
+
+executing instruction: 1425FFFA at address: 0x1000001C
+bne branch address: 10000008, program counter: 10000020, immediate: FFFA offset: FFFFFFE8 source1 reg: FFFFFFFF source2 reg: 6F
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8D250000 at address: 0x10000008
+stdin: -1
+eof reached
+loading word at 0x30000000: FFFFFFFF
+executing instruction: 0 at address: 0x1000000C
+executing instruction: 10250002 at address: 0x10000010
+beq branch address: 1000001C, program counter: 10000014, immediate: 2 offset: 8 source1 reg: FFFFFFFF source2 reg: FFFFFFFF
+executing instruction: 0 at address: 0x10000014
+executing instruction: 1425FFFA at address: 0x1000001C
+executing instruction: 0 at address: 0x10000020
+executing instruction: 8 at address: 0x10000024
+executing instruction: 0 at address: 0x10000028
+
+*** terminating execution due to end of binary file ***
+
+
+lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lw assuming memory mapped output works |
+Test conducted on:  15/11/2018 17:00:57

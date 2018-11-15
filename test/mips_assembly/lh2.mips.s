@@ -2,7 +2,7 @@
 #expected_exit_code: 0
 #extra_info: test memory mapped input with lh assuming memory mapped output works
 
-#expected_output: 104 101 108 108 111 -1
+#expected_output: 104 101 108 108 111
 
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
@@ -15,6 +15,8 @@ addi $1, $0, -1
 
 next_input:
 lh $5 0($9)
+nop
+beq $1, $5, 2
 nop
 #write the input back to output so we can check it correctly read the input
 sh $5 4($9)

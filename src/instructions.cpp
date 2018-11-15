@@ -559,7 +559,7 @@ void I_type::LB()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	int result = Bitwise_helper::sign_extend_to_32(8, memory->get_n_bytes_of_data(1, address));
-	cerr << "loading byte at 0x" << address << ": " << result << endl;
+	cerr << hex << "loading byte at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LBU()
@@ -574,7 +574,7 @@ void I_type::LH()
 		throw Address_exception();
 	}
 	int result = Bitwise_helper::sign_extend_to_32(16, memory->get_n_bytes_of_data(2, address));
-	cerr << "loading halfword at 0x" << address << ": " << result << endl;
+	cerr << hex << "loading halfword at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 
@@ -586,7 +586,7 @@ void I_type::LHU()
 		throw Address_exception();
 	}
 	int result = memory->get_n_bytes_of_data(2, address);
-	cerr << "loading halfword unsigned at 0x" << address << ": " << result << endl;
+	cerr << hex << "loading halfword unsigned at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LUI()
@@ -602,7 +602,7 @@ void I_type::LW()
 		throw Address_exception();
 	}
 	int result = memory->get_n_bytes_of_data(4, address);
-	cerr << "loading word at 0x" << address << ": " << result << endl;
+	cerr << hex << "loading word at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 	// Load_delay::should_delayed_load = true;
 	// Load_delay::register_index = source2_or_destination;
