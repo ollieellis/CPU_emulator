@@ -40,6 +40,7 @@ executing instruction: 2001FFFF at address: 0x10000004
 addi result: FFFFFFFF
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 104
+loading word at 0x805306368: 104
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -50,6 +51,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 101
+loading word at 0x805306368: 101
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -60,6 +62,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
+loading word at 0x805306368: 108
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -70,6 +73,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
+loading word at 0x805306368: 108
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -80,6 +84,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 111
+loading word at 0x805306368: 111
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -91,6 +96,7 @@ executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: -1
 eof reached
+loading word at 0x805306368: -1
 executing instruction: 0 at address: 0x1000000C
 executing instruction: AD250004 at address: 0x10000010
 store word address: 30000004
@@ -105,4 +111,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | extra info: test memory mapped input assuming memory mapped output works |
-Test conducted on:  14/11/2018 05:59:32
+Test conducted on:  15/11/2018 05:02:13

@@ -3,6 +3,7 @@
 
 simulator=$1
 
+
 #convert mips
 rm -rf test/mips_binary #refresh the binaries and remove the old ones
 mkdir -p test/mips_binary
@@ -13,16 +14,19 @@ cd test/mips-parser
 cd ..
 cd ..
 
+coversion_log_files=test/output/conversion_logs.txt
+log_files=test/output
+mkdir -p $log_files
+
 for assembly_file in test/mips_assembly/*
 do
-    test/mips-parser/bin/parser 2>&1 >/dev/null $assembly_file 'test/mips_binary/#' 2>&1 >/dev/null
+    test/mips-parser/bin/parser 2>&1 >>$coversion_log_files $assembly_file 'test/mips_binary/#' 2>&1 >>$coversion_log_files
 done
 
 
 #must be after mips conversion to get all files
 binary_files=test/mips_binary
 assembly_files=test/mips_assembly
-log_files=test/output
 temp_files=test/temp
 test_input_file=test/wibble.txt
 test_output_csv=test/output/all_results.csv
@@ -80,7 +84,6 @@ function convert_ascii_string_to_decimal {
 }
 
 csv_lines=()
-mkdir -p $log_files
 mkdir -p $temp_files
 rm -f $test_output_csv
 

@@ -14,7 +14,6 @@ struct End_of_program : public std::exception //much easier to implement as exce
     }
 };
 
-
 struct Arithmetic_exception : public Mips_exception
 {
     const char *what() const throw() override

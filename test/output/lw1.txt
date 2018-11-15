@@ -37,4 +37,4 @@ Mips exception thrown: Memory exception
 
 
 lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
-Test conducted on:  14/11/2018 05:59:32
+Test conducted on:  15/11/2018 05:02:13

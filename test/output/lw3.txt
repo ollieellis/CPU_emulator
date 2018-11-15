@@ -40,6 +40,7 @@ executing instruction: 2001FFFF at address: 0x10000004
 addi result: FFFFFFFF
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 104
+loading word at 0x805306368: 104
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -47,6 +48,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 101
+loading word at 0x805306368: 101
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -54,6 +56,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
+loading word at 0x805306368: 108
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -61,6 +64,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 108
+loading word at 0x805306368: 108
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -68,6 +72,7 @@ bne branch address: 10000008, program counter: 10000018, immediate: FFFC offset:
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: 111
+loading word at 0x805306368: 111
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -76,6 +81,7 @@ executing instruction: 0 at address: 0x10000018
 executing instruction: 8D250000 at address: 0x10000008
 stdin: -1
 eof reached
+loading word at 0x805306368: -1
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 1425FFFC at address: 0x10000014
@@ -87,4 +93,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
-Test conducted on:  14/11/2018 05:59:32
+Test conducted on:  15/11/2018 05:02:14

@@ -23,17 +23,30 @@ lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info:
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
 or, or, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for or |
 ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
+sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
+sb1, sb, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sb triggers stdout |
+sh, sh, Pass, ES5017, | expected exit code: -85 actual exit code: -85 | extra info: tests simple case for sh |
+sh1, sh, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests that only bottom halfword is stored |
+sh2, sh, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sh triggers stdout |
 sll, sll, Pass, ES5017, | expected exit code: 24 actual exit code: 24 | extra info: tests simple case for sll |
 sllv, sllv, Pass, ES5017, | expected exit code: 96 actual exit code: 96 | extra info: tests case for sllv making sure to only use low 5 order bits of gpr |
-sltu, sltu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu |
+slt, slt, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slt and ensures numbers are compared as signed |
+slt1, slt, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for slt condition not met |
+slti, slti, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slti and ensures numbers are compared as signed |
+slti1, slti, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for slti condition not met |
+sltiu, sltiu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
+sltiu1, sltiu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for sltiu condition not met |
+sltu, sltu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
 sltu1, sltu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for sltu condition not met |
-sra, sra, Pass, ES5017, | expected output: -2 actual output: -2 | extra info: tests simple case for sra |
-srav, srav, Pass, ES5017, | expected output: -2 actual output: -2 | extra info: tests simple case for srav |
+sra, sra, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for sra |
+srav, srav, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for srav |
 srl, srl, Pass, ES5017, | expected exit code: 7 actual exit code: 7 | extra info: tests simple case for srl |
 srl1, srl, Pass, ES5017, | expected output: 2 actual output: 2 | extra info: tests another simple case for srl |
 srlv, srlv, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | extra info: tests case for srlv making sure to only use low 5 order bits of gpr |
 sub, sub, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for sub |
 sub1, sub, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that sub correctly traps overflow |
 subu, subu, Pass, ES5017, | expected exit code: 79 actual exit code: 79 | extra info: does a simple test of subu |
+sw, sw, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sw |
+sw1, sw, Pass, ES5017, | expected output: 104 115 actual output: 104 115 | extra info: tests sw with stdout |
 xor, xor, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xor |
 xori, xori, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xori |

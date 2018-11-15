@@ -422,11 +422,12 @@ void R_type::SLLV()
 }
 void R_type::SLT()
 {
-	//pc+4 woz here
+	int result = (registers->get_register(source1) < registers->get_register(source2));
+	registers->set_register(destination, result);
 }
 void R_type::SLTU()
 {
-	bool result = (registers->get_register(source1) < registers->get_register(source2));
+	bool result = ((uint32_t)registers->get_register(source1) < (uint32_t)registers->get_register(source2));
 	registers->set_register(destination, result);
 }
 void R_type::SRA()
@@ -583,7 +584,9 @@ void I_type::LW()
 	{
 		throw Address_exception();
 	}
-	registers->set_register(source2_or_destination, memory->get_n_bytes_of_data(4, address));
+	int result = memory->get_n_bytes_of_data(4, address);
+	cerr << "loading word at 0x" << address << ": " << result << endl;
+	registers->set_register(source2_or_destination, result);
 	// Load_delay::should_delayed_load = true;
 	// Load_delay::register_index = source2_or_destination;
 	// Load_delay::register_value = memory->get_n_bytes_of_data(4, address);
@@ -604,19 +607,29 @@ void I_type::ORI()
 }
 void I_type::SB()
 {
-	//pc+4 woz here
-}
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	cerr << hex << "store byte address: " << address << endl;
+	memory->set_n_bytes_of_data(1, address, Bitwise_helper::extract_bits(0, 8, registers->get_register(source2_or_destination)));
+} 
 void I_type::SH()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	cerr << hex << "store halfword address: " << address << endl;
+	if (Bitwise_helper::extract_bits(0, 1, address) != 0)
+	{
+		throw Address_exception();
+	}
+	memory->set_n_bytes_of_data(2, address, Bitwise_helper::extract_bits(0, 16, registers->get_register(source2_or_destination)));
 }
 void I_type::SLTI()
 {
-	//pc+4 woz here
+	bool result = (registers->get_register(source1) < (int)Bitwise_helper::sign_extend_to_32(16, immediate));
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::SLTIU()
 {
-	//pc+4 woz here
+	bool result = ((uint32_t)registers->get_register(source1) < (uint32_t)Bitwise_helper::sign_extend_to_32(16, immediate));
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::SW()
 {
@@ -627,7 +640,6 @@ void I_type::SW()
 		throw Address_exception();
 	}
 	memory->set_n_bytes_of_data(4, address, registers->get_register(source2_or_destination));
-	//pc+4 woz here
 }
 void I_type::XORI()
 {

@@ -37,6 +37,7 @@ address set at 0x20000009: 0
 address set at 0x2000000A: 0
 address set at 0x2000000B: 9
 executing instruction: 8C820008 at address: 0x1000000C
+loading word at 0x20000008: 9
 executing instruction: 0 at address: 0x10000010
 executing instruction: 8 at address: 0x10000014
 executing instruction: 0 at address: 0x10000018
@@ -45,4 +46,4 @@ executing instruction: 0 at address: 0x10000018
 
 
 lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |
-Test conducted on:  14/11/2018 05:59:32
+Test conducted on:  15/11/2018 05:02:13

@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     }
     catch (const End_of_program &e)
     {
-        cerr << "\n*** terminating execution due to end of binary file ***\n";
+        cerr << "\n*** terminating execution due to end of binary file ***" << endl; //flush buffer
         uint8_t exit_code = Bitwise_helper::extract_char(0, registers->get_register(2));
         custom_exit(exit_code, memory, file_io, registers, instruction_helper);
     }
