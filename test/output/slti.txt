@@ -24,4 +24,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 slti, slti, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slti and ensures numbers are compared as signed |
-Test conducted on:  15/11/2018 17:04:13
+Test conducted on:  15/11/2018 17:11:36

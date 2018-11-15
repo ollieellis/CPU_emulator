@@ -64,4 +64,4 @@ executing instruction: 0 at address: 0x10000024
 
 
 sh2, sh, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sh triggers stdout |
-Test conducted on:  15/11/2018 17:04:13
+Test conducted on:  15/11/2018 17:11:36

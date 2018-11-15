@@ -12,7 +12,7 @@ mkdir -p test/mips_binary
 cd test/mips-parser
 # rm -f test/mips-parserbin/parser #instead, put in gitignore, otherwise takes too long to recompile every time
 if [ ! -f bin/parser ]; then
-    make parser
+    make parser 2>&1 >/dev/null
 fi
 
 cd ..

@@ -1,0 +1,61 @@
+add, add, Pass, ES5017, | expected exit code: 8 actual exit code: 8 | extra info: tests simple case for add |
+add1, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that add correctly traps overflow |
+add2, add, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that add correctly traps overflow with negative numbers |
+addi, addi, Pass, ES5017, | expected exit code: 25 actual exit code: 25 | extra info: tests simple case for addi |
+addi1, addi, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that addi correctly traps overflow |
+addiu, addiu, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: does a simple test of addiu that includes overflow |
+addu, addu, Pass, ES5017, | expected exit code: 31 actual exit code: 31 | extra info: does a simple test of addu |
+and, and, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for and |
+andi, andi, Pass, ES5017, | expected exit code: 115 actual exit code: 115 | extra info: tests simple case for andi |
+beq, beq, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for beq and branch delay slot |
+beq2, beq, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if beq doesnt occur when registers are not equal |
+bgez, bgez, Pass, ES5017, | expected exit code: 4 actual exit code: 4 | expected output: 7 actual output: 7 | extra info: tests simple case for bgez and branch delay slot |
+bgez1, bgez, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bgez1 doesnt occur when register in negative |
+bne, bne, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | expected output: 7 actual output: 7 | extra info: tests simple case for bne and branch delay slot |
+bne1, bne, Pass, ES5017, | expected exit code: -12 actual exit code: -12 | extra info: tests out of instruction range branch |
+bne2, bne, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bne doesnt occur when registers are equal |
+lb, lb, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lb |
+lb1, lb, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lb sign extension |
+lb2, lb, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lh assuming memory mapped output works |
+lh, lh, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lh |
+lh1, lh, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lh sign extension |
+lh2, lh, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lh assuming memory mapped output works |
+lhu, lhu, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lhu |
+lhu1, lhu, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests lhu zero extension |
+lhu2, lhu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lh assuming memory mapped output works |
+lui, lui, Pass, ES5017, | expected output: 103 actual output: 103 | extra info: tests simple case for lui |
+lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |
+lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
+lw2, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | extra info: test memory mapped input with lw assuming memory mapped output works |
+lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
+lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
+lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
+or, or, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for or |
+ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
+sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
+sb1, sb, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sb triggers stdout |
+sh, sh, Pass, ES5017, | expected exit code: -85 actual exit code: -85 | extra info: tests simple case for sh |
+sh1, sh, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests that only bottom halfword is stored |
+sh2, sh, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sh triggers stdout |
+sll, sll, Pass, ES5017, | expected exit code: 24 actual exit code: 24 | extra info: tests simple case for sll |
+sllv, sllv, Pass, ES5017, | expected exit code: 96 actual exit code: 96 | extra info: tests case for sllv making sure to only use low 5 order bits of gpr |
+slt, slt, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slt and ensures numbers are compared as signed |
+slt1, slt, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for slt condition not met |
+slti, slti, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slti and ensures numbers are compared as signed |
+slti1, slti, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for slti condition not met |
+sltiu, sltiu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
+sltiu1, sltiu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for sltiu condition not met |
+sltu, sltu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
+sltu1, sltu, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests simple case for sltu condition not met |
+sra, sra, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for sra |
+srav, srav, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for srav |
+srl, srl, Pass, ES5017, | expected exit code: 7 actual exit code: 7 | extra info: tests simple case for srl |
+srl1, srl, Pass, ES5017, | expected output: 2 actual output: 2 | extra info: tests another simple case for srl |
+srlv, srlv, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | extra info: tests case for srlv making sure to only use low 5 order bits of gpr |
+sub, sub, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for sub |
+sub1, sub, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that sub correctly traps overflow |
+subu, subu, Pass, ES5017, | expected exit code: 79 actual exit code: 79 | extra info: does a simple test of subu |
+sw, sw, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sw |
+sw1, sw, Pass, ES5017, | expected output: 104 115 actual output: 104 115 | extra info: tests sw with stdout |
+xor, xor, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xor |
+xori, xori, Pass, ES5017, | expected exit code: 28 actual exit code: 28 | extra info: tests simple case for xori |
