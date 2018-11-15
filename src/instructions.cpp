@@ -557,7 +557,10 @@ void I_type::BNE() //has delay slot
 }
 void I_type::LB()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	int result = Bitwise_helper::sign_extend_to_32(8, memory->get_n_bytes_of_data(1, address));
+	cerr << "loading byte at 0x" << address << ": " << result << endl;
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::LBU()
 {
@@ -565,12 +568,26 @@ void I_type::LBU()
 }
 void I_type::LH()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	if (Bitwise_helper::extract_bits(0, 1, address) != 0)
+	{
+		throw Address_exception();
+	}
+	int result = Bitwise_helper::sign_extend_to_32(16, memory->get_n_bytes_of_data(2, address));
+	cerr << "loading halfword at 0x" << address << ": " << result << endl;
+	registers->set_register(source2_or_destination, result);
 }
 
 void I_type::LHU()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	if (Bitwise_helper::extract_bits(0, 1, address) != 0)
+	{
+		throw Address_exception();
+	}
+	int result = memory->get_n_bytes_of_data(2, address);
+	cerr << "loading halfword unsigned at 0x" << address << ": " << result << endl;
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::LUI()
 {
@@ -610,7 +627,7 @@ void I_type::SB()
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	cerr << hex << "store byte address: " << address << endl;
 	memory->set_n_bytes_of_data(1, address, Bitwise_helper::extract_bits(0, 8, registers->get_register(source2_or_destination)));
-} 
+}
 void I_type::SH()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);

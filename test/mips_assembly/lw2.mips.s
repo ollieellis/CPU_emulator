@@ -1,6 +1,6 @@
 #author: ES5017
 #expected_exit_code: 0
-#extra_info: test memory mapped input assuming memory mapped output works
+#extra_info: test memory mapped input with lw assuming memory mapped output works
 
 #expected_output: 104 101 108 108 111 -1
 
