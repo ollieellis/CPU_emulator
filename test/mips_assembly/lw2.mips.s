@@ -1,24 +1,25 @@
 #author: ES5017
 #expected_exit_code: 0
-#extra_info: test memory mapped input with lw assuming memory mapped output works
+#extra_info: test memory mapped input with lw assuming memory mapped output works. Because it is lw, eof is not open to interpretation, and the last output must be -1
 
-#expected_output: 104 101 108 108 111
+#expected_output: 104 101 108 108 111 -1
 
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
-#cat test/wibble.txt | bin/mips_simulator test/mips_binary/lw2.bin
+#cat test/wibble.txt | bin/mips_simulator test/mips_binary/lh2.mips.bin
+
 
 lui $9, 0x3000
-addi $1, $0, -1
-next_input:
+ori $9, $9, 0x0002
+addi $6, $0, 6
 
-lw $5 0($9)
-nop
-beq $1, $5, 2
+next_input:
+lw $5 -2($9)
 nop
 #write the input back to output so we can check it correctly read the input
-sw $5 4($9)
-#once we are at eof it will return -1 and equal $1 and not branch
-bne $1, $5, next_input
+sw $5 2($9)
+addi $1, $1, 1
+#don't branch if the counter has reached 5, the number of characters in the wibble.txt
+bne $1, $6, next_input
 nop
 jr $0

@@ -7,6 +7,8 @@
 
 using namespace std;
 
+/* this program uses types as containers, not full values. You will only see 32 bit types to represent binary */
+
 void custom_exit(int exit_code, Memory *memory, File_io *file_io, Registers *registers, Instruction_helper *instruction_helper)
 {
     //cerr << "custom exiting" << endl;

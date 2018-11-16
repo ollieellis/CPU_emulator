@@ -46,4 +46,4 @@ executing instruction: 0 at address: 0x10000018
 
 
 lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |
-Test conducted on:  15/11/2018 17:11:36
+Test conducted on:  16/11/2018 17:21:15

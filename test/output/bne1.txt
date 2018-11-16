@@ -28,9 +28,9 @@ addi result: 8
 executing instruction: 1460FFFD at address: 0x10000004
 bne branch address: FFFFFFC, program counter: 10000008, immediate: FFFD offset: FFFFFFF4 source1 reg: 8 source2 reg: 0
 executing instruction: 0 at address: 0x10000008
-address is not in instruction range FFFFFFC
-Mips exception thrown: Invalid instruction exception
+address is not in instruction range: FFFFFFC
+Mips exception thrown: Memory exception
 
 
-bne1, bne, Pass, ES5017, | expected exit code: -12 actual exit code: -12 | extra info: tests out of instruction range branch |
-Test conducted on:  15/11/2018 17:11:36
+bne1, bne, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests out of instruction range branch (should throw memory error) |
+Test conducted on:  16/11/2018 17:21:15

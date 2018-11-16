@@ -34,10 +34,28 @@ addi result: FFFFF373
 executing instruction: 3C093000 at address: 0x10000008
 executing instruction: AD3F0004 at address: 0x1000000C
 store word address: 30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 68
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
 putchar should be: 104
 
 executing instruction: AD3E0004 at address: 0x10000010
 store word address: 30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: FF
+address set at 0x30000005: FF
+address set at 0x30000006: F3
+address set at 0x30000007: 73
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
 putchar should be: 115
 
 executing instruction: 8 at address: 0x10000014
@@ -47,4 +65,4 @@ executing instruction: 0 at address: 0x10000018
 
 
 sw1, sw, Pass, ES5017, | expected output: 104 115 actual output: 104 115 | extra info: tests sw with stdout |
-Test conducted on:  15/11/2018 17:11:37
+Test conducted on:  16/11/2018 17:21:16

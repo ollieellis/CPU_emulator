@@ -6,21 +6,20 @@
 
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
-#cat test/wibble.txt | bin/mips_simulator test/mips_binary/lw2.bin
+#cat test/wibble.txt | bin/mips_simulator test/mips_binary/lh2.mips.bin
 
 lui $9, 0x3000
 ori $9, $9, 0x0002
-addi $1, $0, -1
+addi $6, $0, 5
 
 
 next_input:
 lh $5 0($9)
 nop
-beq $1, $5, 2
-nop
 #write the input back to output so we can check it correctly read the input
 sh $5 4($9)
-#once we are at eof it will return -1 and equal $1 and not branch
-bne $1, $5, next_input
+addi $1, $1, 1
+#don't branch if the counter has reached 5, the number of characters in the wibble.txt
+bne $1, $6, next_input
 nop
 jr $0

@@ -56,4 +56,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 lb1, lb, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lb sign extension |
-Test conducted on:  15/11/2018 17:11:36
+Test conducted on:  16/11/2018 17:21:15

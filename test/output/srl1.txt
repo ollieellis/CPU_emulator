@@ -28,6 +28,15 @@ executing instruction: 11782 at address: 0x10000004
 executing instruction: 3C093000 at address: 0x10000008
 executing instruction: AD220004 at address: 0x1000000C
 store word address: 30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 2
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
 putchar should be: 2
 
 executing instruction: 8 at address: 0x10000010
@@ -37,4 +46,4 @@ executing instruction: 0 at address: 0x10000014
 
 
 srl1, srl, Pass, ES5017, | expected output: 2 actual output: 2 | extra info: tests another simple case for srl |
-Test conducted on:  15/11/2018 17:11:37
+Test conducted on:  16/11/2018 17:21:16

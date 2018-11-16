@@ -93,10 +93,10 @@ unsigned int Bitwise_helper::swap_bytes(unsigned int n, unsigned int p1, unsigne
     return result;
 }
 
-uint32_t Bitwise_helper::extract_bits(int start_position, int length, uint32_t word)
+uint32_t Bitwise_helper::extract_bits(int start_position, int size_in_bits, uint32_t word)
 {
     unsigned mask;
-    mask = ((1 << length) - 1) << start_position;
+    mask = ((1 << size_in_bits) - 1) << start_position;
     uint32_t masked = word & mask;
     return masked >> start_position;
 }
@@ -108,14 +108,15 @@ unsigned char Bitwise_helper::extract_char(int nth_char, uint32_t word)
 
 uint32_t Bitwise_helper::set_nth_bit(int index, bool bit, uint32_t value)
 {
-    return (value & (~(1 << index))) | (bit << index);
+    uint32_t result = (value & (~(1 << index))) | (bit << index);
+    return result;
 }
 
-uint32_t Bitwise_helper::sign_extend_to_32(int size, uint32_t value)
+uint32_t Bitwise_helper::sign_extend_to_32(int size_in_bits, uint32_t value)
 {
     uint32_t result = value;
-    bool sign_bit = extract_bits(size - 1, 1, value);
-    for(size_t i = size; i < 32; i++) 
+    bool sign_bit = extract_bits(size_in_bits - 1, 1, value);
+    for(size_t i = size_in_bits; i < 32; i++) 
     {
        result = set_nth_bit(i, sign_bit, result);
     }

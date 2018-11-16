@@ -13,6 +13,9 @@ private:
   unsigned char get_address(int address);
   uint32_t get_n_bytes(int n, int start_address);
   void set_n_bytes(int n, int start_address, uint32_t value);
+  bool is_all_consecutive_n_bytes_in_range(int n, int start_address, int start_of_range, int length_of_range); 
+  bool is_any_consecutive_n_bytes_in_range(int n, int start_address, int start_of_range, int length_of_range); 
+
 
 public:
   static const int ADDR_NULL = 0x00000000;
@@ -36,8 +39,10 @@ public:
   void set_n_bytes_of_data(int n, int start_address, uint32_t value);
   uint32_t get_n_bytes_of_data(int n, int start_address);
 
-  bool is_in_addr_data_range(int address);
-  bool is_in_addr_instr_range(int address);
+  bool is_addr_in_data_range(int number_of_bytes, int start_address);
+  bool is_addr_in_instr_range(int number_of_bytes, int start_address);
+  bool is_addr_in_mapped_io_range(int number_of_bytes, int start_address);
+
 
   bool is_trying_to_read_stdin(int number_of_bytes_being_got, int start_address);  //tryna read user input
   bool is_trying_to_set_stdout(int number_of_bytes_being_set, int start_address); //tryna read user output

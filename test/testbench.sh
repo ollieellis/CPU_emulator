@@ -76,7 +76,7 @@ function convert_ascii_string_to_decimal {
     ascii=$1
     converted_result=""
     
-    while IFS="" read -r -n 1 char; do
+    while IFS='' read -r -d '' -n 1 char; do
         decimal=$(printf '%d' "'$char")
         # echo $decimal
         converted_result="$converted_result $decimal"
@@ -133,13 +133,6 @@ do
     
     debug_message=""
     pass_fail_string="Pass"
-    if [ -n "${expected_exit_code}" ];
-    then
-        debug_message="$debug_message | expected exit code: $expected_exit_code actual exit code: $exit_code"
-        if [[ $expected_exit_code != $exit_code ]]; then
-            pass_fail_string="Fail"
-        fi
-    fi
     
     if [ -n "${expected_output}" ];
     then
@@ -148,6 +141,20 @@ do
             pass_fail_string="Fail"
         fi
     fi
+    
+    if [ $pass_fail_string = "Fail" ];
+    then
+        expected_exit_code=0 #force it to add exit code if there was output error
+    fi
+    
+    if [ -n "${expected_exit_code}"  ];
+    then
+        debug_message="$debug_message | expected exit code: $expected_exit_code actual exit code: $exit_code"
+        if [[ $expected_exit_code != $exit_code ]]; then
+            pass_fail_string="Fail"
+        fi
+    fi
+    
     
     if [ -n "${extra_info}" ];
     then

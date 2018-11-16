@@ -144,7 +144,7 @@ void R_type::deSYTHER()
 		SLTU();
 		break;
 	default:
-		throw Internal_error();
+		throw Invalid_instruction_exception();
 		break;
 	}
 }
@@ -239,7 +239,7 @@ void I_type::deSYTHER()
 		SW();
 		break;
 	default:
-		throw Internal_error();
+		throw Invalid_instruction_exception();
 		break;
 	}
 }
@@ -256,7 +256,7 @@ void J_type::deSYTHER()
 		break;
 
 	default:
-		throw Internal_error(); //instruction not found
+		throw Invalid_instruction_exception(); //instruction not found
 		break;
 	}
 }
@@ -328,8 +328,8 @@ void R_type::ADD() //check to see if this is correct - what if we used negative 
 	//cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << registers->get_register(source2) << endl;
 	int result = registers->get_register(source1) + registers->get_register(source2); // trunc to 32 bits
 
-	bool overflow_condition_1 = (registers->get_register(source1) < 0 && registers->get_register(source2) < 0 && result > 0);
-	bool overflow_condition_2 = (registers->get_register(source1) > 0 && registers->get_register(source2) > 0 && result < 0);
+	bool overflow_condition_1 = (registers->get_register(source1) < 0 && registers->get_register(source2) < 0 && result >= 0);
+	bool overflow_condition_2 = (registers->get_register(source1) > 0 && registers->get_register(source2) > 0 && result <= 0);
 	//overflow can't physically happen if both sources have different signs to each other
 	// cerr << "result: " << result << endl;
 
@@ -477,8 +477,8 @@ void I_type::ADDI()
 	// cerr << hex << "source1: " << registers->get_register(source1) << " source2: " << Bitwise_helper::sign_extend_to_32(16, immediate) << endl;
 	int signed_immediate = Bitwise_helper::sign_extend_to_32(16, immediate);
 	int result = registers->get_register(source1) + signed_immediate; // trunc to 32 bits
-	bool overflow_condition_1 = (registers->get_register(source1) < 0 && signed_immediate < 0 && result > 0);
-	bool overflow_condition_2 = (registers->get_register(source1) > 0 && signed_immediate > 0 && result < 0);
+	bool overflow_condition_1 = (registers->get_register(source1) < 0 && signed_immediate < 0 && result >= 0);
+	bool overflow_condition_2 = (registers->get_register(source1) > 0 && signed_immediate > 0 && result <= 0);
 	//overflow can't physically happen if both sources have different signs to each other
 	cerr << "addi result: " << result << endl;
 
@@ -565,7 +565,10 @@ void I_type::LB()
 }
 void I_type::LBU()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	int result = Bitwise_helper::extract_bits(0, 8, memory->get_n_bytes_of_data(1, address));
+	cerr << hex << "loading byte unsigned at 0x" << address << ": " << result << endl;
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::LH()
 {
@@ -586,7 +589,7 @@ void I_type::LHU()
 	{
 		throw Address_exception();
 	}
-	int result = memory->get_n_bytes_of_data(2, address);
+	uint32_t result = Bitwise_helper::extract_bits(0, 16, memory->get_n_bytes_of_data(2, address));
 	cerr << hex << "loading halfword unsigned at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
@@ -626,7 +629,7 @@ void I_type::ORI()
 void I_type::SB()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
-	cerr << hex << "store byte address: " << address << endl;
+	cerr << hex << "store byte address: " << address << " immediate: " << immediate << " source 1: " << source1 <<endl;
 	memory->set_n_bytes_of_data(1, address, Bitwise_helper::extract_bits(0, 8, registers->get_register(source2_or_destination)));
 }
 void I_type::SH()
