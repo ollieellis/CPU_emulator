@@ -31,4 +31,4 @@ executing instruction: 0 at address: 0x10000010
 
 
 sllv, sllv, Pass, ES5017, | expected exit code: 96 actual exit code: 96 | extra info: tests case for sllv making sure to only use low 5 order bits of gpr |
-Test conducted on:  16/11/2018 17:21:16
+Test conducted on:  16/11/2018 17:33:29

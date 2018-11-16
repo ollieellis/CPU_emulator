@@ -493,14 +493,12 @@ void I_type::ADDIU()
 {
 	int result = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	registers->set_register(source2_or_destination, result);
-	//pc+4 woz here
 }
 void I_type::ANDI()
 {
 	int result = registers->get_register(source1) & immediate;
 	cerr << "andi result: " << result << endl;
 	registers->set_register(source2_or_destination, result);
-	//pc+4 woz here
 }
 
 void I_type::BEQ() //has delay slot

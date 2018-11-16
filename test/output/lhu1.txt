@@ -56,4 +56,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 lhu1, lhu, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests lhu zero extension |
-Test conducted on:  16/11/2018 17:21:15
+Test conducted on:  16/11/2018 17:33:29

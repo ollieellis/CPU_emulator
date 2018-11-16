@@ -26,7 +26,7 @@ lhu2, lhu, Pass, ES5017, | expected output: 104 actual output: 104 | expected ex
 lui, lui, Pass, ES5017, | expected output: 103 actual output: 103 | extra info: tests simple case for lui |
 lw, lw, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple case for load word |
 lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
-lw2, lw, Pass, ES5017, | expected output: 104 101 108 108 111 -1 actual output: 104 101 108 108 111 -1 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lw assuming memory mapped output works. Because it is lw eof is not open to interpretation and the last output must be -1 |
+lw2, lw, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lw assuming memory mapped output works. SADLY I WANT TO TEST EOF BUT CANNOT BECAUSE LINUX EOF IS NOT -1 HNNNNNG |
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |

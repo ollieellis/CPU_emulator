@@ -30,4 +30,4 @@ executing instruction: 0 at address: 0x10000010
 
 
 slt, slt, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slt and ensures numbers are compared as signed |
-Test conducted on:  16/11/2018 17:21:16
+Test conducted on:  16/11/2018 17:33:29

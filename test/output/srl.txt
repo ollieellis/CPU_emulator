@@ -25,4 +25,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 srl, srl, Pass, ES5017, | expected exit code: 7 actual exit code: 7 | extra info: tests simple case for srl |
-Test conducted on:  16/11/2018 17:21:16
+Test conducted on:  16/11/2018 17:33:30
