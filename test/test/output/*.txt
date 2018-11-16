@@ -1,3 +1,0 @@
-bin/mips_testbench: line 94: bin/mips_simulator: No such file or directory
-*, *, Pass, ethansarif-kattan, |
-Test conducted on:  14/11/2018 05:41:41
