@@ -1,4 +1,4 @@
-THE MIPS PARSER LISCENCE IS IN THE LISCENCE FILE IN test/mips-parser
+THE MIPS PARSER LISCENCE IS IN THE LISCENCE FILE IN test/mips-parser. The project can be found here: https://github.com/olly-larkin/mips-parser
 
 Tests are written in assembly and stored in txt files in test/mips_assembly
 

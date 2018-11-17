@@ -3,7 +3,7 @@
 #expected_output: 7
 #extra_info: tests simple case for bgez and branch delay slot
 
-addi $3, $0, 6
+addi $3, $0, 0
 
 #should branch to next instruction address + 8 (8 is 2<< 2)
 bgez $3, 2

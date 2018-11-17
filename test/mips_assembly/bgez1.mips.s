@@ -15,6 +15,4 @@ addi $5, $0, 2
 #would be 3+2=5 if branch not taken
 addi $2, $5, 3
 
-
-
 jr $0

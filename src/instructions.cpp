@@ -362,8 +362,19 @@ void R_type::DIVU()
 }
 void R_type::JALR() //has delay slot
 {
-	//pc+4 woz here
+	int jump_address = registers->get_register(source1);
+	cerr << "jump address: 0x" << jump_address << endl;
+	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
+	{
+		throw Address_exception();
+	}
+	instruction_helper->branch_delay_helper.set_needs_branch = true;
+	instruction_helper->branch_delay_helper.address = jump_address;
+
+	uint32_t link_address = registers->get_program_counter() + 4;
+	registers->set_register(destination, link_address);
 }
+
 void R_type::JR() //has delay slot
 {
 	int jump_address = registers->get_register(source1); //ensure we store the correct address before executing delay slot (as it could change the value of address source1)
@@ -371,7 +382,7 @@ void R_type::JR() //has delay slot
 
 	if (Bitwise_helper::extract_bits(0, 2, jump_address) != 0)
 	{
-		throw Memory_exception();
+		throw Address_exception();
 	}
 
 	instruction_helper->branch_delay_helper.set_needs_branch = true;
@@ -480,7 +491,7 @@ void I_type::ADDI()
 	bool overflow_condition_1 = (registers->get_register(source1) < 0 && signed_immediate < 0 && result >= 0);
 	bool overflow_condition_2 = (registers->get_register(source1) > 0 && signed_immediate > 0 && result <= 0);
 	//overflow can't physically happen if both sources have different signs to each other
-	cerr << "addi result: " << result << endl;
+	cerr << "addi result: 0x" << result << endl;
 
 	if (overflow_condition_1 || overflow_condition_2)
 	{
@@ -501,57 +512,74 @@ void I_type::ANDI()
 	registers->set_register(source2_or_destination, result);
 }
 
+void I_type::BRANCH()
+{
+	int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
+	uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
+	cerr << "branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << hex << " source1 reg: " << registers->get_register(source1) << " source2 reg: " << registers->get_register(source2_or_destination) << endl;
+
+	instruction_helper->branch_delay_helper.set_needs_branch = true;
+	instruction_helper->branch_delay_helper.address = branch_address;
+}
+
 void I_type::BEQ() //has delay slot
 {
 	if (registers->get_register(source1) == registers->get_register(source2_or_destination))
 	{
-		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
-		cerr << "beq branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << hex << " source1 reg: " << registers->get_register(source1) << " source2 reg: " << registers->get_register(source2_or_destination) << endl;
-
-		instruction_helper->branch_delay_helper.set_needs_branch = true;
-		instruction_helper->branch_delay_helper.address = branch_address;
+		BRANCH();
 	}
 }
 void I_type::BGEZ() //has delay slot
 {
 	if (registers->get_register(source1) >= 0)
 	{
-		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t branch_address = registers->get_program_counter() + offset; //ensure we store the correct address before executing delay slot
-		instruction_helper->branch_delay_helper.set_needs_branch = true;
-		instruction_helper->branch_delay_helper.address = branch_address;
+		BRANCH();
 	}
 }
 void I_type::BGEZAL() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) >= 0)
+	{
+		BRANCH();
+	}
+	uint32_t link_address = registers->get_program_counter() + 4;
+	cerr << hex << "branch and link set link reg to: 0x" << link_address << endl;
+	registers->set_register(31, link_address); //apparently this is done regardless of if the condition was met
 }
 void I_type::BGTZ() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) > 0)
+	{
+		BRANCH();
+	}
 }
 void I_type::BLEZ() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) <= 0)
+	{
+		BRANCH();
+	}
 }
 void I_type::BLTZ() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) < 0)
+	{
+		BRANCH();
+	}
 }
 void I_type::BLTZAL() //has delay slot
 {
-	//pc+4 woz here
+	if (registers->get_register(source1) < 0)
+	{
+		BRANCH();
+	}
+	registers->set_register(31, registers->get_program_counter() + 4); //apparently this is done regardless of if the condition was met
 }
 void I_type::BNE() //has delay slot
 {
 	if (registers->get_register(source1) != registers->get_register(source2_or_destination))
 	{
-		int offset = Bitwise_helper::sign_extend_to_32(18, immediate << 2);
-		uint32_t branch_address = registers->get_program_counter() + offset;
-		cerr << "bne branch address: " << branch_address << ", program counter: " << registers->get_program_counter() << ", immediate: " << immediate << " offset: " << offset << hex << " source1 reg: " << registers->get_register(source1) << " source2 reg: " << registers->get_register(source2_or_destination) << endl;
-		instruction_helper->branch_delay_helper.set_needs_branch = true;
-		instruction_helper->branch_delay_helper.address = branch_address;
+		BRANCH();
 	}
 }
 void I_type::LB()
@@ -587,7 +615,7 @@ void I_type::LHU()
 	{
 		throw Address_exception();
 	}
-	uint32_t result = Bitwise_helper::extract_bits(0, 16, memory->get_n_bytes_of_data(2, address));
+	int result = Bitwise_helper::extract_bits(0, 16, memory->get_n_bytes_of_data(2, address));
 	cerr << hex << "loading halfword unsigned at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
@@ -627,7 +655,7 @@ void I_type::ORI()
 void I_type::SB()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
-	cerr << hex << "store byte address: " << address << " immediate: " << immediate << " source 1: " << source1 <<endl;
+	cerr << hex << "store byte address: " << address << " immediate: " << immediate << " source 1: " << source1 << endl;
 	memory->set_n_bytes_of_data(1, address, Bitwise_helper::extract_bits(0, 8, registers->get_register(source2_or_destination)));
 }
 void I_type::SH()
@@ -668,9 +696,30 @@ void I_type::XORI()
 
 void J_type::J() //has delay slot
 {
-	//pc+4 woz here
+	int jump_address = address << 2;
+	cerr << "instr_index: 0x" << address << endl;
+
+	for (size_t i = 28; i < 32; i++)
+	{
+		jump_address = Bitwise_helper::set_nth_bit(i, Bitwise_helper::extract_bits(i, 1, registers->get_program_counter()), jump_address);
+	}
+	cerr << "jump address: 0x" << jump_address << endl;
+
+	instruction_helper->branch_delay_helper.set_needs_branch = true;
+	instruction_helper->branch_delay_helper.address = jump_address;
 }
 void J_type::JAL() //has delay slot
 {
-	//pc+4 woz here
+	int jump_address = address << 2;
+
+	for (size_t i = 28; i < 32; i++)
+	{
+		jump_address = Bitwise_helper::set_nth_bit(i, Bitwise_helper::extract_bits(i, 1, registers->get_program_counter()), jump_address);
+	}
+	cerr << "jump address: 0x" << jump_address << endl;
+
+	instruction_helper->branch_delay_helper.set_needs_branch = true;
+	instruction_helper->branch_delay_helper.address = jump_address;
+	uint32_t link_address = registers->get_program_counter() + 4;
+	registers->set_register(31, link_address);
 }

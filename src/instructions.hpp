@@ -118,6 +118,9 @@ struct I_type
     void SLTIU();
     void SW();
     void XORI();
+
+  private:
+    void BRANCH(); //since all branches are the same contents
 };
 
 struct J_type

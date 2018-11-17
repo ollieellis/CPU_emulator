@@ -1,0 +1,59 @@
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 32
+instructions: 3C033345 346398BA 3C042000 AC830008 9082000B 0 21102 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 3
+address set at 0x10000002: 33
+address set at 0x10000003: 45
+address set at 0x10000004: 34
+address set at 0x10000005: 63
+address set at 0x10000006: 98
+address set at 0x10000007: BA
+address set at 0x10000008: 3C
+address set at 0x10000009: 4
+address set at 0x1000000A: 20
+address set at 0x1000000B: 0
+address set at 0x1000000C: AC
+address set at 0x1000000D: 83
+address set at 0x1000000E: 0
+address set at 0x1000000F: 8
+address set at 0x10000010: 90
+address set at 0x10000011: 82
+address set at 0x10000012: 0
+address set at 0x10000013: B
+address set at 0x10000014: 0
+address set at 0x10000015: 0
+address set at 0x10000016: 0
+address set at 0x10000017: 0
+address set at 0x10000018: 0
+address set at 0x10000019: 2
+address set at 0x1000001A: 11
+address set at 0x1000001B: 2
+address set at 0x1000001C: 0
+address set at 0x1000001D: 0
+address set at 0x1000001E: 0
+address set at 0x1000001F: 8
+executing instruction: 3C033345 at address: 0x10000000
+executing instruction: 346398BA at address: 0x10000004
+ori result: 334598BA
+executing instruction: 3C042000 at address: 0x10000008
+executing instruction: AC830008 at address: 0x1000000C
+store word address: 20000008
+address set at 0x20000008: 33
+address set at 0x20000009: 45
+address set at 0x2000000A: 98
+address set at 0x2000000B: BA
+executing instruction: 9082000B at address: 0x10000010
+loading byte unsigned at 0x2000000B: BA
+executing instruction: 0 at address: 0x10000014
+executing instruction: 21102 at address: 0x10000018
+executing instruction: 8 at address: 0x1000001C
+executing instruction: 0 at address: 0x10000020
+
+*** terminating execution due to end of binary file ***
+
+
+lbu1, lbu, Pass, ES5017, | expected exit code: 11 actual exit code: 11 | extra info: tests lbu zero extension |
+Test conducted on:  17/11/2018 20:03:29

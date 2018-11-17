@@ -30,6 +30,11 @@
 		"tuple": "cpp",
 		"typeinfo": "cpp",
 		"utility": "cpp",
-		"ios": "cpp"
+		"ios": "cpp",
+		"string": "cpp",
+		"__config": "cpp",
+		"__nullptr": "cpp",
+		"cstddef": "cpp",
+		"algorithm": "cpp"
 	}
 }

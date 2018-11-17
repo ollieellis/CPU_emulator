@@ -1,0 +1,27 @@
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 12
+instructions: 3C018069 11783 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 1
+address set at 0x10000002: 80
+address set at 0x10000003: 69
+address set at 0x10000004: 0
+address set at 0x10000005: 1
+address set at 0x10000006: 17
+address set at 0x10000007: 83
+address set at 0x10000008: 0
+address set at 0x10000009: 0
+address set at 0x1000000A: 0
+address set at 0x1000000B: 8
+executing instruction: 3C018069 at address: 0x10000000
+executing instruction: 11783 at address: 0x10000004
+executing instruction: 8 at address: 0x10000008
+executing instruction: 0 at address: 0x1000000C
+
+*** terminating execution due to end of binary file ***
+
+
+sra, sra, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for sra |
+Test conducted on:  17/11/2018 20:03:30

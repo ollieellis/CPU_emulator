@@ -106,9 +106,9 @@ unsigned char Bitwise_helper::extract_char(int nth_char, uint32_t word)
     return extract_bits(nth_char * 8, 8, word);
 }
 
-uint32_t Bitwise_helper::set_nth_bit(int index, bool bit, uint32_t value)
+uint32_t Bitwise_helper::set_nth_bit(int n, bool new_bit, uint32_t word)
 {
-    uint32_t result = (value & (~(1 << index))) | (bit << index);
+    uint32_t result = (word & (~(1 << n))) | (new_bit << n);
     return result;
 }
 

@@ -1,0 +1,57 @@
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 32
+instructions: 3C12FEDC 3652ABCD 3C1D1FFF 37BDFFFC A3B2000B 8FA20008 0 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 12
+address set at 0x10000002: FE
+address set at 0x10000003: DC
+address set at 0x10000004: 36
+address set at 0x10000005: 52
+address set at 0x10000006: AB
+address set at 0x10000007: CD
+address set at 0x10000008: 3C
+address set at 0x10000009: 1D
+address set at 0x1000000A: 1F
+address set at 0x1000000B: FF
+address set at 0x1000000C: 37
+address set at 0x1000000D: BD
+address set at 0x1000000E: FF
+address set at 0x1000000F: FC
+address set at 0x10000010: A3
+address set at 0x10000011: B2
+address set at 0x10000012: 0
+address set at 0x10000013: B
+address set at 0x10000014: 8F
+address set at 0x10000015: A2
+address set at 0x10000016: 0
+address set at 0x10000017: 8
+address set at 0x10000018: 0
+address set at 0x10000019: 0
+address set at 0x1000001A: 0
+address set at 0x1000001B: 0
+address set at 0x1000001C: 0
+address set at 0x1000001D: 0
+address set at 0x1000001E: 0
+address set at 0x1000001F: 8
+executing instruction: 3C12FEDC at address: 0x10000000
+executing instruction: 3652ABCD at address: 0x10000004
+ori result: FEDCABCD
+executing instruction: 3C1D1FFF at address: 0x10000008
+executing instruction: 37BDFFFC at address: 0x1000000C
+ori result: 1FFFFFFC
+executing instruction: A3B2000B at address: 0x10000010
+store byte address: 20000007 immediate: B source 1: 1D
+address set at 0x20000007: CD
+executing instruction: 8FA20008 at address: 0x10000014
+loading word at 0x20000004: CD
+executing instruction: 0 at address: 0x10000018
+executing instruction: 8 at address: 0x1000001C
+executing instruction: 0 at address: 0x10000020
+
+*** terminating execution due to end of binary file ***
+
+
+sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
+Test conducted on:  17/11/2018 20:03:30

@@ -11,12 +11,27 @@ beq, beq, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit co
 beq2, beq, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if beq doesnt occur when registers are not equal |
 bgez, bgez, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 4 actual exit code: 4 | extra info: tests simple case for bgez and branch delay slot |
 bgez1, bgez, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bgez1 doesnt occur when register in negative |
+bgezal, bgezal, Pass, ES5017, | expected output: 8 actual output: 8 | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bgezal and branch delay slot with a function assuming stdout works |
+bgezal1, bgezal, Pass, ES5017, | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bgezal not being triggered |
+bgtz, bgtz, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 4 actual exit code: 4 | extra info: tests simple case for bgtz and branch delay slot |
+bgtz1, bgtz, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bgtz doesnt occur when register in negative |
+blez, blez, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 4 actual exit code: 4 | extra info: tests simple case for blez and branch delay slot |
+blez1, blez, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if blez doesnt occur when register in positive |
+bltz, bltz, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 4 actual exit code: 4 | extra info: tests simple case for bltz and branch delay slot |
+bltz1, bltz, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bltz doesnt occur when register in positive |
+bltzal, bltzal, Pass, ES5017, | expected output: 8 actual output: 8 | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bltzal and branch delay slot with a function assuming stdout works |
+bltzal1, bltzal, Pass, ES5017, | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bltzal not being triggered |
 bne, bne, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 3 actual exit code: 3 | extra info: tests simple case for bne and branch delay slot |
 bne1, bne, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests out of instruction range branch (should throw memory error) |
 bne2, bne, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bne doesnt occur when registers are equal |
+j, j, Pass, ES5017, | expected exit code: 40 actual exit code: 40 | extra info: tests simple case for jump with branch delay slot |
+jal, jal, Pass, ES5017, | expected exit code: 36 actual exit code: 36 | extra info: tests simple case for jump and link with branch delay slot |
 lb, lb, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lb |
 lb1, lb, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lb sign extension |
 lb2, lb, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lb assuming memory mapped output works |
+lbu, lbu, Pass, ES5017, | expected exit code: -102 actual exit code: -102 | extra info: tests simple case for lbu |
+lbu1, lbu, Pass, ES5017, | expected exit code: 11 actual exit code: 11 | extra info: tests lbu zero extension |
+lbu2, lbu, Pass, ES5017, | expected output: 104 actual output: 104 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lbu assuming memory mapped output works |
 lh, lh, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lh |
 lh1, lh, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lh sign extension |
 lh2, lh, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lh assuming memory mapped output works |

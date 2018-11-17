@@ -459,8 +459,10 @@ uint32_t j(std::vector<std::string>& argVec, int i) {
     if(!labelReturn(argVec[1], addr)) {
         if (!validIntStr(argVec[1], addr))
             exitError("Invalid address \"" + giveStr(argVec) + "\" on instruction number " + std::to_string(i+1), 5);
+    }else{
+        addr = (addr) >> 2;
     }
-    return returnNum | (((addr) >> 2) & 0x3FFFFFF);
+    return returnNum | (((addr)) & 0x3FFFFFF);
 }
 
 uint32_t jal(std::vector<std::string>& argVec, int i) {
@@ -469,8 +471,10 @@ uint32_t jal(std::vector<std::string>& argVec, int i) {
     if(!labelReturn(argVec[1], addr)) {
         if (!validIntStr(argVec[1], addr))
             exitError("Invalid address \"" + giveStr(argVec) + "\" on instruction number " + std::to_string(i+1), 5);
+    }else{
+        addr = (addr) >> 2; 
     }
-    return returnNum | (((addr) >> 2) & 0x3FFFFFF);
+    return returnNum | (((addr)) & 0x3FFFFFF);
 }
 
 //*********************************** NOP **************************************
