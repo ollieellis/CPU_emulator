@@ -31,10 +31,10 @@ executing instruction: 20030009 at address: 0x10000000
 addi result: 0x9
 executing instruction: 3C043000 at address: 0x10000004
 executing instruction: AC830008 at address: 0x10000008
-store word address: 30000008
-address is not in data range: 30000008
+store word address: 0x30000008
+address is not in data range: 0x30000008
 Mips exception thrown: Memory exception
 
 
 lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:57

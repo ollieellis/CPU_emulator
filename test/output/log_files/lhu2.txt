@@ -54,10 +54,11 @@ address set at 0x30000007: 0
 putchar should be: 104
 
 executing instruction: 8 at address: 0x10000018
+jr address: 0x0
 executing instruction: 0 at address: 0x1000001C
 
 *** terminating execution due to end of binary file ***
 
 
 lhu2, lhu, Pass, ES5017, | expected output: 104 actual output: 104 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lh assuming memory mapped output works |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:57

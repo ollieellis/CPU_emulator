@@ -7,7 +7,6 @@ addi $2, $2, 21
 jr $0
 nop
 
-function:
-addi $2, $2, 15
+function: addi $2, $2, 15
 jr $ra
 nop

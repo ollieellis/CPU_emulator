@@ -48,10 +48,11 @@ executing instruction: 8FA20008 at address: 0x10000014
 loading word at 0x20000004: CD
 executing instruction: 0 at address: 0x10000018
 executing instruction: 8 at address: 0x1000001C
+jr address: 0x0
 executing instruction: 0 at address: 0x10000020
 
 *** terminating execution due to end of binary file ***
 
 
 sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
-Test conducted on:  17/11/2018 20:03:30
+Test conducted on:  18/11/2018 23:59:57

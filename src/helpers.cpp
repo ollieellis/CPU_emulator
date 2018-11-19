@@ -62,23 +62,12 @@ void File_io::get_binary_file(string file_path)
 //     return (v >> s) | (v << (m - s));
 // }
 
-// This function swaps bit at positions p1 and p2 in an integer n
 unsigned int Bitwise_helper::swap_bits(unsigned int n, unsigned int p1, unsigned int p2)
 {
-    /* Move p1'th to rightmost side */
     unsigned int bit1 = (n >> p1) & 1;
-
-    /* Move p2'th to rightmost side */
     unsigned int bit2 = (n >> p2) & 1;
-
-    /* XOR the two bits */
     unsigned int x = (bit1 ^ bit2);
-
-    /* Put the xor bit back to their original positions */
     x = (x << p1) | (x << p2);
-
-    /* XOR 'x' with the original number so that the 
-       two sets are swapped */
     unsigned int result = n ^ x;
     return result;
 }
@@ -93,11 +82,20 @@ unsigned int Bitwise_helper::swap_bytes(unsigned int n, unsigned int p1, unsigne
     return result;
 }
 
-uint32_t Bitwise_helper::extract_bits(int start_position, int size_in_bits, uint32_t word)
-{
-    unsigned mask;
+uint32_t Bitwise_helper::extract_bits(int start_position, int size_in_bits, uint32_t value) 
+{  
+    uint32_t mask;
     mask = ((1 << size_in_bits) - 1) << start_position;
-    uint32_t masked = word & mask;
+    uint32_t masked = value & mask; 
+    return masked >> start_position;
+}
+
+uint64_t Bitwise_helper::extract_bits_64(int start_position, int size_in_bits, uint64_t value) 
+{  
+    uint64_t mask;
+    mask = (((uint64_t)1 << (uint64_t)size_in_bits) - (uint64_t)1) << (uint64_t)start_position;
+    uint64_t masked = value & mask; 
+    // cerr << hex << "mask: " << mask << " value: " << value << endl;
     return masked >> start_position;
 }
 
@@ -119,6 +117,17 @@ uint32_t Bitwise_helper::sign_extend_to_32(int size_in_bits, uint32_t value)
     for(size_t i = size_in_bits; i < 32; i++) 
     {
        result = set_nth_bit(i, sign_bit, result);
+    }
+    return result;
+}
+
+uint32_t Bitwise_helper::overwrite_bits(uint32_t original_value, uint32_t new_value, int start_position, int size_in_bits)
+{
+    uint32_t result = original_value;
+    for(int i = 0; i < size_in_bits; i++)
+    {
+        bool new_bit = extract_bits(start_position + i, 1, new_value);
+        result = set_nth_bit(start_position + i, new_bit, result);
     }
     return result;
 }

@@ -29,10 +29,16 @@ unsigned char Memory::get_address(int address)
 
 void Memory::set_n_bytes(int n, int start_address, uint32_t value) //maximum of 4 bytes
 {
+    // cerr << hex << "n is: " << n << endl;
+
     for (int i = 0; i < n; i++)
     {
+        // cerr << "nexloop" << endl;
         int index = start_address + i;
-        set_address(index, Bitwise_helper::extract_char(n - 1 - i, value));
+        unsigned char address_data = Bitwise_helper::extract_char(n - 1 - i, value);
+        // cerr << hex << "addresss data: 0x" << (int)address_data << " index: 0x" << index  << endl;
+        set_address(index, address_data);
+        // cerr << "adress set" << endl;
         cerr << hex << "address set at 0x" << index << ": " << (int)memory[index] << endl;
     }
 }
@@ -105,7 +111,7 @@ void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
         set_n_bytes(n, start_address, value);
         int putchar_value = Bitwise_helper::extract_char(0, get_n_bytes(Memory::ADDR_PUTC_LENGTH, Memory::ADDR_PUTC));
         set_n_bytes(n, start_address, 0); //make sure it gets set back to 0 because this isn't actually memory
-        if ((int)Bitwise_helper::sign_extend_to_32(n*8, value) == EOF)
+        if ((int)Bitwise_helper::sign_extend_to_32(n * 8, value) == EOF)
         {
             putchar_value = EOF;
         }
@@ -119,7 +125,7 @@ void Memory::set_n_bytes_of_data(int n, int start_address, uint32_t value)
         return;
     } //must be before range check or will throw as its out of range
 
-    if (!is_addr_in_data_range(n, start_address))
+    if (!is_addr_in_data_write_range(n, start_address))
     {
         throw Memory_exception();
     }
@@ -154,7 +160,7 @@ uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
         return gotchar_value; //will be in lsb of return result
     }                         //must be before range check
 
-    if (!is_addr_in_data_range(n, start_address))
+    if (!is_addr_in_data_read_range(n, start_address))
     {
         throw Memory_exception();
     }
@@ -162,12 +168,24 @@ uint32_t Memory::get_n_bytes_of_data(int n, int start_address)
     return get_n_bytes(n, start_address);
 }
 
-bool Memory::is_addr_in_data_range(int number_of_bytes, int start_address) //applies to both read and write
+bool Memory::is_addr_in_data_write_range(int number_of_bytes, int start_address) //applies to both read and write
 {
     bool result = is_all_consecutive_n_bytes_in_range(number_of_bytes, start_address, Memory::ADDR_DATA, Memory::ADDR_DATA_LENGTH);
     if (!result)
-        cerr << "address is not in data range: " << start_address << endl;
+        cerr << "address is not in data range: 0x" << start_address << endl;
     return result;
+}
+
+bool Memory::is_addr_in_data_read_range(int number_of_bytes, int start_address) //applies to both read and write
+{
+    bool condition1 = is_all_consecutive_n_bytes_in_range(number_of_bytes, start_address, Memory::ADDR_DATA, Memory::ADDR_DATA_LENGTH);
+    bool condition2 = is_all_consecutive_n_bytes_in_range(number_of_bytes, start_address, Memory::ADDR_INSTR, Memory::ADDR_INSTR_LENGTH); //can read instruction memory too
+    if (condition1 || condition2)
+    {
+        return true;
+    }
+    return false;
+    cerr << "address is not in data range: 0x" << start_address << endl;
 }
 
 bool Memory::is_addr_in_instr_range(int number_of_bytes, int start_address)

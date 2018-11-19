@@ -40,7 +40,7 @@ executing instruction: 3463987A at address: 0x10000004
 ori result: 3345987A
 executing instruction: 3C042000 at address: 0x10000008
 executing instruction: AC830008 at address: 0x1000000C
-store word address: 20000008
+store word address: 0x20000008
 address set at 0x20000008: 33
 address set at 0x20000009: 45
 address set at 0x2000000A: 98
@@ -50,10 +50,11 @@ loading byte at 0x2000000A: FFFFFF98
 executing instruction: 0 at address: 0x10000014
 executing instruction: 21102 at address: 0x10000018
 executing instruction: 8 at address: 0x1000001C
+jr address: 0x0
 executing instruction: 0 at address: 0x10000020
 
 *** terminating execution due to end of binary file ***
 
 
 lb1, lb, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lb sign extension |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:56

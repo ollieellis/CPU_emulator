@@ -25,10 +25,11 @@ executing instruction: 20030021 at address: 0x10000004
 addi result: 0x21
 executing instruction: 431022 at address: 0x10000008
 executing instruction: 8 at address: 0x1000000C
+jr address: 0x0
 executing instruction: 0 at address: 0x10000010
 
 *** terminating execution due to end of binary file ***
 
 
 sub, sub, Pass, ES5017, | expected exit code: 17 actual exit code: 17 | extra info: tests simple case for sub |
-Test conducted on:  17/11/2018 20:03:30
+Test conducted on:  18/11/2018 23:59:57

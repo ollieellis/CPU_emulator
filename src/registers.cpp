@@ -11,6 +11,8 @@ Registers::Registers()
 {
     cerr << "initialising registers " << endl;
     program_counter = Memory::ADDR_INSTR;
+    hi_register = 0;
+    lo_register = 0;
     // registers.reserve(32);
     // fill(registers.begin(), registers.end(), 0); //init to 0 - doesn't even work ugh
     for (size_t i = 0; i < 32; i++)
@@ -43,4 +45,20 @@ uint32_t Registers::get_program_counter()
 void Registers::advance_program_counter()
 {
     set_program_counter(get_program_counter() + 4);
+}
+void Registers::set_hi(int value)
+{
+    hi_register = value;
+}
+void Registers::set_lo(int value)
+{
+    lo_register = value;
+}
+int Registers::get_hi()
+{
+    return hi_register;
+}
+int Registers::get_lo()
+{
+    return lo_register;
 }

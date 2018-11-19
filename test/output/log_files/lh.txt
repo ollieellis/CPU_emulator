@@ -36,7 +36,7 @@ executing instruction: 3463787A at address: 0x10000004
 ori result: 2345787A
 executing instruction: 3C042000 at address: 0x10000008
 executing instruction: AC830008 at address: 0x1000000C
-store word address: 20000008
+store word address: 0x20000008
 address set at 0x20000008: 23
 address set at 0x20000009: 45
 address set at 0x2000000A: 78
@@ -45,10 +45,11 @@ executing instruction: 8482000A at address: 0x10000010
 loading halfword at 0x2000000A: 787A
 executing instruction: 0 at address: 0x10000014
 executing instruction: 8 at address: 0x10000018
+jr address: 0x0
 executing instruction: 0 at address: 0x1000001C
 
 *** terminating execution due to end of binary file ***
 
 
 lh, lh, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lh |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:56

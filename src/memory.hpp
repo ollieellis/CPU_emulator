@@ -39,7 +39,8 @@ public:
   void set_n_bytes_of_data(int n, int start_address, uint32_t value);
   uint32_t get_n_bytes_of_data(int n, int start_address);
 
-  bool is_addr_in_data_range(int number_of_bytes, int start_address);
+  bool is_addr_in_data_write_range(int number_of_bytes, int start_address);
+  bool is_addr_in_data_read_range(int number_of_bytes, int start_address);
   bool is_addr_in_instr_range(int number_of_bytes, int start_address);
   bool is_addr_in_mapped_io_range(int number_of_bytes, int start_address);
 

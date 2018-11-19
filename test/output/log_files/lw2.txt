@@ -62,7 +62,7 @@ stdin from gotchar: 104
 loading word at 0x30000000: 68
 executing instruction: 0 at address: 0x10000010
 executing instruction: AD250002 at address: 0x10000014
-store word address: 30000004
+store word address: 0x30000004
 address will trigger stdout: 0x30000004
 address set at 0x30000004: 0
 address set at 0x30000005: 0
@@ -93,7 +93,7 @@ stdin from gotchar: 101
 loading word at 0x30000000: 65
 executing instruction: 0 at address: 0x10000010
 executing instruction: AD250002 at address: 0x10000014
-store word address: 30000004
+store word address: 0x30000004
 address will trigger stdout: 0x30000004
 address set at 0x30000004: 0
 address set at 0x30000005: 0
@@ -124,7 +124,7 @@ stdin from gotchar: 108
 loading word at 0x30000000: 6C
 executing instruction: 0 at address: 0x10000010
 executing instruction: AD250002 at address: 0x10000014
-store word address: 30000004
+store word address: 0x30000004
 address will trigger stdout: 0x30000004
 address set at 0x30000004: 0
 address set at 0x30000005: 0
@@ -155,7 +155,7 @@ stdin from gotchar: 108
 loading word at 0x30000000: 6C
 executing instruction: 0 at address: 0x10000010
 executing instruction: AD250002 at address: 0x10000014
-store word address: 30000004
+store word address: 0x30000004
 address will trigger stdout: 0x30000004
 address set at 0x30000004: 0
 address set at 0x30000005: 0
@@ -186,7 +186,7 @@ stdin from gotchar: 111
 loading word at 0x30000000: 6F
 executing instruction: 0 at address: 0x10000010
 executing instruction: AD250002 at address: 0x10000014
-store word address: 30000004
+store word address: 0x30000004
 address will trigger stdout: 0x30000004
 address set at 0x30000004: 0
 address set at 0x30000005: 0
@@ -203,10 +203,11 @@ addi result: 0x5
 executing instruction: 1426FFFB at address: 0x1000001C
 executing instruction: 0 at address: 0x10000020
 executing instruction: 8 at address: 0x10000024
+jr address: 0x0
 executing instruction: 0 at address: 0x10000028
 
 *** terminating execution due to end of binary file ***
 
 
 lw2, lw, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lw assuming memory mapped output works. SADLY I WANT TO TEST EOF BUT CANNOT BECAUSE LINUX EOF IS NOT -1 HNNNNNG |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:57

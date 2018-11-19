@@ -23,6 +23,7 @@ conversion_log_files="$output_files/mips_conversion_logs.txt"
 log_files="$output_files/log_files"
 mkdir -p $output_files
 mkdir -p $log_files
+rm -f $conversion_log_files
 
 for assembly_file in test/mips_assembly/*
 do

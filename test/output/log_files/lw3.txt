@@ -156,10 +156,11 @@ addi result: 0x6
 executing instruction: 1426FFFB at address: 0x10000018
 executing instruction: 0 at address: 0x1000001C
 executing instruction: 8 at address: 0x10000020
+jr address: 0x0
 executing instruction: 0 at address: 0x10000024
 
 *** terminating execution due to end of binary file ***
 
 
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:57

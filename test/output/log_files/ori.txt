@@ -20,10 +20,11 @@ ori result: 73
 executing instruction: 3462006F at address: 0x10000004
 ori result: 7F
 executing instruction: 8 at address: 0x10000008
+jr address: 0x0
 executing instruction: 0 at address: 0x1000000C
 
 *** terminating execution due to end of binary file ***
 
 
 ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
-Test conducted on:  17/11/2018 20:03:30
+Test conducted on:  18/11/2018 23:59:57

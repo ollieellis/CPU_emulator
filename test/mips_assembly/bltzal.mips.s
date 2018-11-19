@@ -15,9 +15,9 @@ addi $2, $5, 4
 
 #should have added 7 to $4 if branch delay slot works
 jr $0
+nop
 
-function:
-sw $4, 4($9)
+function: sw $4, 4($9)
 jr $31
 nop
 

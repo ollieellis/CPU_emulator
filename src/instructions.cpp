@@ -280,16 +280,13 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 	{
 		registers->advance_program_counter(); //technically happens after decode (deSYTHER), but same thing in this case, just much more clean in code. its he same thing because the decode no longer requries the programme counter from this point on as we have the next instruction.
 	}
-
-	if (registers->get_program_counter() == Memory::ADDR_NULL) //if the NEXT instruction address is 0x000...
-	{
-		throw End_of_program();
-	}
+	// cerr << hex <<"pc of currently executing instruction: " << current_instruction_program_counter << " no instrr: "  << dec<< number_of_instructions <<  endl;
 
 	//this is meant to be down here, because jr to 0 will only acc happen in the branch delay slot, and the instruction in the delay slot doesn't exist as the jr was the last one, so it would otherwise throw an error before having the chnace to set the correct next address and detect end of program
-	if (current_instruction_program_counter >= Memory::ADDR_INSTR + (uint32_t)number_of_instructions * 4 || current_instruction_program_counter < Memory::ADDR_INSTR) //if the CURRENT instruction address is out of range
+	if (current_instruction_program_counter >= Memory::ADDR_INSTR + ((uint32_t)number_of_instructions + 1) * 4 || current_instruction_program_counter < Memory::ADDR_INSTR) //if the CURRENT instruction address is out of range
+	//we want it to allow one extra instruction after the last one to simulate the delay instruction. very important to let jr work for the termination. if the last instr is jr 0, it still needs to execute the delay slot, so it essentially inserts a nop (in this sim) and then terminates, so we gotta assume there is +1 instruction
 	{
-		throw Invalid_instruction_exception();
+		throw Memory_exception(); //this is the exception that would happen if it went through all the 0s (nops) and hit the end and threw memeory exception out of range
 	}
 
 	switch (get_type(instruction))
@@ -315,11 +312,11 @@ void Instruction_helper::decode_and_execute(uint32_t instruction)
 		break;
 	}
 	}
-	// if (should_perform_delayed_load_after_execution)
-	// {
-	// 	registers->set_register(Load_delay::register_index, Load_delay::register_value);
-	// 	Load_delay::should_delayed_load = false;
-	// }
+
+	if (registers->get_program_counter() == Memory::ADDR_NULL) //if the NEXT instruction address is 0x000...
+	{
+		throw End_of_program();
+	}
 }
 
 void R_type::ADD() //check to see if this is correct - what if we used negative 2s complement? will that even make a difference
@@ -338,14 +335,12 @@ void R_type::ADD() //check to see if this is correct - what if we used negative 
 		throw Arithmetic_exception();
 	}
 	registers->set_register(destination, result);
-	//pc+4 woz here
 }
 
 void R_type::ADDU()
 {
 	int result = registers->get_register(source1) + registers->get_register(source2);
 	registers->set_register(destination, result);
-	//pc+4 woz here
 }
 void R_type::AND()
 {
@@ -354,11 +349,39 @@ void R_type::AND()
 }
 void R_type::DIV()
 {
-	//pc+4 woz here
+	int dividend = registers->get_register(source1);
+	int divisor = registers->get_register(source2);
+	int quotient_result = 0;
+	int remainder_result = 0;
+	if (divisor != 0)
+	{
+		quotient_result = dividend / divisor;
+		remainder_result = dividend % divisor;
+	}
+	int lo = quotient_result;
+	int hi = remainder_result;
+	registers->set_lo(lo);
+	registers->set_hi(hi);
+	cerr << hex << "divu lo: 0x" << lo << endl;
+	cerr << hex << "divu hi: 0x" << hi << endl;
 }
 void R_type::DIVU()
 {
-	//pc+4 woz here
+	uint32_t dividend = registers->get_register(source1);
+	uint32_t divisor = registers->get_register(source2);
+	uint32_t quotient_result = 0;
+	uint32_t remainder_result = 0;
+	if (divisor != 0)
+	{
+		quotient_result = dividend / divisor;
+		remainder_result = dividend % divisor;
+	}
+	uint32_t lo = quotient_result;
+	uint32_t hi = remainder_result;
+	registers->set_lo(lo);
+	registers->set_hi(hi);
+	cerr << hex << "div lo: 0x" << lo << endl;
+	cerr << hex << "div hi: 0x" << hi << endl;
 }
 void R_type::JALR() //has delay slot
 {
@@ -384,7 +407,7 @@ void R_type::JR() //has delay slot
 	{
 		throw Address_exception();
 	}
-
+	cerr << "jr address: 0x" << jump_address << endl;
 	instruction_helper->branch_delay_helper.set_needs_branch = true;
 	instruction_helper->branch_delay_helper.address = jump_address;
 	//cerr << "jr needs branch: " << instruction_helper->branch_delay_helper.set_needs_branch << endl;
@@ -395,26 +418,44 @@ void R_type::JR() //has delay slot
 }
 void R_type::MFHI()
 {
+	registers->set_register(destination, registers->get_hi());
+	cerr << hex << "new register from hi at 0x" << destination << ": " << registers->get_hi() << endl;
 }
 void R_type::MFLO()
 {
-	//pc+4 woz here
+	registers->set_register(destination, registers->get_lo());
+	cerr << hex << "new register from low at 0x" << destination << ": " << registers->get_lo() << endl;
 }
 void R_type::MTHI()
 {
-	//pc+4 woz here
+	registers->set_hi(registers->get_register(source1));
 }
 void R_type::MTLO()
 {
-	//pc+4 woz here
+	registers->set_lo(registers->get_register(source1));
 }
 void R_type::MULT()
 {
-	//pc+4 woz here
+	int64_t result_64 = (int64_t)registers->get_register(source1) * (int64_t)registers->get_register(source2);
+	int lo = Bitwise_helper::extract_bits_64(0, 32, result_64);
+	int hi = Bitwise_helper::extract_bits_64(32, 32, result_64);
+	cerr << hex << "result 64: 0x" << result_64 << endl;
+	registers->set_lo(lo);
+	registers->set_hi(hi);
+	cerr << hex << "mult lo: 0x" << lo << endl;
+	cerr << hex << "mult hi: 0x" << hi << endl;
 }
 void R_type::MULTU()
 {
-	//pc+4 woz here
+	uint64_t result_64 = (uint64_t)(uint32_t)registers->get_register(source1) * (uint64_t)(uint32_t)registers->get_register(source2);
+	cerr << "multu'ing these numbers: " << dec << (uint64_t)(uint32_t)registers->get_register(source1) << " and " << (uint64_t)(uint32_t)registers->get_register(source2) << endl;
+	int lo = Bitwise_helper::extract_bits_64(0, 32, result_64);
+	int hi = Bitwise_helper::extract_bits_64(32, 32, result_64);
+	cerr << hex << "result 64: 0x" << result_64 << endl;
+	registers->set_lo(lo);
+	registers->set_hi(hi);
+	cerr << hex << "mult lo: 0x" << lo << endl;
+	cerr << hex << "mult hi: 0x" << hi << endl;
 }
 void R_type::OR()
 {
@@ -498,7 +539,6 @@ void I_type::ADDI()
 		throw Arithmetic_exception();
 	}
 	registers->set_register(source2_or_destination, result);
-	//pc+4 woz here
 }
 void I_type::ADDIU()
 {
@@ -640,11 +680,33 @@ void I_type::LW()
 }
 void I_type::LWL()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	int nearest_aligned_address = address;
+	if ((nearest_aligned_address % 4) != 0)
+	{ //if not already a multiple of 4
+		nearest_aligned_address = address + (4 - (address % 4));
+	}
+	int number_of_bytes_to_get = nearest_aligned_address - address;
+	int existing_reg_value = registers->get_register(source2_or_destination);
+	int shift_amount = (8 * (4 - number_of_bytes_to_get));
+	int data = memory->get_n_bytes_of_data(number_of_bytes_to_get, address) << shift_amount;
+	int result = Bitwise_helper::overwrite_bits(existing_reg_value, data, shift_amount, number_of_bytes_to_get * 8);
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::LWR()
 {
-	//pc+4 woz here
+	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
+	int nearest_aligned_address = address;
+	if ((nearest_aligned_address % 4) != 0)
+	{ //if not already a multiple of 4
+		nearest_aligned_address = address - (address % 4);
+	}
+	int number_of_bytes_to_get = (address - nearest_aligned_address) + 1;
+	int existing_reg_value = registers->get_register(source2_or_destination);
+	int shift_amount = 0; //for consistency
+	int data = memory->get_n_bytes_of_data(number_of_bytes_to_get, nearest_aligned_address) << shift_amount;
+	int result = Bitwise_helper::overwrite_bits(existing_reg_value, data, shift_amount, number_of_bytes_to_get * 8);
+	registers->set_register(source2_or_destination, result);
 }
 void I_type::ORI()
 {
@@ -681,7 +743,7 @@ void I_type::SLTIU()
 void I_type::SW()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
-	cerr << hex << "store word address: " << address << endl;
+	cerr << hex << "store word address: 0x" << address << endl;
 	if (Bitwise_helper::extract_bits(0, 2, address) != 0)
 	{
 		throw Address_exception();

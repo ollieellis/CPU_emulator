@@ -30,10 +30,11 @@ executing instruction: 8C820050 at address: 0x10000008
 loading word at 0x20000050: 0
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 8 at address: 0x10000010
+jr address: 0x0
 executing instruction: 0 at address: 0x10000014
 
 *** terminating execution due to end of binary file ***
 
 
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
-Test conducted on:  17/11/2018 20:03:29
+Test conducted on:  18/11/2018 23:59:57

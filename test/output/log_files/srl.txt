@@ -19,10 +19,11 @@ executing instruction: 20017000 at address: 0x10000000
 addi result: 0x7000
 executing instruction: 11302 at address: 0x10000004
 executing instruction: 8 at address: 0x10000008
+jr address: 0x0
 executing instruction: 0 at address: 0x1000000C
 
 *** terminating execution due to end of binary file ***
 
 
 srl, srl, Pass, ES5017, | expected exit code: 7 actual exit code: 7 | extra info: tests simple case for srl |
-Test conducted on:  17/11/2018 20:03:30
+Test conducted on:  18/11/2018 23:59:57

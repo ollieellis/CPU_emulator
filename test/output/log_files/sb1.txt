@@ -67,10 +67,11 @@ address set at 0x30000007: 0
 putchar should be: 122
 
 executing instruction: 8 at address: 0x10000020
+jr address: 0x0
 executing instruction: 0 at address: 0x10000024
 
 *** terminating execution due to end of binary file ***
 
 
 sb1, sb, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sb triggers stdout |
-Test conducted on:  17/11/2018 20:03:30
+Test conducted on:  18/11/2018 23:59:57
