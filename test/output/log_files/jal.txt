@@ -34,9 +34,9 @@ address set at 0x1000001B: 0
 executing instruction: C000004 at address: 0x10000000
 jump address: 0x10000010
 executing instruction: 20420015 at address: 0x10000004
-addi result: 0x15
+addi result: 0x15 source1: 0 signed immediate: 0x15
 executing instruction: 2042000F at address: 0x10000010
-addi result: 0x24
+addi result: 0x24 source1: 15 signed immediate: 0xF
 executing instruction: 3E00008 at address: 0x10000014
 jr address: 0x10000008
 executing instruction: 0 at address: 0x10000018
@@ -48,4 +48,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 jal, jal, Pass, ES5017, | expected exit code: 36 actual exit code: 36 | extra info: tests simple case for jump and link with branch delay slot |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

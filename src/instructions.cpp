@@ -532,7 +532,7 @@ void I_type::ADDI()
 	bool overflow_condition_1 = (registers->get_register(source1) < 0 && signed_immediate < 0 && result >= 0);
 	bool overflow_condition_2 = (registers->get_register(source1) > 0 && signed_immediate > 0 && result <= 0);
 	//overflow can't physically happen if both sources have different signs to each other
-	cerr << "addi result: 0x" << result << endl;
+	cerr << hex<< "addi result: 0x" << result << " source1: " << registers->get_register(source1) << " signed immediate: 0x" << signed_immediate << endl;
 
 	if (overflow_condition_1 || overflow_condition_2)
 	{
@@ -662,6 +662,7 @@ void I_type::LHU()
 void I_type::LUI()
 {
 	int result = immediate << 16;
+	cerr << hex << "lui result: 0x" << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LW()
@@ -706,6 +707,7 @@ void I_type::LWR()
 	int shift_amount = 0; //for consistency
 	int data = memory->get_n_bytes_of_data(number_of_bytes_to_get, nearest_aligned_address) << shift_amount;
 	int result = Bitwise_helper::overwrite_bits(existing_reg_value, data, shift_amount, number_of_bytes_to_get * 8);
+	cerr << "lwr result: " << hex << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::ORI()

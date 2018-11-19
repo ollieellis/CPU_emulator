@@ -20,10 +20,12 @@ address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
 executing instruction: 3C067FFF at address: 0x10000000
+lui result: 0x7FFF0000
 executing instruction: 3C048FFF at address: 0x10000004
+lui result: 0x8FFF0000
 executing instruction: 862822 at address: 0x10000008
 Mips exception thrown: Arithmetic exception
 
 
 sub1, sub, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests that sub correctly traps overflow |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

@@ -26,6 +26,11 @@ Output file generated: test/mips_binary/addi1.mips.bin
 
 
 Commands passed successfully.
+Output file generated: test/mips_binary/addi2.mips.bin
+
+
+
+Commands passed successfully.
 Output file generated: test/mips_binary/addiu.mips.bin
 
 

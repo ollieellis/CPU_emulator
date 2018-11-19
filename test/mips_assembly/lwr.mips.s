@@ -5,7 +5,7 @@
 lui $1, 0x2000
 
 lui $3, 0x6789
-addi $3, $3, 0xABCD
+addi $3, $3, 0x7BCD
 #we have in $3 0x6789ABCD
 
 sw $3, 4($1)

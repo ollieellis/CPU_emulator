@@ -16,7 +16,7 @@ address set at 0x10000009: 0
 address set at 0x1000000A: 0
 address set at 0x1000000B: 8
 executing instruction: 20020012 at address: 0x10000000
-addi result: 0x12
+addi result: 0x12 source1: 0 signed immediate: 0x12
 executing instruction: 2C42FFFF at address: 0x10000004
 executing instruction: 8 at address: 0x10000008
 jr address: 0x0
@@ -26,4 +26,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 sltiu, sltiu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

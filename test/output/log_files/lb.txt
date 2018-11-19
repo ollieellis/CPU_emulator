@@ -32,9 +32,11 @@ address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
 executing instruction: 3C032345 at address: 0x10000000
+lui result: 0x23450000
 executing instruction: 3463787A at address: 0x10000004
 ori result: 2345787A
 executing instruction: 3C042000 at address: 0x10000008
+lui result: 0x20000000
 executing instruction: AC830008 at address: 0x1000000C
 store word address: 0x20000008
 address set at 0x20000008: 23
@@ -52,4 +54,4 @@ executing instruction: 0 at address: 0x1000001C
 
 
 lb, lb, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lb |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

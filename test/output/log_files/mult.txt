@@ -52,9 +52,11 @@ address set at 0x1000002D: 0
 address set at 0x1000002E: 0
 address set at 0x1000002F: 8
 executing instruction: 3C03FFFF at address: 0x10000000
+lui result: 0xFFFF0000
 executing instruction: 3463FFF3 at address: 0x10000004
 ori result: FFFFFFF3
 executing instruction: 3C047FFF at address: 0x10000008
+lui result: 0x7FFF0000
 executing instruction: 640018 at address: 0x1000000C
 result 64: 0xFFFFFFF9800D0000
 mult lo: 0x800D0000
@@ -66,6 +68,7 @@ new register from hi at 0x6: FFFFFFF9
 executing instruction: 52C02 at address: 0x10000018
 executing instruction: 63602 at address: 0x1000001C
 executing instruction: 3C093000 at address: 0x10000020
+lui result: 0x30000000
 executing instruction: AD250004 at address: 0x10000024
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
@@ -100,4 +103,4 @@ executing instruction: 0 at address: 0x10000030
 
 
 mult, mult, Pass, ES5017, | expected output: 13 -1 actual output: 13 -1 | extra info: tests simple multiply of negative and positive ints |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

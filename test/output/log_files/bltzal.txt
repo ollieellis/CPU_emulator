@@ -48,12 +48,13 @@ address set at 0x10000029: 0
 address set at 0x1000002A: 0
 address set at 0x1000002B: 0
 executing instruction: 2003FFFF at address: 0x10000000
-addi result: 0xFFFFFFFF
+addi result: 0xFFFFFFFF source1: 0 signed immediate: 0xFFFFFFFF
 executing instruction: 3C093000 at address: 0x10000004
+lui result: 0x30000000
 executing instruction: 4700005 at address: 0x10000008
 branch address: 10000020, program counter: 1000000C, immediate: 5 offset: 14 source1 reg: FFFFFFFF source2 reg: 0
 executing instruction: 20040008 at address: 0x1000000C
-addi result: 0x8
+addi result: 0x8 source1: 0 signed immediate: 0x8
 executing instruction: AD240004 at address: 0x10000020
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
@@ -71,9 +72,9 @@ executing instruction: 3E00008 at address: 0x10000024
 jr address: 0x10000010
 executing instruction: 0 at address: 0x10000028
 executing instruction: 20050002 at address: 0x10000010
-addi result: 0x2
+addi result: 0x2 source1: 0 signed immediate: 0x2
 executing instruction: 20A20004 at address: 0x10000014
-addi result: 0x6
+addi result: 0x6 source1: 2 signed immediate: 0x4
 executing instruction: 8 at address: 0x10000018
 jr address: 0x0
 executing instruction: 0 at address: 0x1000001C
@@ -82,4 +83,4 @@ executing instruction: 0 at address: 0x1000001C
 
 
 bltzal, bltzal, Pass, ES5017, | expected output: 8 actual output: 8 | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bltzal and branch delay slot with a function assuming stdout works |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

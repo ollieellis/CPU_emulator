@@ -40,9 +40,11 @@ address set at 0x10000021: 0
 address set at 0x10000022: 0
 address set at 0x10000023: 8
 executing instruction: 3C12FE7A at address: 0x10000000
+lui result: 0xFE7A0000
 executing instruction: 36525463 at address: 0x10000004
 ori result: FE7A5463
 executing instruction: 3C163000 at address: 0x10000008
+lui result: 0x30000000
 executing instruction: A6D20006 at address: 0x1000000C
 store halfword address: 30000006
 address will trigger stdout: 0x30000006
@@ -80,4 +82,4 @@ executing instruction: 0 at address: 0x10000024
 
 
 sh2, sh, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sh triggers stdout |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

@@ -36,14 +36,15 @@ address set at 0x1000001D: 0
 address set at 0x1000001E: 0
 address set at 0x1000001F: 8
 executing instruction: 20030008 at address: 0x10000000
-addi result: 0x8
+addi result: 0x8 source1: 0 signed immediate: 0x8
 executing instruction: 14600002 at address: 0x10000004
 branch address: 10000010, program counter: 10000008, immediate: 2 offset: 8 source1 reg: 8 source2 reg: 0
 executing instruction: 20040007 at address: 0x10000008
-addi result: 0x7
+addi result: 0x7 source1: 0 signed immediate: 0x7
 executing instruction: 20A20003 at address: 0x10000010
-addi result: 0x3
+addi result: 0x3 source1: 0 signed immediate: 0x3
 executing instruction: 3C093000 at address: 0x10000014
+lui result: 0x30000000
 executing instruction: AD240004 at address: 0x10000018
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
@@ -65,4 +66,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 bne, bne, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 3 actual exit code: 3 | extra info: tests simple case for bne and branch delay slot |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

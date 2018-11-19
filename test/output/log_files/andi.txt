@@ -16,7 +16,7 @@ address set at 0x10000009: 0
 address set at 0x1000000A: 0
 address set at 0x1000000B: 8
 executing instruction: 2003F073 at address: 0x10000000
-addi result: 0xFFFFF073
+addi result: 0xFFFFF073 source1: 0 signed immediate: 0xFFFFF073
 executing instruction: 30620FFF at address: 0x10000004
 andi result: 73
 executing instruction: 8 at address: 0x10000008
@@ -27,4 +27,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 andi, andi, Pass, ES5017, | expected exit code: 115 actual exit code: 115 | extra info: tests simple case for andi |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:50

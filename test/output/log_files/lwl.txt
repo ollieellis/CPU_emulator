@@ -32,9 +32,11 @@ address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
 executing instruction: 3C012000 at address: 0x10000000
+lui result: 0x20000000
 executing instruction: 3C036789 at address: 0x10000004
+lui result: 0x67890000
 executing instruction: 2063ABCD at address: 0x10000008
-addi result: 0x6788ABCD
+addi result: 0x6788ABCD source1: 67890000 signed immediate: 0xFFFFABCD
 executing instruction: AC230000 at address: 0x1000000C
 store word address: 0x20000000
 address set at 0x20000000: 67
@@ -51,4 +53,4 @@ executing instruction: 0 at address: 0x1000001C
 
 
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

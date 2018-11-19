@@ -40,8 +40,9 @@ address set at 0x10000021: 0
 address set at 0x10000022: 0
 address set at 0x10000023: 8
 executing instruction: 3C093000 at address: 0x10000000
+lui result: 0x30000000
 executing instruction: 20060006 at address: 0x10000004
-addi result: 0x6
+addi result: 0x6 source1: 0 signed immediate: 0x6
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
 address set at 0x30000000: 0
@@ -57,7 +58,7 @@ loading word at 0x30000000: 68
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x1
+addi result: 0x1 source1: 0 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 1 source2 reg: 6
 executing instruction: 0 at address: 0x1000001C
@@ -76,7 +77,7 @@ loading word at 0x30000000: 65
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x2
+addi result: 0x2 source1: 1 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 2 source2 reg: 6
 executing instruction: 0 at address: 0x1000001C
@@ -95,7 +96,7 @@ loading word at 0x30000000: 6C
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x3
+addi result: 0x3 source1: 2 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 3 source2 reg: 6
 executing instruction: 0 at address: 0x1000001C
@@ -114,7 +115,7 @@ loading word at 0x30000000: 6C
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x4
+addi result: 0x4 source1: 3 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 4 source2 reg: 6
 executing instruction: 0 at address: 0x1000001C
@@ -133,7 +134,7 @@ loading word at 0x30000000: 6F
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x5
+addi result: 0x5 source1: 4 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 5 source2 reg: 6
 executing instruction: 0 at address: 0x1000001C
@@ -152,7 +153,7 @@ loading word at 0x30000000: FFFFFFFF
 executing instruction: 0 at address: 0x1000000C
 executing instruction: 451021 at address: 0x10000010
 executing instruction: 20210001 at address: 0x10000014
-addi result: 0x6
+addi result: 0x6 source1: 5 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x10000018
 executing instruction: 0 at address: 0x1000001C
 executing instruction: 8 at address: 0x10000020
@@ -163,4 +164,4 @@ executing instruction: 0 at address: 0x10000024
 
 
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:51

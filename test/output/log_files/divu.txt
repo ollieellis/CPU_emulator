@@ -44,9 +44,11 @@ address set at 0x10000025: 0
 address set at 0x10000026: 0
 address set at 0x10000027: 8
 executing instruction: 3C03FFFF at address: 0x10000000
+lui result: 0xFFFF0000
 executing instruction: 3463FFF3 at address: 0x10000004
 ori result: FFFFFFF3
 executing instruction: 3C047FFF at address: 0x10000008
+lui result: 0x7FFF0000
 executing instruction: 64001B at address: 0x1000000C
 div lo: 0x2
 div hi: 0x1FFF3
@@ -55,6 +57,7 @@ new register from low at 0x5: 2
 executing instruction: 3010 at address: 0x10000014
 new register from hi at 0x6: 1FFF3
 executing instruction: 3C093000 at address: 0x10000018
+lui result: 0x30000000
 executing instruction: AD250004 at address: 0x1000001C
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
@@ -89,4 +92,4 @@ executing instruction: 0 at address: 0x10000028
 
 
 divu, divu, Pass, ES5017, | expected output: 2 -13 actual output: 2 -13 | extra info: tests simple div of unsigned ints |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

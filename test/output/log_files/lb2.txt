@@ -44,10 +44,11 @@ address set at 0x10000025: 0
 address set at 0x10000026: 0
 address set at 0x10000027: 8
 executing instruction: 3C093000 at address: 0x10000000
+lui result: 0x30000000
 executing instruction: 35290002 at address: 0x10000004
 ori result: 30000002
 executing instruction: 20060005 at address: 0x10000008
-addi result: 0x5
+addi result: 0x5 source1: 0 signed immediate: 0x5
 executing instruction: 81250001 at address: 0x1000000C
 address will trigger stdin: 0x30000003
 address set at 0x30000003: 68
@@ -63,7 +64,7 @@ address set at 0x30000007: 0
 putchar should be: 104
 
 executing instruction: 20210001 at address: 0x10000018
-addi result: 0x1
+addi result: 0x1 source1: 0 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x1000001C
 branch address: 1000000C, program counter: 10000020, immediate: FFFB offset: FFFFFFEC source1 reg: 1 source2 reg: 5
 executing instruction: 0 at address: 0x10000020
@@ -82,7 +83,7 @@ address set at 0x30000007: 0
 putchar should be: 101
 
 executing instruction: 20210001 at address: 0x10000018
-addi result: 0x2
+addi result: 0x2 source1: 1 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x1000001C
 branch address: 1000000C, program counter: 10000020, immediate: FFFB offset: FFFFFFEC source1 reg: 2 source2 reg: 5
 executing instruction: 0 at address: 0x10000020
@@ -101,7 +102,7 @@ address set at 0x30000007: 0
 putchar should be: 108
 
 executing instruction: 20210001 at address: 0x10000018
-addi result: 0x3
+addi result: 0x3 source1: 2 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x1000001C
 branch address: 1000000C, program counter: 10000020, immediate: FFFB offset: FFFFFFEC source1 reg: 3 source2 reg: 5
 executing instruction: 0 at address: 0x10000020
@@ -120,7 +121,7 @@ address set at 0x30000007: 0
 putchar should be: 108
 
 executing instruction: 20210001 at address: 0x10000018
-addi result: 0x4
+addi result: 0x4 source1: 3 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x1000001C
 branch address: 1000000C, program counter: 10000020, immediate: FFFB offset: FFFFFFEC source1 reg: 4 source2 reg: 5
 executing instruction: 0 at address: 0x10000020
@@ -139,7 +140,7 @@ address set at 0x30000007: 0
 putchar should be: 111
 
 executing instruction: 20210001 at address: 0x10000018
-addi result: 0x5
+addi result: 0x5 source1: 4 signed immediate: 0x1
 executing instruction: 1426FFFB at address: 0x1000001C
 executing instruction: 0 at address: 0x10000020
 executing instruction: 8 at address: 0x10000024
@@ -150,4 +151,4 @@ executing instruction: 0 at address: 0x10000028
 
 
 lb2, lb, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lb assuming memory mapped output works |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

@@ -25,11 +25,11 @@ address set at 0x10000012: 0
 address set at 0x10000013: 8
 executing instruction: 14600002 at address: 0x10000000
 executing instruction: 20040007 at address: 0x10000004
-addi result: 0x7
+addi result: 0x7 source1: 0 signed immediate: 0x7
 executing instruction: 20050002 at address: 0x10000008
-addi result: 0x2
+addi result: 0x2 source1: 0 signed immediate: 0x2
 executing instruction: 20A20003 at address: 0x1000000C
-addi result: 0x5
+addi result: 0x5 source1: 2 signed immediate: 0x3
 executing instruction: 8 at address: 0x10000010
 jr address: 0x0
 executing instruction: 0 at address: 0x10000014
@@ -38,4 +38,4 @@ executing instruction: 0 at address: 0x10000014
 
 
 bne2, bne, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bne doesnt occur when registers are equal |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

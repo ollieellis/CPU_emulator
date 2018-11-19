@@ -20,7 +20,7 @@ address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
 executing instruction: 2003FFF6 at address: 0x10000000
-addi result: 0xFFFFFFF6
+addi result: 0xFFFFFFF6 source1: 0 signed immediate: 0xFFFFFFF6
 executing instruction: 600013 at address: 0x10000004
 executing instruction: 1012 at address: 0x10000008
 new register from low at 0x2: FFFFFFF6
@@ -32,4 +32,4 @@ executing instruction: 0 at address: 0x10000010
 
 
 mtlo, mtlo, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests simple mtlo |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

@@ -2,7 +2,7 @@ programme path: bin/mips_simulator
 initialising registers 
 getting binary file 
 file size: 28
-instructions: 3C012000 3C036789 2063ABCD AC230004 98220006 21202 8 
+instructions: 3C012000 3C036789 20637BCD AC230004 98220006 21202 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 1
 address set at 0x10000002: 20
@@ -13,7 +13,7 @@ address set at 0x10000006: 67
 address set at 0x10000007: 89
 address set at 0x10000008: 20
 address set at 0x10000009: 63
-address set at 0x1000000A: AB
+address set at 0x1000000A: 7B
 address set at 0x1000000B: CD
 address set at 0x1000000C: AC
 address set at 0x1000000D: 23
@@ -32,16 +32,19 @@ address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
 executing instruction: 3C012000 at address: 0x10000000
+lui result: 0x20000000
 executing instruction: 3C036789 at address: 0x10000004
-executing instruction: 2063ABCD at address: 0x10000008
-addi result: 0x6788ABCD
+lui result: 0x67890000
+executing instruction: 20637BCD at address: 0x10000008
+addi result: 0x67897BCD source1: 67890000 signed immediate: 0x7BCD
 executing instruction: AC230004 at address: 0x1000000C
 store word address: 0x20000004
 address set at 0x20000004: 67
-address set at 0x20000005: 88
-address set at 0x20000006: AB
+address set at 0x20000005: 89
+address set at 0x20000006: 7B
 address set at 0x20000007: CD
 executing instruction: 98220006 at address: 0x10000010
+lwr result: 67897B
 executing instruction: 21202 at address: 0x10000014
 executing instruction: 8 at address: 0x10000018
 jr address: 0x0
@@ -50,5 +53,5 @@ executing instruction: 0 at address: 0x1000001C
 *** terminating execution due to end of binary file ***
 
 
-lwr, lwr, Fail, ES5017, | expected exit code: 89 actual exit code: -120 | extra info: test simple case for lwr  |
-Test conducted on:  18/11/2018 23:59:57
+lwr, lwr, Pass, ES5017, | expected exit code: -119 actual exit code: -119 | extra info: test simple case for lwr  |
+Test conducted on:  19/11/2018 00:27:52

@@ -24,8 +24,10 @@ address set at 0x10000011: 0
 address set at 0x10000012: 0
 address set at 0x10000013: 8
 executing instruction: 3C016789 at address: 0x10000000
+lui result: 0x67890000
 executing instruction: 10E02 at address: 0x10000004
 executing instruction: 3C093000 at address: 0x10000008
+lui result: 0x30000000
 executing instruction: AD210004 at address: 0x1000000C
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
@@ -47,4 +49,4 @@ executing instruction: 0 at address: 0x10000014
 
 
 lui, lui, Pass, ES5017, | expected output: 103 actual output: 103 | extra info: tests simple case for lui |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:51

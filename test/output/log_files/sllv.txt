@@ -20,9 +20,9 @@ address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
 executing instruction: 20012305 at address: 0x10000000
-addi result: 0x2305
+addi result: 0x2305 source1: 0 signed immediate: 0x2305
 executing instruction: 20020003 at address: 0x10000004
-addi result: 0x3
+addi result: 0x3 source1: 0 signed immediate: 0x3
 executing instruction: 221004 at address: 0x10000008
 executing instruction: 8 at address: 0x1000000C
 jr address: 0x0
@@ -32,4 +32,4 @@ executing instruction: 0 at address: 0x10000010
 
 
 sllv, sllv, Pass, ES5017, | expected exit code: 96 actual exit code: 96 | extra info: tests case for sllv making sure to only use low 5 order bits of gpr |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52

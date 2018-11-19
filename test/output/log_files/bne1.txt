@@ -24,7 +24,7 @@ address set at 0x10000011: 0
 address set at 0x10000012: 0
 address set at 0x10000013: 8
 executing instruction: 20030008 at address: 0x10000000
-addi result: 0x8
+addi result: 0x8 source1: 0 signed immediate: 0x8
 executing instruction: 1460FFFD at address: 0x10000004
 branch address: FFFFFFC, program counter: 10000008, immediate: FFFD offset: FFFFFFF4 source1 reg: 8 source2 reg: 0
 executing instruction: 0 at address: 0x10000008
@@ -33,4 +33,4 @@ Mips exception thrown: Memory exception
 
 
 bne1, bne, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests out of instruction range branch (should throw memory error) |
-Test conducted on:  18/11/2018 23:59:56
+Test conducted on:  19/11/2018 00:27:51

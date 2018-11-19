@@ -16,6 +16,7 @@ address set at 0x10000009: 0
 address set at 0x1000000A: 0
 address set at 0x1000000B: 8
 executing instruction: 3C02F013 at address: 0x10000000
+lui result: 0xF0130000
 executing instruction: 28420001 at address: 0x10000004
 executing instruction: 8 at address: 0x10000008
 jr address: 0x0
@@ -25,4 +26,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 slti, slti, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for slti and ensures numbers are compared as signed |
-Test conducted on:  18/11/2018 23:59:57
+Test conducted on:  19/11/2018 00:27:52
