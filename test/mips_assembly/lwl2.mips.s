@@ -12,6 +12,7 @@ sw $3, 0($1)
 
 addi $2, $0, 0x1234
 lwl $2, 0($1)
+#in $2 we have 0x89ABCD34
 
 
 lui $9, 0x3000
