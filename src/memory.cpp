@@ -57,6 +57,7 @@ bool Memory::is_all_consecutive_n_bytes_in_range(int n, int start_address, int s
 {
     int end_of_range = start_of_range + length_of_range - 1;
     //better to use loop to make sure
+    // cerr << hex<< "start of range: " << start_of_range << "  length of range: " << length_of_range << " start address: " << start_address << " n bytes: " << n << endl;
     for (int ith_bit = start_address; ith_bit < start_address + n; ith_bit++)
     {
         if (ith_bit < start_of_range || ith_bit > end_of_range)

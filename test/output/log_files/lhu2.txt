@@ -31,35 +31,55 @@ address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C093000 at address: 0x10000000
 lui result: 0x30000000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 35290002 at address: 0x10000004
 ori result: 30000002
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 95250000 at address: 0x10000008
 address will trigger stdin: 0x30000002
+start of range: 30000000  length of range: 8 start address: 30000002 n bytes: 2
+returnig true
 address set at 0x30000002: 0
 address set at 0x30000003: 68
 address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 104
 loading halfword unsigned at 0x30000002: 68
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x1000000C
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000010
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: A5250004 at address: 0x10000014
 store halfword address: 30000006
 address will trigger stdout: 0x30000006
+start of range: 30000000  length of range: 8 start address: 30000006 n bytes: 2
+returnig true
 address set at 0x30000006: 0
 address set at 0x30000007: 68
 address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 104
 
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x10000018
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x1000001C
 
 *** terminating execution due to end of binary file ***
 
 
 lhu2, lhu, Pass, ES5017, | expected output: 104 actual output: 104 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lh assuming memory mapped output works |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:02

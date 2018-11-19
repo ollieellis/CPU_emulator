@@ -55,33 +55,60 @@ address set at 0x10000030: 0
 address set at 0x10000031: 0
 address set at 0x10000032: 0
 address set at 0x10000033: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C012000 at address: 0x10000000
 lui result: 0x20000000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 3C036789 at address: 0x10000004
 lui result: 0x67890000
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 3463ABCD at address: 0x10000008
 ori result: 6789ABCD
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: AC230000 at address: 0x1000000C
 store word address: 0x20000000
+start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
+returnig true
 address set at 0x20000000: 67
 address set at 0x20000001: 89
 address set at 0x20000002: AB
 address set at 0x20000003: CD
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: AC230004 at address: 0x10000010
 store word address: 0x20000004
+start of range: 20000000  length of range: 4000000 start address: 20000004 n bytes: 4
+returnig true
 address set at 0x20000004: 67
 address set at 0x20000005: 89
 address set at 0x20000006: AB
 address set at 0x20000007: CD
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 3C021234 at address: 0x10000014
 lui result: 0x12340000
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 98220004 at address: 0x10000018
+start of range: 20000000  length of range: 4000000 start address: 20000004 n bytes: 1
+returnig true
+start of range: 10000000  length of range: 1000000 start address: 20000004 n bytes: 1
 lwr result: 0x12340067 nearest aligned address: 0x20000004
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 3C093000 at address: 0x1000001C
 lui result: 0x30000000
+start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
+returnig true
 executing instruction: AD220004 at address: 0x10000020
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
+start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
+returnig true
 address set at 0x30000004: 12
 address set at 0x30000005: 34
 address set at 0x30000006: 0
@@ -92,10 +119,16 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 103
 
+start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
+returnig true
 executing instruction: 21602 at address: 0x10000024
+start of range: 10000000  length of range: 1000000 start address: 10000028 n bytes: 4
+returnig true
 executing instruction: AD220004 at address: 0x10000028
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
+start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
+returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -106,14 +139,20 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 18
 
+start of range: 10000000  length of range: 1000000 start address: 1000002C n bytes: 4
+returnig true
 executing instruction: 20020000 at address: 0x1000002C
 addi result: 0x0 source1: 0 signed immediate: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000030 n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x10000030
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000034 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000034
 
 *** terminating execution due to end of binary file ***
 
 
 lwr2, lwr, Pass, ES5017, | expected output: 103 18 actual output: 103 18 | extra info: tests lwr aligned |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:02

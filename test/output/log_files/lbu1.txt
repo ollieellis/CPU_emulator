@@ -35,28 +35,51 @@ address set at 0x1000001C: 0
 address set at 0x1000001D: 0
 address set at 0x1000001E: 0
 address set at 0x1000001F: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C033345 at address: 0x10000000
 lui result: 0x33450000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 346398BA at address: 0x10000004
 ori result: 334598BA
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 3C042000 at address: 0x10000008
 lui result: 0x20000000
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: AC830008 at address: 0x1000000C
 store word address: 0x20000008
+start of range: 20000000  length of range: 4000000 start address: 20000008 n bytes: 4
+returnig true
 address set at 0x20000008: 33
 address set at 0x20000009: 45
 address set at 0x2000000A: 98
 address set at 0x2000000B: BA
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 9082000B at address: 0x10000010
-loading byte unsigned at 0x2000000B: BA
+start of range: 20000000  length of range: 4000000 start address: 2000000B n bytes: 1
+returnig true
+start of range: 10000000  length of range: 1000000 start address: 2000000B n bytes: 1
+loaded byte unsigned at 0x2000000B: BA
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000014
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 21102 at address: 0x10000018
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x1000001C
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000020
 
 *** terminating execution due to end of binary file ***
 
 
 lbu1, lbu, Pass, ES5017, | expected exit code: 11 actual exit code: 11 | extra info: tests lbu zero extension |
-Test conducted on:  19/11/2018 16:53:27
+Test conducted on:  19/11/2018 17:42:02

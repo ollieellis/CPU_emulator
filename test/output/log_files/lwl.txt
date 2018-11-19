@@ -31,27 +31,48 @@ address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C012000 at address: 0x10000000
 lui result: 0x20000000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 3C036789 at address: 0x10000004
 lui result: 0x67890000
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 2063ABCD at address: 0x10000008
 addi result: 0x6788ABCD source1: 67890000 signed immediate: 0xFFFFABCD
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: AC230000 at address: 0x1000000C
 store word address: 0x20000000
+start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
+returnig true
 address set at 0x20000000: 67
 address set at 0x20000001: 88
 address set at 0x20000002: AB
 address set at 0x20000003: CD
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 88240001 at address: 0x10000010
+start of range: 20000000  length of range: 4000000 start address: 20000001 n bytes: 3
+returnig true
+start of range: 10000000  length of range: 1000000 start address: 20000001 n bytes: 3
 lwl result: 0x88ABCD00 nearest aligned address: 0x20000004
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 41202 at address: 0x10000014
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x10000018
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x1000001C
 
 *** terminating execution due to end of binary file ***
 
 
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:02

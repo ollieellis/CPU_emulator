@@ -1,8 +1,8 @@
 programme path: bin/mips_simulator
 initialising registers 
 getting binary file 
-file size: 28
-instructions: 3C032345 3463787A 3C042000 AC830008 8082000B 0 8 
+file size: 32
+instructions: 3C032345 3463787A 3C042000 2084FFFF AC830001 80820000 0 8 
 address set at 0x10000000: 3C
 address set at 0x10000001: 3
 address set at 0x10000002: 23
@@ -15,22 +15,26 @@ address set at 0x10000008: 3C
 address set at 0x10000009: 4
 address set at 0x1000000A: 20
 address set at 0x1000000B: 0
-address set at 0x1000000C: AC
-address set at 0x1000000D: 83
-address set at 0x1000000E: 0
-address set at 0x1000000F: 8
-address set at 0x10000010: 80
-address set at 0x10000011: 82
+address set at 0x1000000C: 20
+address set at 0x1000000D: 84
+address set at 0x1000000E: FF
+address set at 0x1000000F: FF
+address set at 0x10000010: AC
+address set at 0x10000011: 83
 address set at 0x10000012: 0
-address set at 0x10000013: B
-address set at 0x10000014: 0
-address set at 0x10000015: 0
+address set at 0x10000013: 1
+address set at 0x10000014: 80
+address set at 0x10000015: 82
 address set at 0x10000016: 0
 address set at 0x10000017: 0
 address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
-address set at 0x1000001B: 8
+address set at 0x1000001B: 0
+address set at 0x1000001C: 0
+address set at 0x1000001D: 0
+address set at 0x1000001E: 0
+address set at 0x1000001F: 8
 start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
 returnig true
 executing instruction: 3C032345 at address: 0x10000000
@@ -45,34 +49,25 @@ executing instruction: 3C042000 at address: 0x10000008
 lui result: 0x20000000
 start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
 returnig true
-executing instruction: AC830008 at address: 0x1000000C
-store word address: 0x20000008
-start of range: 20000000  length of range: 4000000 start address: 20000008 n bytes: 4
-returnig true
-address set at 0x20000008: 23
-address set at 0x20000009: 45
-address set at 0x2000000A: 78
-address set at 0x2000000B: 7A
+executing instruction: 2084FFFF at address: 0x1000000C
+addi result: 0x1FFFFFFF source1: 20000000 signed immediate: 0xFFFFFFFF
 start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
 returnig true
-executing instruction: 8082000B at address: 0x10000010
-start of range: 20000000  length of range: 4000000 start address: 2000000B n bytes: 1
+executing instruction: AC830001 at address: 0x10000010
+store word address: 0x20000000
+start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
 returnig true
-start of range: 10000000  length of range: 1000000 start address: 2000000B n bytes: 1
-loaded byte at 0x2000000B: 7A
+address set at 0x20000000: 23
+address set at 0x20000001: 45
+address set at 0x20000002: 78
+address set at 0x20000003: 7A
 start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
 returnig true
-executing instruction: 0 at address: 0x10000014
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
-executing instruction: 8 at address: 0x10000018
-jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
-executing instruction: 0 at address: 0x1000001C
-
-*** terminating execution due to end of binary file ***
+executing instruction: 80820000 at address: 0x10000014
+start of range: 20000000  length of range: 4000000 start address: 1FFFFFFF n bytes: 1
+start of range: 10000000  length of range: 1000000 start address: 1FFFFFFF n bytes: 1
+Mips exception thrown: Memory exception
 
 
-lb, lb, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lb |
+lb3, lb, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests lb reading at addr_data - 1 throws exception |
 Test conducted on:  19/11/2018 17:42:02

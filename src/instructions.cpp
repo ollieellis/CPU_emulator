@@ -626,14 +626,14 @@ void I_type::LB()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	int result = Bitwise_helper::sign_extend_to_32(8, memory->get_n_bytes_of_data(1, address));
-	cerr << hex << "loading byte at 0x" << address << ": " << result << endl;
+	cerr << hex << "loaded byte at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LBU()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
 	int result = Bitwise_helper::extract_bits(0, 8, memory->get_n_bytes_of_data(1, address));
-	cerr << hex << "loading byte unsigned at 0x" << address << ": " << result << endl;
+	cerr << hex << "loaded byte unsigned at 0x" << address << ": " << result << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LH()

@@ -35,26 +35,49 @@ address set at 0x1000001C: 0
 address set at 0x1000001D: 0
 address set at 0x1000001E: 0
 address set at 0x1000001F: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C12FEDC at address: 0x10000000
 lui result: 0xFEDC0000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 3652ABCD at address: 0x10000004
 ori result: FEDCABCD
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 3C1D1FFF at address: 0x10000008
 lui result: 0x1FFF0000
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: 37BDFFFC at address: 0x1000000C
 ori result: 1FFFFFFC
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: A3B2000B at address: 0x10000010
 store byte address: 20000007 immediate: B source 1: 1D
+start of range: 20000000  length of range: 4000000 start address: 20000007 n bytes: 1
+returnig true
 address set at 0x20000007: CD
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 8FA20008 at address: 0x10000014
+start of range: 20000000  length of range: 4000000 start address: 20000004 n bytes: 4
+returnig true
+start of range: 10000000  length of range: 1000000 start address: 20000004 n bytes: 4
 loading word at 0x20000004: CD
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000018
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x1000001C
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000020
 
 *** terminating execution due to end of binary file ***
 
 
 sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:03

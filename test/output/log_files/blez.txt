@@ -35,19 +35,33 @@ address set at 0x1000001C: 0
 address set at 0x1000001D: 0
 address set at 0x1000001E: 0
 address set at 0x1000001F: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 20030000 at address: 0x10000000
 addi result: 0x0 source1: 0 signed immediate: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 18600002 at address: 0x10000004
 branch address: 10000010, program counter: 10000008, immediate: 2 offset: 8 source1 reg: 0 source2 reg: 0
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 20040007 at address: 0x10000008
 addi result: 0x7 source1: 0 signed immediate: 0x7
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 20A20004 at address: 0x10000010
 addi result: 0x4 source1: 0 signed immediate: 0x4
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 3C093000 at address: 0x10000014
 lui result: 0x30000000
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: AD240004 at address: 0x10000018
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
+start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
+returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -58,12 +72,16 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 7
 
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x1000001C
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000020
 
 *** terminating execution due to end of binary file ***
 
 
 blez, blez, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 4 actual exit code: 4 | extra info: tests simple case for blez and branch delay slot |
-Test conducted on:  19/11/2018 16:53:27
+Test conducted on:  19/11/2018 17:42:01

@@ -76,7 +76,7 @@ via the group repo).
 Group working
 -------------
 
-We worked great as a group, and managed to distribute tasks evenly and fairly to suit each of our strengths and areas for improvement. While initially it was a challenge to organise opportunities to meet and work on the project, we quickly realised that creating a schedule is the best way to ensure group synergy throughout the project. Group working ensured we learnt how to use git and github properly, and despite initial frustration at invalid merges and remote syncs, the concept of branches became apparent and utilised plentily within the group.
+We worked great as a group, and managed to distribute tasks evenly and fairly to suit each of our strengths and areas for improvement. While initially it was a challenge to organise opportunities to meet and work on the project, we quickly realised that creating a schedule is the best way to ensure group synergy throughout the project. Group working ensured we learnt how to use git and github properly, and despite initial frustration at invalid merges and remote syncs, the concept of branches became apparent and utilised plentifully within the group.
 
 Time management
 ---------------
@@ -98,4 +98,4 @@ I developed on Unix based MacOS, a similar environment to the target machines. I
 Understanding of computer architecture
 --------------------------------------
 
-This project forced the tiny details that are often overlookd to be presented. Specifically with branches and jumps, I learnt that due to the pipelining of a MIPS cpu, it is necessary to have a branch delay slot - but it can be used cleverly by programmers. Reading a lot about undefined behaviour also ensured I thought about the differences between a CPU and the simulator, and if simulating the process of a CPU was actually the best approach, for example load delay, which has extra time to load from memory, which is a side effect of hardware rather than ideal functionality. 
+This project forced the tiny details that are often overlooked to be presented. Specifically with branches and jumps, I learnt that due to the pipelining of a MIPS cpu, it is necessary to have a branch delay slot - but it can be used cleverly by programmers. Reading a lot about undefined behaviour also ensured I thought about the differences between a CPU and the simulator, and if simulating the process of a CPU was actually the best approach, for example load delay, which has extra time to load from memory, which is a side effect of hardware rather than ideal functionality. 

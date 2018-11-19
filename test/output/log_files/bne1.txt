@@ -23,14 +23,21 @@ address set at 0x10000010: 0
 address set at 0x10000011: 0
 address set at 0x10000012: 0
 address set at 0x10000013: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 20030008 at address: 0x10000000
 addi result: 0x8 source1: 0 signed immediate: 0x8
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 1460FFFD at address: 0x10000004
 branch address: FFFFFFC, program counter: 10000008, immediate: FFFD offset: FFFFFFF4 source1 reg: 8 source2 reg: 0
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000008
+start of range: 10000000  length of range: 1000000 start address: FFFFFFC n bytes: 4
 address is not in instruction range: FFFFFFC
 Mips exception thrown: Memory exception
 
 
 bne1, bne, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests out of instruction range branch (should throw memory error) |
-Test conducted on:  19/11/2018 16:53:27
+Test conducted on:  19/11/2018 17:42:01

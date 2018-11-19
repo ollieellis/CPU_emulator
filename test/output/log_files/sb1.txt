@@ -39,41 +39,67 @@ address set at 0x10000020: 0
 address set at 0x10000021: 0
 address set at 0x10000022: 0
 address set at 0x10000023: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C12FE7A at address: 0x10000000
 lui result: 0xFE7A0000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 36525463 at address: 0x10000004
 ori result: FE7A5463
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 3C163000 at address: 0x10000008
 lui result: 0x30000000
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: A2D20007 at address: 0x1000000C
 store byte address: 30000007 immediate: 7 source 1: 16
 address will trigger stdout: 0x30000007
+start of range: 30000000  length of range: 8 start address: 30000007 n bytes: 1
+returnig true
 address set at 0x30000007: 63
 address set at 0x30000007: 0
 putchar should be: 99
 
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 129202 at address: 0x10000010
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: A2D20007 at address: 0x10000014
 store byte address: 30000007 immediate: 7 source 1: 16
 address will trigger stdout: 0x30000007
+start of range: 30000000  length of range: 8 start address: 30000007 n bytes: 1
+returnig true
 address set at 0x30000007: 54
 address set at 0x30000007: 0
 putchar should be: 84
 
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 129202 at address: 0x10000018
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: A2D20007 at address: 0x1000001C
 store byte address: 30000007 immediate: 7 source 1: 16
 address will trigger stdout: 0x30000007
+start of range: 30000000  length of range: 8 start address: 30000007 n bytes: 1
+returnig true
 address set at 0x30000007: 7A
 address set at 0x30000007: 0
 putchar should be: 122
 
+start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x10000020
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000024
 
 *** terminating execution due to end of binary file ***
 
 
 sb1, sb, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sb triggers stdout |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:03

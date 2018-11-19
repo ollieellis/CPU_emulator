@@ -35,6 +35,7 @@ jr, jr, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | extra info: 
 lb, lb, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lb |
 lb1, lb, Pass, ES5017, | expected exit code: -7 actual exit code: -7 | extra info: tests lb sign extension |
 lb2, lb, Pass, ES5017, | expected output: 104 101 108 108 111 actual output: 104 101 108 108 111 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lb assuming memory mapped output works |
+lb3, lb, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests lb reading at addr_data - 1 throws exception |
 lbu, lbu, Pass, ES5017, | expected exit code: -102 actual exit code: -102 | extra info: tests simple case for lbu |
 lbu1, lbu, Pass, ES5017, | expected exit code: 11 actual exit code: 11 | extra info: tests lbu zero extension |
 lbu2, lbu, Pass, ES5017, | expected output: 104 actual output: 104 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lbu assuming memory mapped output works |
@@ -51,6 +52,7 @@ lw2, lw, Pass, ES5017, | expected output: 104 101 108 108 111 255 actual output:
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
+lw6, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests load word reading outside addr_data range throws exception |
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
 lwl1, lwl, Pass, ES5017, | expected output: 52 205 actual output: 52 205 | extra info: tests lwl merges the register |
 lwl2, lwl, Pass, ES5017, | expected output: 170 103 actual output: 170 103 | extra info: tests lwl aligned |

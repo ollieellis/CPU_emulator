@@ -19,17 +19,27 @@ address set at 0x1000000C: 0
 address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 20030009 at address: 0x10000000
 addi result: 0x9 source1: 0 signed immediate: 0x9
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 600011 at address: 0x10000004
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 1010 at address: 0x10000008
 new register from hi at 0x2: 9
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x1000000C
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000010
 
 *** terminating execution due to end of binary file ***
 
 
 mthi, mthi, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple mthi |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:02

@@ -31,27 +31,48 @@ address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 3C12FEDC at address: 0x10000000
 lui result: 0xFEDC0000
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 3652ABCD at address: 0x10000004
 ori result: FEDCABCD
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: 3C1D2000 at address: 0x10000008
 lui result: 0x20000000
+start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
+returnig true
 executing instruction: AFB20000 at address: 0x1000000C
 store word address: 0x20000000
+start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
+returnig true
 address set at 0x20000000: FE
 address set at 0x20000001: DC
 address set at 0x20000002: AB
 address set at 0x20000003: CD
+start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
+returnig true
 executing instruction: 8FA20000 at address: 0x10000010
+start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
+returnig true
+start of range: 10000000  length of range: 1000000 start address: 20000000 n bytes: 4
 loading word at 0x20000000: FEDCABCD
+start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x10000014
+start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
+returnig true
 executing instruction: 8 at address: 0x10000018
 jr address: 0x0
+start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
+returnig true
 executing instruction: 0 at address: 0x1000001C
 
 *** terminating execution due to end of binary file ***
 
 
 sw, sw, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sw |
-Test conducted on:  19/11/2018 16:53:29
+Test conducted on:  19/11/2018 17:42:03

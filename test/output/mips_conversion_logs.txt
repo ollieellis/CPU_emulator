@@ -186,6 +186,11 @@ Output file generated: test/mips_binary/lb2.mips.bin
 
 
 Commands passed successfully.
+Output file generated: test/mips_binary/lb3.mips.bin
+
+
+
+Commands passed successfully.
 Output file generated: test/mips_binary/lbu.mips.bin
 
 
@@ -262,6 +267,11 @@ Output file generated: test/mips_binary/lw4.mips.bin
 
 Commands passed successfully.
 Output file generated: test/mips_binary/lw5.mips.bin
+
+
+
+Commands passed successfully.
+Output file generated: test/mips_binary/lw6.mips.bin
 
 
 

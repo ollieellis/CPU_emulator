@@ -27,15 +27,22 @@ address set at 0x10000014: 0
 address set at 0x10000015: 0
 address set at 0x10000016: 0
 address set at 0x10000017: 8
+start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
+returnig true
 executing instruction: 20030009 at address: 0x10000000
 addi result: 0x9 source1: 0 signed immediate: 0x9
+start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
+returnig true
 executing instruction: 3C043000 at address: 0x10000004
 lui result: 0x30000000
+start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
+returnig true
 executing instruction: AC830008 at address: 0x10000008
 store word address: 0x30000008
+start of range: 20000000  length of range: 4000000 start address: 30000008 n bytes: 4
 address is not in data range: 0x30000008
 Mips exception thrown: Memory exception
 
 
 lw1, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: loads a word from unreadable memory and throws exception |
-Test conducted on:  19/11/2018 16:53:28
+Test conducted on:  19/11/2018 17:42:02
