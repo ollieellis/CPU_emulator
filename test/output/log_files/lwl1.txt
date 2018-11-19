@@ -1,9 +1,109 @@
-loading binary file 'test/mips_binary/lwl1.mips.bin'...
-load success
-simulating CPU...
-=====================
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 48
+instructions: 3C012000 3C036789 3463ABCD AC230000 20021234 88220001 3C093000 AD220004 21202 AD220004 20020000 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 1
+address set at 0x10000002: 20
+address set at 0x10000003: 0
+address set at 0x10000004: 3C
+address set at 0x10000005: 3
+address set at 0x10000006: 67
+address set at 0x10000007: 89
+address set at 0x10000008: 34
+address set at 0x10000009: 63
+address set at 0x1000000A: AB
+address set at 0x1000000B: CD
+address set at 0x1000000C: AC
+address set at 0x1000000D: 23
+address set at 0x1000000E: 0
+address set at 0x1000000F: 0
+address set at 0x10000010: 20
+address set at 0x10000011: 2
+address set at 0x10000012: 12
+address set at 0x10000013: 34
+address set at 0x10000014: 88
+address set at 0x10000015: 22
+address set at 0x10000016: 0
+address set at 0x10000017: 1
+address set at 0x10000018: 3C
+address set at 0x10000019: 9
+address set at 0x1000001A: 30
+address set at 0x1000001B: 0
+address set at 0x1000001C: AD
+address set at 0x1000001D: 22
+address set at 0x1000001E: 0
+address set at 0x1000001F: 4
+address set at 0x10000020: 0
+address set at 0x10000021: 2
+address set at 0x10000022: 12
+address set at 0x10000023: 2
+address set at 0x10000024: AD
+address set at 0x10000025: 22
+address set at 0x10000026: 0
+address set at 0x10000027: 4
+address set at 0x10000028: 20
+address set at 0x10000029: 2
+address set at 0x1000002A: 0
+address set at 0x1000002B: 0
+address set at 0x1000002C: 0
+address set at 0x1000002D: 0
+address set at 0x1000002E: 0
+address set at 0x1000002F: 8
+executing instruction: 3C012000 at address: 0x10000000
+lui result: 0x20000000
+executing instruction: 3C036789 at address: 0x10000004
+lui result: 0x67890000
+executing instruction: 3463ABCD at address: 0x10000008
+ori result: 6789ABCD
+executing instruction: AC230000 at address: 0x1000000C
+store word address: 0x20000000
+address set at 0x20000000: 67
+address set at 0x20000001: 89
+address set at 0x20000002: AB
+address set at 0x20000003: CD
+executing instruction: 20021234 at address: 0x10000010
+addi result: 0x1234 source1: 0 signed immediate: 0x1234
+executing instruction: 88220001 at address: 0x10000014
+lwl result: 0x89ABCD34 nearest aligned address: 0x20000004
+executing instruction: 3C093000 at address: 0x10000018
+lui result: 0x30000000
+executing instruction: AD220004 at address: 0x1000001C
+store word address: 0x30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 89
+address set at 0x30000005: AB
+address set at 0x30000006: CD
+address set at 0x30000007: 34
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
+putchar should be: 52
 
-=====================
-simulation success
+executing instruction: 21202 at address: 0x10000020
+executing instruction: AD220004 at address: 0x10000024
+store word address: 0x30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 0
+address set at 0x30000005: 89
+address set at 0x30000006: AB
+address set at 0x30000007: CD
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
+putchar should be: 205
+
+executing instruction: 20020000 at address: 0x10000028
+addi result: 0x0 source1: 0 signed immediate: 0x0
+executing instruction: 8 at address: 0x1000002C
+jr address: 0x0
+executing instruction: 0 at address: 0x10000030
+
+*** terminating execution due to end of binary file ***
+
+
 lwl1, lwl, Pass, ES5017, | expected output: 52 205 actual output: 52 205 | extra info: tests lwl merges the register |
-Test conducted on:  19/11/2018 16:22:10
+Test conducted on:  19/11/2018 16:53:28

@@ -1,7 +1,119 @@
-loading binary file 'test/mips_binary/lwr2.mips.bin'...
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 52
+instructions: 3C012000 3C036789 3463ABCD AC230000 AC230004 3C021234 98220004 3C093000 AD220004 21602 AD220004 20020000 8 
+address set at 0x10000000: 3C
+address set at 0x10000001: 1
+address set at 0x10000002: 20
+address set at 0x10000003: 0
+address set at 0x10000004: 3C
+address set at 0x10000005: 3
+address set at 0x10000006: 67
+address set at 0x10000007: 89
+address set at 0x10000008: 34
+address set at 0x10000009: 63
+address set at 0x1000000A: AB
+address set at 0x1000000B: CD
+address set at 0x1000000C: AC
+address set at 0x1000000D: 23
+address set at 0x1000000E: 0
+address set at 0x1000000F: 0
+address set at 0x10000010: AC
+address set at 0x10000011: 23
+address set at 0x10000012: 0
+address set at 0x10000013: 4
+address set at 0x10000014: 3C
+address set at 0x10000015: 2
+address set at 0x10000016: 12
+address set at 0x10000017: 34
+address set at 0x10000018: 98
+address set at 0x10000019: 22
+address set at 0x1000001A: 0
+address set at 0x1000001B: 4
+address set at 0x1000001C: 3C
+address set at 0x1000001D: 9
+address set at 0x1000001E: 30
+address set at 0x1000001F: 0
+address set at 0x10000020: AD
+address set at 0x10000021: 22
+address set at 0x10000022: 0
+address set at 0x10000023: 4
+address set at 0x10000024: 0
+address set at 0x10000025: 2
+address set at 0x10000026: 16
+address set at 0x10000027: 2
+address set at 0x10000028: AD
+address set at 0x10000029: 22
+address set at 0x1000002A: 0
+address set at 0x1000002B: 4
+address set at 0x1000002C: 20
+address set at 0x1000002D: 2
+address set at 0x1000002E: 0
+address set at 0x1000002F: 0
+address set at 0x10000030: 0
+address set at 0x10000031: 0
+address set at 0x10000032: 0
+address set at 0x10000033: 8
+executing instruction: 3C012000 at address: 0x10000000
+lui result: 0x20000000
+executing instruction: 3C036789 at address: 0x10000004
+lui result: 0x67890000
+executing instruction: 3463ABCD at address: 0x10000008
+ori result: 6789ABCD
+executing instruction: AC230000 at address: 0x1000000C
+store word address: 0x20000000
+address set at 0x20000000: 67
+address set at 0x20000001: 89
+address set at 0x20000002: AB
+address set at 0x20000003: CD
+executing instruction: AC230004 at address: 0x10000010
+store word address: 0x20000004
+address set at 0x20000004: 67
+address set at 0x20000005: 89
+address set at 0x20000006: AB
+address set at 0x20000007: CD
+executing instruction: 3C021234 at address: 0x10000014
+lui result: 0x12340000
+executing instruction: 98220004 at address: 0x10000018
+lwr result: 0x12340067 nearest aligned address: 0x20000004
+executing instruction: 3C093000 at address: 0x1000001C
+lui result: 0x30000000
+executing instruction: AD220004 at address: 0x10000020
+store word address: 0x30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 12
+address set at 0x30000005: 34
+address set at 0x30000006: 0
+address set at 0x30000007: 67
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
+putchar should be: 103
+
+executing instruction: 21602 at address: 0x10000024
+executing instruction: AD220004 at address: 0x10000028
+store word address: 0x30000004
+address will trigger stdout: 0x30000004
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 12
+address set at 0x30000004: 0
+address set at 0x30000005: 0
+address set at 0x30000006: 0
+address set at 0x30000007: 0
+putchar should be: 18
+
+executing instruction: 20020000 at address: 0x1000002C
+addi result: 0x0 source1: 0 signed immediate: 0x0
+executing instruction: 8 at address: 0x10000030
+jr address: 0x0
+executing instruction: 0 at address: 0x10000034
+
+*** terminating execution due to end of binary file ***
 
 
-simulation failed
-Illegal instruction 0x98220004: invalid or unsupported opcode - 0b00100110
-lwr2, lwr, Fail, ES5017, | expected output: 103 18 actual output:  | expected exit code: 0 actual exit code: -12 | extra info: tests lwr aligned |
-Test conducted on:  19/11/2018 16:22:10
+lwr2, lwr, Pass, ES5017, | expected output: 103 18 actual output: 103 18 | extra info: tests lwr aligned |
+Test conducted on:  19/11/2018 16:53:28

@@ -53,10 +53,10 @@ lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info:
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
 lwl1, lwl, Pass, ES5017, | expected output: 52 205 actual output: 52 205 | extra info: tests lwl merges the register |
-lwl2, lwl, Pass, ES5017, | expected output: 205 103 actual output: 205 103 | extra info: tests lwl aligned |
-lwr, lwr, Fail, ES5017, | expected exit code: -119 actual exit code: -12 | extra info: test simple case for lwr  |
-lwr1, lwr, Fail, ES5017, | expected output: 137 103 205 171 actual output:  | expected exit code: 0 actual exit code: -12 | extra info: tests lwl with lwr and register merge is correct |
-lwr2, lwr, Fail, ES5017, | expected output: 103 18 actual output:  | expected exit code: 0 actual exit code: -12 | extra info: tests lwr aligned |
+lwl2, lwl, Pass, ES5017, | expected output: 170 103 actual output: 170 103 | extra info: tests lwl aligned |
+lwr, lwr, Pass, ES5017, | expected exit code: -119 actual exit code: -119 | extra info: test simple case for lwr  |
+lwr1, lwr, Pass, ES5017, | expected output: 137 103 170 171 actual output: 137 103 170 171 | extra info: tests lwl with lwr and register merge is correct |
+lwr2, lwr, Pass, ES5017, | expected output: 103 18 actual output: 103 18 | extra info: tests lwr aligned |
 mthi, mthi, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple mthi |
 mtlo, mtlo, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests simple mtlo |
 mult, mult, Pass, ES5017, | expected output: 13 255 actual output: 13 255 | extra info: tests simple multiply of negative and positive ints |

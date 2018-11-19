@@ -1,9 +1,23 @@
-loading binary file 'test/mips_binary/jr.mips.bin'...
-load success
-simulating CPU...
-=====================
+programme path: bin/mips_simulator
+initialising registers 
+getting binary file 
+file size: 8
+instructions: 8 20020003 
+address set at 0x10000000: 0
+address set at 0x10000001: 0
+address set at 0x10000002: 0
+address set at 0x10000003: 8
+address set at 0x10000004: 20
+address set at 0x10000005: 2
+address set at 0x10000006: 0
+address set at 0x10000007: 3
+executing instruction: 8 at address: 0x10000000
+jr address: 0x0
+executing instruction: 20020003 at address: 0x10000004
+addi result: 0x3 source1: 0 signed immediate: 0x3
 
-=====================
-simulation success
+*** terminating execution due to end of binary file ***
+
+
 jr, jr, Pass, ES5017, | expected exit code: 3 actual exit code: 3 | extra info: tests simple case jr delay slot |
-Test conducted on:  19/11/2018 16:22:09
+Test conducted on:  19/11/2018 16:53:27
