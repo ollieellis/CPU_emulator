@@ -80,7 +80,8 @@ function convert_ascii_string_to_decimal {
     converted_result=""
     
     while IFS='' read -r -d '' -n 1 char; do
-        decimal=$(printf '%d' "'$char")
+        #decimal=$(printf '%d' "'$char")
+        decimal=$(( 16#$(echo -n $char | xxd -p) ))
         # echo $decimal
         converted_result="$converted_result $decimal"
     done < <(printf %s "$ascii")

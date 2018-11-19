@@ -27,7 +27,7 @@ bne1, bne, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra
 bne2, bne, Pass, ES5017, | expected exit code: 5 actual exit code: 5 | extra info: tests if bne doesnt occur when registers are equal |
 div, div, Pass, ES5017, | expected output: 39 8 actual output: 39 8 | extra info: tests simple div of negative and positive ints |
 div1, div, Pass, ES5017, | expected exit code: 2 actual exit code: 2 | extra info: ensures div does not crash or throw exception when dividing by 0 |
-divu, divu, Pass, ES5017, | expected output: 2 -13 actual output: 2 -13 | extra info: tests simple div of unsigned ints |
+divu, divu, Fail, ES5017, | expected output: 2 -13 actual output: 2 243 | expected exit code: 0 actual exit code: 0 | extra info: tests simple div of unsigned ints |
 j, j, Pass, ES5017, | expected exit code: 40 actual exit code: 40 | extra info: tests simple case for jump with branch delay slot |
 jal, jal, Pass, ES5017, | expected exit code: 36 actual exit code: 36 | extra info: tests simple case for jump and link with branch delay slot |
 jalr, jalr, Pass, ES5017, | expected exit code: 40 actual exit code: 40 | extra info: tests simple case for jalr with branch delay slot |
@@ -52,11 +52,13 @@ lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra inf
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
-lwl1, lwl, Pass, ES5017, | expected output: 52 -51 actual output: 52 -51 | extra info: tests lwl merges the register |
+lwl1, lwl, Pass, ES5017, | expected output: 52 205 actual output: 52 205 | extra info: tests lwl merges the register |
+lwl2, lwl, Fail, ES5017, | expected output: 205 103 actual output: 52 | expected exit code: 0 actual exit code: 0 | extra info: tests lwl aligned |
 lwr, lwr, Pass, ES5017, | expected exit code: -119 actual exit code: -119 | extra info: test simple case for lwr  |
+lwr1, lwr, Fail, ES5017, | expected output: -119 103 -51 -85 actual output: 137 103 205 171 | expected exit code: 0 actual exit code: 0 | extra info: tests lwl with lwr and register merge is correct |
 mthi, mthi, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple mthi |
 mtlo, mtlo, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests simple mtlo |
-mult, mult, Pass, ES5017, | expected output: 13 -1 actual output: 13 -1 | extra info: tests simple multiply of negative and positive ints |
+mult, mult, Fail, ES5017, | expected output: 13 -1 actual output: 13 255 | expected exit code: 0 actual exit code: 0 | extra info: tests simple multiply of negative and positive ints |
 multu, multu, Pass, ES5017, | expected output: 13 127 actual output: 13 127 | extra info: tests simple multiply unsigned |
 or, or, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for or |
 ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |

@@ -32,4 +32,4 @@ executing instruction: 0 at address: 0x10000010
 
 
 addi2, addi, Pass, ES5017, | expected exit code: -120 actual exit code: -120 | extra info: tests addi result at nth bit |
-Test conducted on:  19/11/2018 00:38:52
+Test conducted on:  19/11/2018 15:47:16

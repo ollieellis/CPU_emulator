@@ -1,6 +1,6 @@
 #author: ES5017
-#expected_output: 52 205
-#extra_info: tests lwl merges the register
+#expected_output: 205 103
+#extra_info: tests lwl aligned
 
 lui $1, 0x2000
 
@@ -11,14 +11,13 @@ ori $3, $3, 0xABCD
 sw $3, 0($1)
 
 addi $2, $0, 0x1234
-lwl $2, 1($1)
-#in $2 we have 0x89ABCD34
+lwl $2, 0($1)
 
 
 lui $9, 0x3000
 sw $2 4($9)
 
-srl $2, $2, 8
+srl $2, $2, 24
 sw $2 4($9)
 
 addi $2, $0, 0

@@ -1,4 +1,5 @@
 THE MIPS PARSER LISCENCE IS IN THE LISCENCE FILE IN test/mips-parser. The project can be found here: https://github.com/olly-larkin/mips-parser
+We use this instead of mips-linux-gnu-gcc because it is cross platform and easier to develop with on macos
 
 Tests are written in assembly and stored in txt files in test/mips_assembly
 
@@ -8,7 +9,7 @@ Running the testbench converts the assembly to readable binary format in test/mi
 
 information about the test is denoted by a hashtag, the name of the info field, a colon, then the value, for example:
 
-'#author: ethan'
+'#author: bob s.'
 '#extra_info: tests the add instruction for the simple case'
 
 These fields will be placed in the message column of the output csv. Each field is separated by the | character

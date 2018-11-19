@@ -75,7 +75,7 @@ struct Internal_error : public Mips_exception
     }
 };
 
-struct Environment_error : public Internal_error
+struct Environment_error : public IO_error
 {
     const char *what() const throw() override
     {
