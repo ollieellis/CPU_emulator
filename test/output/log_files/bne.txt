@@ -66,4 +66,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 bne, bne, Pass, ES5017, | expected output: 7 actual output: 7 | expected exit code: 3 actual exit code: 3 | extra info: tests simple case for bne and branch delay slot |
-Test conducted on:  19/11/2018 00:27:51
+Test conducted on:  19/11/2018 00:38:52

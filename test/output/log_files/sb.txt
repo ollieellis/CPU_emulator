@@ -57,4 +57,4 @@ executing instruction: 0 at address: 0x10000020
 
 
 sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
-Test conducted on:  19/11/2018 00:27:52
+Test conducted on:  19/11/2018 00:38:53

@@ -52,6 +52,7 @@ lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra inf
 lw4, lw, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests uninitialised word  |
 lw5, lw, Pass, ES5017, | expected exit code: -11 actual exit code: -11 | extra info: tests misaligned word  |
 lwl, lwl, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: test simple case for lwl  |
+lwl1, lwl, Pass, ES5017, | expected output: 52 -51 actual output: 52 -51 | extra info: tests lwl merges the register |
 lwr, lwr, Pass, ES5017, | expected exit code: -119 actual exit code: -119 | extra info: test simple case for lwr  |
 mthi, mthi, Pass, ES5017, | expected exit code: 9 actual exit code: 9 | extra info: tests simple mthi |
 mtlo, mtlo, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests simple mtlo |

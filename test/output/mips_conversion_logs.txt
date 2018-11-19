@@ -271,6 +271,11 @@ Output file generated: test/mips_binary/lwl.mips.bin
 
 
 Commands passed successfully.
+Output file generated: test/mips_binary/lwl1.mips.bin
+
+
+
+Commands passed successfully.
 Output file generated: test/mips_binary/lwr.mips.bin
 
 

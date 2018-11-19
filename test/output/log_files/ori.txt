@@ -27,4 +27,4 @@ executing instruction: 0 at address: 0x1000000C
 
 
 ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
-Test conducted on:  19/11/2018 00:27:52
+Test conducted on:  19/11/2018 00:38:53
