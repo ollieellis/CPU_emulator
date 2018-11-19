@@ -1,65 +1,9 @@
-programme path: bin/mips_simulator
-initialising registers 
-getting binary file 
-file size: 28
-instructions: 3C093000 35290002 95250000 0 0 A5250004 8 
-address set at 0x10000000: 3C
-address set at 0x10000001: 9
-address set at 0x10000002: 30
-address set at 0x10000003: 0
-address set at 0x10000004: 35
-address set at 0x10000005: 29
-address set at 0x10000006: 0
-address set at 0x10000007: 2
-address set at 0x10000008: 95
-address set at 0x10000009: 25
-address set at 0x1000000A: 0
-address set at 0x1000000B: 0
-address set at 0x1000000C: 0
-address set at 0x1000000D: 0
-address set at 0x1000000E: 0
-address set at 0x1000000F: 0
-address set at 0x10000010: 0
-address set at 0x10000011: 0
-address set at 0x10000012: 0
-address set at 0x10000013: 0
-address set at 0x10000014: A5
-address set at 0x10000015: 25
-address set at 0x10000016: 0
-address set at 0x10000017: 4
-address set at 0x10000018: 0
-address set at 0x10000019: 0
-address set at 0x1000001A: 0
-address set at 0x1000001B: 8
-executing instruction: 3C093000 at address: 0x10000000
-lui result: 0x30000000
-executing instruction: 35290002 at address: 0x10000004
-ori result: 30000002
-executing instruction: 95250000 at address: 0x10000008
-address will trigger stdin: 0x30000002
-address set at 0x30000002: 0
-address set at 0x30000003: 68
-address set at 0x30000002: 0
-address set at 0x30000003: 0
-stdin from gotchar: 104
-loading halfword unsigned at 0x30000002: 68
-executing instruction: 0 at address: 0x1000000C
-executing instruction: 0 at address: 0x10000010
-executing instruction: A5250004 at address: 0x10000014
-store halfword address: 30000006
-address will trigger stdout: 0x30000006
-address set at 0x30000006: 0
-address set at 0x30000007: 68
-address set at 0x30000006: 0
-address set at 0x30000007: 0
-putchar should be: 104
+loading binary file 'test/mips_binary/lhu2.mips.bin'...
+load success
+simulating CPU...
+=====================
 
-executing instruction: 8 at address: 0x10000018
-jr address: 0x0
-executing instruction: 0 at address: 0x1000001C
-
-*** terminating execution due to end of binary file ***
-
-
+=====================
+simulation success
 lhu2, lhu, Pass, ES5017, | expected output: 104 actual output: 104 | expected exit code: 0 actual exit code: 0 | extra info: test memory mapped input with lh assuming memory mapped output works |
-Test conducted on:  19/11/2018 15:47:17
+Test conducted on:  19/11/2018 16:22:10

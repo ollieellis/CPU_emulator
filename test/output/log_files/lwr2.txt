@@ -1,0 +1,7 @@
+loading binary file 'test/mips_binary/lwr2.mips.bin'...
+
+
+simulation failed
+Illegal instruction 0x98220004: invalid or unsupported opcode - 0b00100110
+lwr2, lwr, Fail, ES5017, | expected output: 103 18 actual output:  | expected exit code: 0 actual exit code: -12 | extra info: tests lwr aligned |
+Test conducted on:  19/11/2018 16:22:10

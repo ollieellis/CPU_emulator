@@ -1,35 +1,9 @@
-programme path: bin/mips_simulator
-initialising registers 
-getting binary file 
-file size: 16
-instructions: 2003FFF6 600013 1012 8 
-address set at 0x10000000: 20
-address set at 0x10000001: 3
-address set at 0x10000002: FF
-address set at 0x10000003: F6
-address set at 0x10000004: 0
-address set at 0x10000005: 60
-address set at 0x10000006: 0
-address set at 0x10000007: 13
-address set at 0x10000008: 0
-address set at 0x10000009: 0
-address set at 0x1000000A: 10
-address set at 0x1000000B: 12
-address set at 0x1000000C: 0
-address set at 0x1000000D: 0
-address set at 0x1000000E: 0
-address set at 0x1000000F: 8
-executing instruction: 2003FFF6 at address: 0x10000000
-addi result: 0xFFFFFFF6 source1: 0 signed immediate: 0xFFFFFFF6
-executing instruction: 600013 at address: 0x10000004
-executing instruction: 1012 at address: 0x10000008
-new register from low at 0x2: FFFFFFF6
-executing instruction: 8 at address: 0x1000000C
-jr address: 0x0
-executing instruction: 0 at address: 0x10000010
+loading binary file 'test/mips_binary/mtlo.mips.bin'...
+load success
+simulating CPU...
+=====================
 
-*** terminating execution due to end of binary file ***
-
-
+=====================
+simulation success
 mtlo, mtlo, Pass, ES5017, | expected exit code: -10 actual exit code: -10 | extra info: tests simple mtlo |
-Test conducted on:  19/11/2018 15:47:17
+Test conducted on:  19/11/2018 16:22:10

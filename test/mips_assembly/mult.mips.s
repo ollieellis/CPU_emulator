@@ -1,5 +1,5 @@
 #author: ES5017
-#expected_output: 13 -1
+#expected_output: 13 255
 #extra_info: tests simple multiply of negative and positive ints
 
 

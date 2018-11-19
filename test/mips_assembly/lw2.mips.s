@@ -1,8 +1,7 @@
 #author: ES5017
 #expected_exit_code: 0
-#extra_info: test memory mapped input with lw assuming memory mapped output works. SADLY I WANT TO TEST EOF BUT CANNOT BECAUSE LINUX EOF IS NOT -1 HNNNNNG
-
-#expected_output: 104 101 108 108 111
+#extra_info: test memory mapped input with lw assuming memory mapped output works, and ensured the eof characters is returned
+#expected_output: 104 101 108 108 111 255
 
 
 #the above expected outputs are ascii for 'hello', which is what is in the wibble.txt file we use for testbench input test
@@ -11,7 +10,7 @@
 
 lui $9, 0x3000
 ori $9, $9, 0x0002
-addi $6, $0, 5
+addi $6, $0, 6
 
 next_input:
 lw $5 -2($9)

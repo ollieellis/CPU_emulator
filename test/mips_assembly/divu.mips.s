@@ -1,5 +1,5 @@
 #author: ES5017
-#expected_output: 2 -13
+#expected_output: 2 243
 #extra_info: tests simple div of unsigned ints
 
 

@@ -682,16 +682,15 @@ void I_type::LW()
 void I_type::LWL()
 {
 	int address = registers->get_register(source1) + Bitwise_helper::sign_extend_to_32(16, immediate);
-	int nearest_aligned_address = address;
-	if ((nearest_aligned_address % 4) != 0)
-	{ //if not already a multiple of 4
-		nearest_aligned_address = address + (4 - (address % 4));
-	}
-	int number_of_bytes_to_get = nearest_aligned_address - address;
+	int next_aligned_address = address;
+	next_aligned_address = address + (4 - (address % 4));
+
+	int number_of_bytes_to_get = next_aligned_address - address;
 	int existing_reg_value = registers->get_register(source2_or_destination);
 	int shift_amount = (8 * (4 - number_of_bytes_to_get));
 	int data = memory->get_n_bytes_of_data(number_of_bytes_to_get, address) << shift_amount;
 	int result = Bitwise_helper::overwrite_bits(existing_reg_value, data, shift_amount, number_of_bytes_to_get * 8);
+	cerr << "lwl result: 0x" << hex << result << " nearest aligned address: 0x" << next_aligned_address << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::LWR()
@@ -707,7 +706,7 @@ void I_type::LWR()
 	int shift_amount = 0; //for consistency
 	int data = memory->get_n_bytes_of_data(number_of_bytes_to_get, nearest_aligned_address) << shift_amount;
 	int result = Bitwise_helper::overwrite_bits(existing_reg_value, data, shift_amount, number_of_bytes_to_get * 8);
-	cerr << "lwr result: " << hex << result << endl;
+	cerr << "lwr result: 0x" << hex << result << " nearest aligned address: 0x" << nearest_aligned_address << endl;
 	registers->set_register(source2_or_destination, result);
 }
 void I_type::ORI()

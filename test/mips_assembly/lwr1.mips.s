@@ -1,5 +1,5 @@
 #author: ES5017
-#expected_output: -119 103 -51 -85
+#expected_output: 137 103 205 171
 #extra_info: tests lwl with lwr and register merge is correct
 
 lui $1, 0x2000

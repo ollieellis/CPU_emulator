@@ -1,86 +1,9 @@
-programme path: bin/mips_simulator
-initialising registers 
-getting binary file 
-file size: 44
-instructions: 2003FFFF 3C093000 4700005 20040008 20050002 20A20004 8 0 AD240004 3E00008 0 
-address set at 0x10000000: 20
-address set at 0x10000001: 3
-address set at 0x10000002: FF
-address set at 0x10000003: FF
-address set at 0x10000004: 3C
-address set at 0x10000005: 9
-address set at 0x10000006: 30
-address set at 0x10000007: 0
-address set at 0x10000008: 4
-address set at 0x10000009: 70
-address set at 0x1000000A: 0
-address set at 0x1000000B: 5
-address set at 0x1000000C: 20
-address set at 0x1000000D: 4
-address set at 0x1000000E: 0
-address set at 0x1000000F: 8
-address set at 0x10000010: 20
-address set at 0x10000011: 5
-address set at 0x10000012: 0
-address set at 0x10000013: 2
-address set at 0x10000014: 20
-address set at 0x10000015: A2
-address set at 0x10000016: 0
-address set at 0x10000017: 4
-address set at 0x10000018: 0
-address set at 0x10000019: 0
-address set at 0x1000001A: 0
-address set at 0x1000001B: 8
-address set at 0x1000001C: 0
-address set at 0x1000001D: 0
-address set at 0x1000001E: 0
-address set at 0x1000001F: 0
-address set at 0x10000020: AD
-address set at 0x10000021: 24
-address set at 0x10000022: 0
-address set at 0x10000023: 4
-address set at 0x10000024: 3
-address set at 0x10000025: E0
-address set at 0x10000026: 0
-address set at 0x10000027: 8
-address set at 0x10000028: 0
-address set at 0x10000029: 0
-address set at 0x1000002A: 0
-address set at 0x1000002B: 0
-executing instruction: 2003FFFF at address: 0x10000000
-addi result: 0xFFFFFFFF source1: 0 signed immediate: 0xFFFFFFFF
-executing instruction: 3C093000 at address: 0x10000004
-lui result: 0x30000000
-executing instruction: 4700005 at address: 0x10000008
-branch address: 10000020, program counter: 1000000C, immediate: 5 offset: 14 source1 reg: FFFFFFFF source2 reg: 0
-executing instruction: 20040008 at address: 0x1000000C
-addi result: 0x8 source1: 0 signed immediate: 0x8
-executing instruction: AD240004 at address: 0x10000020
-store word address: 0x30000004
-address will trigger stdout: 0x30000004
-address set at 0x30000004: 0
-address set at 0x30000005: 0
-address set at 0x30000006: 0
-address set at 0x30000007: 8
-address set at 0x30000004: 0
-address set at 0x30000005: 0
-address set at 0x30000006: 0
-address set at 0x30000007: 0
-putchar should be: 8
+loading binary file 'test/mips_binary/bltzal.mips.bin'...
+load success
+simulating CPU...
+=====================
 
-executing instruction: 3E00008 at address: 0x10000024
-jr address: 0x10000010
-executing instruction: 0 at address: 0x10000028
-executing instruction: 20050002 at address: 0x10000010
-addi result: 0x2 source1: 0 signed immediate: 0x2
-executing instruction: 20A20004 at address: 0x10000014
-addi result: 0x6 source1: 2 signed immediate: 0x4
-executing instruction: 8 at address: 0x10000018
-jr address: 0x0
-executing instruction: 0 at address: 0x1000001C
-
-*** terminating execution due to end of binary file ***
-
-
+=====================
+simulation success
 bltzal, bltzal, Pass, ES5017, | expected output: 8 actual output: 8 | expected exit code: 6 actual exit code: 6 | extra info: tests simple case for bltzal and branch delay slot with a function assuming stdout works |
-Test conducted on:  19/11/2018 15:47:16
+Test conducted on:  19/11/2018 16:22:09

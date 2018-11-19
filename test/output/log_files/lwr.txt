@@ -1,62 +1,7 @@
-programme path: bin/mips_simulator
-initialising registers 
-getting binary file 
-file size: 32
-instructions: 3C012000 3C036789 20637BCD AC230004 98220006 0 21202 8 
-address set at 0x10000000: 3C
-address set at 0x10000001: 1
-address set at 0x10000002: 20
-address set at 0x10000003: 0
-address set at 0x10000004: 3C
-address set at 0x10000005: 3
-address set at 0x10000006: 67
-address set at 0x10000007: 89
-address set at 0x10000008: 20
-address set at 0x10000009: 63
-address set at 0x1000000A: 7B
-address set at 0x1000000B: CD
-address set at 0x1000000C: AC
-address set at 0x1000000D: 23
-address set at 0x1000000E: 0
-address set at 0x1000000F: 4
-address set at 0x10000010: 98
-address set at 0x10000011: 22
-address set at 0x10000012: 0
-address set at 0x10000013: 6
-address set at 0x10000014: 0
-address set at 0x10000015: 0
-address set at 0x10000016: 0
-address set at 0x10000017: 0
-address set at 0x10000018: 0
-address set at 0x10000019: 2
-address set at 0x1000001A: 12
-address set at 0x1000001B: 2
-address set at 0x1000001C: 0
-address set at 0x1000001D: 0
-address set at 0x1000001E: 0
-address set at 0x1000001F: 8
-executing instruction: 3C012000 at address: 0x10000000
-lui result: 0x20000000
-executing instruction: 3C036789 at address: 0x10000004
-lui result: 0x67890000
-executing instruction: 20637BCD at address: 0x10000008
-addi result: 0x67897BCD source1: 67890000 signed immediate: 0x7BCD
-executing instruction: AC230004 at address: 0x1000000C
-store word address: 0x20000004
-address set at 0x20000004: 67
-address set at 0x20000005: 89
-address set at 0x20000006: 7B
-address set at 0x20000007: CD
-executing instruction: 98220006 at address: 0x10000010
-lwr result: 67897B
-executing instruction: 0 at address: 0x10000014
-executing instruction: 21202 at address: 0x10000018
-executing instruction: 8 at address: 0x1000001C
-jr address: 0x0
-executing instruction: 0 at address: 0x10000020
-
-*** terminating execution due to end of binary file ***
+loading binary file 'test/mips_binary/lwr.mips.bin'...
 
 
-lwr, lwr, Pass, ES5017, | expected exit code: -119 actual exit code: -119 | extra info: test simple case for lwr  |
-Test conducted on:  19/11/2018 15:47:17
+simulation failed
+Illegal instruction 0x98220006: invalid or unsupported opcode - 0b00100110
+lwr, lwr, Fail, ES5017, | expected exit code: -119 actual exit code: -12 | extra info: test simple case for lwr  |
+Test conducted on:  19/11/2018 16:22:10
