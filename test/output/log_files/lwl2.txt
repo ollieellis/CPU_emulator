@@ -51,50 +51,27 @@ address set at 0x1000002C: 0
 address set at 0x1000002D: 0
 address set at 0x1000002E: 0
 address set at 0x1000002F: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C012000 at address: 0x10000000
 lui result: 0x20000000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 3C036789 at address: 0x10000004
 lui result: 0x67890000
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 3463ABAA at address: 0x10000008
 ori result: 6789ABAA
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: AC230000 at address: 0x1000000C
 store word address: 0x20000000
-start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
-returnig true
 address set at 0x20000000: 67
 address set at 0x20000001: 89
 address set at 0x20000002: AB
 address set at 0x20000003: AA
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 20021234 at address: 0x10000010
 addi result: 0x1234 source1: 0 signed immediate: 0x1234
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 88220000 at address: 0x10000014
-start of range: 20000000  length of range: 4000000 start address: 20000000 n bytes: 4
-returnig true
-start of range: 10000000  length of range: 1000000 start address: 20000000 n bytes: 4
 lwl result: 0x6789ABAA nearest aligned address: 0x20000004
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 3C093000 at address: 0x10000018
 lui result: 0x30000000
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: AD220004 at address: 0x1000001C
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 67
 address set at 0x30000005: 89
 address set at 0x30000006: AB
@@ -105,16 +82,10 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 170
 
-start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
-returnig true
 executing instruction: 21602 at address: 0x10000020
-start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
-returnig true
 executing instruction: AD220004 at address: 0x10000024
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -125,20 +96,14 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 103
 
-start of range: 10000000  length of range: 1000000 start address: 10000028 n bytes: 4
-returnig true
 executing instruction: 20020000 at address: 0x10000028
 addi result: 0x0 source1: 0 signed immediate: 0x0
-start of range: 10000000  length of range: 1000000 start address: 1000002C n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x1000002C
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000030 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000030
 
 *** terminating execution due to end of binary file ***
 
 
 lwl2, lwl, Pass, ES5017, | expected output: 170 103 actual output: 170 103 | extra info: tests lwl aligned |
-Test conducted on:  19/11/2018 17:42:02
+Test conducted on:  20/11/2018 01:23:22

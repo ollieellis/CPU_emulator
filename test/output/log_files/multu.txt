@@ -51,50 +51,28 @@ address set at 0x1000002C: 0
 address set at 0x1000002D: 0
 address set at 0x1000002E: 0
 address set at 0x1000002F: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C03FFFF at address: 0x10000000
 lui result: 0xFFFF0000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 3463FFF3 at address: 0x10000004
 ori result: FFFFFFF3
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 3C047FFF at address: 0x10000008
 lui result: 0x7FFF0000
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 640019 at address: 0x1000000C
 multu'ing these numbers: 4294967283 and 2147418112
 result 64: 0x7FFEFFF9800D0000
 mult lo: 0x800D0000
 mult hi: 0x7FFEFFF9
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 2812 at address: 0x10000010
 new register from low at 0x5: 800D0000
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 3010 at address: 0x10000014
 new register from hi at 0x6: 7FFEFFF9
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 52C02 at address: 0x10000018
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 63602 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
-returnig true
 executing instruction: 3C093000 at address: 0x10000020
 lui result: 0x30000000
-start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
-returnig true
 executing instruction: AD250004 at address: 0x10000024
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 80
@@ -105,13 +83,9 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 13
 
-start of range: 10000000  length of range: 1000000 start address: 10000028 n bytes: 4
-returnig true
 executing instruction: AD260004 at address: 0x10000028
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -122,16 +96,12 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 127
 
-start of range: 10000000  length of range: 1000000 start address: 1000002C n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x1000002C
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000030 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000030
 
 *** terminating execution due to end of binary file ***
 
 
 multu, multu, Pass, ES5017, | expected output: 13 127 actual output: 13 127 | extra info: tests simple multiply unsigned |
-Test conducted on:  19/11/2018 17:42:03
+Test conducted on:  20/11/2018 01:23:22

@@ -43,42 +43,24 @@ address set at 0x10000024: 0
 address set at 0x10000025: 0
 address set at 0x10000026: 0
 address set at 0x10000027: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C03FFFF at address: 0x10000000
 lui result: 0xFFFF0000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 3463FFF3 at address: 0x10000004
 ori result: FFFFFFF3
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 3C047FFF at address: 0x10000008
 lui result: 0x7FFF0000
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 64001B at address: 0x1000000C
 div lo: 0x2
 div hi: 0x1FFF3
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 2812 at address: 0x10000010
 new register from low at 0x5: 2
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 3010 at address: 0x10000014
 new register from hi at 0x6: 1FFF3
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 3C093000 at address: 0x10000018
 lui result: 0x30000000
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: AD250004 at address: 0x1000001C
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -89,13 +71,9 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 2
 
-start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
-returnig true
 executing instruction: AD260004 at address: 0x10000020
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 1
 address set at 0x30000006: FF
@@ -106,16 +84,12 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 243
 
-start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x10000024
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000028 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000028
 
 *** terminating execution due to end of binary file ***
 
 
 divu, divu, Pass, ES5017, | expected output: 2 243 actual output: 2 243 | extra info: tests simple div of unsigned ints |
-Test conducted on:  19/11/2018 17:42:01
+Test conducted on:  20/11/2018 01:23:22

@@ -23,24 +23,14 @@ address set at 0x10000010: 0
 address set at 0x10000011: 0
 address set at 0x10000012: 0
 address set at 0x10000013: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C018069 at address: 0x10000000
 lui result: 0x80690000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 11782 at address: 0x10000004
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 3C093000 at address: 0x10000008
 lui result: 0x30000000
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: AD220004 at address: 0x1000000C
 store word address: 0x30000004
 address will trigger stdout: 0x30000004
-start of range: 30000000  length of range: 8 start address: 30000004 n bytes: 4
-returnig true
 address set at 0x30000004: 0
 address set at 0x30000005: 0
 address set at 0x30000006: 0
@@ -51,16 +41,12 @@ address set at 0x30000006: 0
 address set at 0x30000007: 0
 putchar should be: 2
 
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x10000010
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000014
 
 *** terminating execution due to end of binary file ***
 
 
 srl1, srl, Pass, ES5017, | expected output: 2 actual output: 2 | extra info: tests another simple case for srl |
-Test conducted on:  19/11/2018 17:42:03
+Test conducted on:  20/11/2018 01:23:23

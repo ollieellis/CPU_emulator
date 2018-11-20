@@ -19,27 +19,17 @@ address set at 0x1000000C: 0
 address set at 0x1000000D: 0
 address set at 0x1000000E: 0
 address set at 0x1000000F: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C01FFFF at address: 0x10000000
 lui result: 0xFFFF0000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 20020012 at address: 0x10000004
 addi result: 0x12 source1: 0 signed immediate: 0x12
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 41102B at address: 0x10000008
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x1000000C
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000010
 
 *** terminating execution due to end of binary file ***
 
 
 sltu, sltu, Pass, ES5017, | expected exit code: 1 actual exit code: 1 | extra info: tests simple case for sltu and ensures numbers are compared as unsigned |
-Test conducted on:  19/11/2018 17:42:03
+Test conducted on:  20/11/2018 01:23:23

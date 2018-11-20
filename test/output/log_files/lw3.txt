@@ -39,20 +39,12 @@ address set at 0x10000020: 0
 address set at 0x10000021: 0
 address set at 0x10000022: 0
 address set at 0x10000023: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 3C093000 at address: 0x10000000
 lui result: 0x30000000
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 20060006 at address: 0x10000004
 addi result: 0x6 source1: 0 signed immediate: 0x6
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: 0
 address set at 0x30000001: 0
 address set at 0x30000002: 0
@@ -63,29 +55,15 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 104
 loading word at 0x30000000: 68
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x1 source1: 0 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 1 source2 reg: 6
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: 0
 address set at 0x30000001: 0
 address set at 0x30000002: 0
@@ -96,29 +74,15 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 101
 loading word at 0x30000000: 65
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x2 source1: 1 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 2 source2 reg: 6
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: 0
 address set at 0x30000001: 0
 address set at 0x30000002: 0
@@ -129,29 +93,15 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 108
 loading word at 0x30000000: 6C
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x3 source1: 2 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 3 source2 reg: 6
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: 0
 address set at 0x30000001: 0
 address set at 0x30000002: 0
@@ -162,29 +112,15 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 108
 loading word at 0x30000000: 6C
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x4 source1: 3 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 4 source2 reg: 6
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: 0
 address set at 0x30000001: 0
 address set at 0x30000002: 0
@@ -195,29 +131,15 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: 111
 loading word at 0x30000000: 6F
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x5 source1: 4 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
 branch address: 10000008, program counter: 1000001C, immediate: FFFB offset: FFFFFFEC source1 reg: 5 source2 reg: 6
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8D250000 at address: 0x10000008
 address will trigger stdin: 0x30000000
-start of range: 30000000  length of range: 8 start address: 30000000 n bytes: 4
-returnig true
 address set at 0x30000000: FF
 address set at 0x30000001: FF
 address set at 0x30000002: FF
@@ -228,32 +150,18 @@ address set at 0x30000002: 0
 address set at 0x30000003: 0
 stdin from gotchar: -1
 loading word at 0x30000000: FFFFFFFF
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 451021 at address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 20210001 at address: 0x10000014
 addi result: 0x6 source1: 5 signed immediate: 0x1
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 1426FFFB at address: 0x10000018
-start of range: 10000000  length of range: 1000000 start address: 1000001C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000001C
-start of range: 10000000  length of range: 1000000 start address: 10000020 n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x10000020
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 10000024 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000024
 
 *** terminating execution due to end of binary file ***
 
 
 lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
-Test conducted on:  19/11/2018 17:42:02
+Test conducted on:  20/11/2018 01:23:22

@@ -31,35 +31,21 @@ address set at 0x10000018: 0
 address set at 0x10000019: 0
 address set at 0x1000001A: 0
 address set at 0x1000001B: 0
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: C000004 at address: 0x10000000
 jump address: 0x10000010
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 20420015 at address: 0x10000004
 addi result: 0x15 source1: 0 signed immediate: 0x15
-start of range: 10000000  length of range: 1000000 start address: 10000010 n bytes: 4
-returnig true
 executing instruction: 2042000F at address: 0x10000010
 addi result: 0x24 source1: 15 signed immediate: 0xF
-start of range: 10000000  length of range: 1000000 start address: 10000014 n bytes: 4
-returnig true
 executing instruction: 3E00008 at address: 0x10000014
 jr address: 0x10000008
-start of range: 10000000  length of range: 1000000 start address: 10000018 n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x10000018
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x10000008
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
 
 *** terminating execution due to end of binary file ***
 
 
 jal, jal, Pass, ES5017, | expected exit code: 36 actual exit code: 36 | extra info: tests simple case for jump and link with branch delay slot |
-Test conducted on:  19/11/2018 17:42:01
+Test conducted on:  20/11/2018 01:23:22

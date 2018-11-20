@@ -15,24 +15,16 @@ address set at 0x10000008: 0
 address set at 0x10000009: 0
 address set at 0x1000000A: 0
 address set at 0x1000000B: 8
-start of range: 10000000  length of range: 1000000 start address: 10000000 n bytes: 4
-returnig true
 executing instruction: 20020005 at address: 0x10000000
 addi result: 0x5 source1: 0 signed immediate: 0x5
-start of range: 10000000  length of range: 1000000 start address: 10000004 n bytes: 4
-returnig true
 executing instruction: 20420014 at address: 0x10000004
 addi result: 0x19 source1: 5 signed immediate: 0x14
-start of range: 10000000  length of range: 1000000 start address: 10000008 n bytes: 4
-returnig true
 executing instruction: 8 at address: 0x10000008
 jr address: 0x0
-start of range: 10000000  length of range: 1000000 start address: 1000000C n bytes: 4
-returnig true
 executing instruction: 0 at address: 0x1000000C
 
 *** terminating execution due to end of binary file ***
 
 
 addi, addi, Pass, ES5017, | expected exit code: 25 actual exit code: 25 | extra info: tests simple case for addi |
-Test conducted on:  19/11/2018 17:42:01
+Test conducted on:  20/11/2018 01:23:21
