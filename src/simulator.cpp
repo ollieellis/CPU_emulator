@@ -1,3 +1,5 @@
+#include <stdint.h>
+#include <cstdlib>
 #include <iostream>
 #include <bitset>
 #include "memory.hpp"

@@ -67,7 +67,7 @@ or, or, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra in
 ori, ori, Pass, ES5017, | expected exit code: 127 actual exit code: 127 | extra info: tests simple case for ori |
 sb, sb, Pass, ES5017, | expected exit code: -51 actual exit code: -51 | extra info: tests simple case for sb |
 sb1, sb, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sb triggers stdout |
-sh, sh, Pass, ES5017, | expected exit code: -85 actual exit code: -85 | extra info: tests simple case for sh |
+sh, sh, Fail, ES5017, | expected exit code: -85 actual exit code: -86 | extra info: tests simple case for sh |
 sh1, sh, Pass, ES5017, | expected exit code: 0 actual exit code: 0 | extra info: tests that only bottom halfword is stored |
 sh2, sh, Pass, ES5017, | expected output: 99 84 122 actual output: 99 84 122 | extra info: tests that sh triggers stdout |
 sll, sll, Pass, ES5017, | expected exit code: 24 actual exit code: 24 | extra info: tests simple case for sll |
