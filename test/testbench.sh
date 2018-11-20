@@ -9,14 +9,10 @@ simulator=$1
 rm -rf test/mips_binary #refresh the binaries and remove the old ones
 mkdir -p test/mips_binary
 
-cd test/mips-parser
-# rm -f test/mips-parserbin/parser #instead, put in gitignore, otherwise takes too long to recompile every time
-if [ ! -f bin/parser ]; then
-    make parser 2>&1 >/dev/null
+mips_parser=test/mips-parser
+if [ ! -f $mips_parser/bin/parser ]; then
+    make -C $mips_parser parser 2>&1 >/dev/null
 fi
-
-cd ..
-cd ..
 
 output_files=test/output
 conversion_log_files="$output_files/mips_conversion_logs.txt"
