@@ -5,3 +5,4 @@ test/mips-parser/bin/*
 _config.yml
 MIPS_Simulator.xcodeproj
 ethan_reflection.md
+test/output/*

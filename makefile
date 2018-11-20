@@ -39,7 +39,6 @@ build/%.o : src/%.cpp src/%.hpp
 
 simulator: build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o  
 	mkdir -p bin
-	rm -f bin/mips_simulator
 	$(CC) $(CPPFLAGS) -std=c++11 build/simulator.o build/helpers.o build/memory.o build/registers.o build/instructions.o -o bin/mips_simulator
 
 testbench: 
@@ -48,4 +47,5 @@ testbench:
 	cp -a test/testbench.sh bin/mips_testbench
 	chmod 755 bin/mips_testbench
 clean:
-	rm build/*.o
+	rm -f build/*.o
+	rm -f bin/*
