@@ -1,2 +1,0 @@
-div, div, Pass, ES5017, | expected output: 39 8 actual output: 39 8 | extra info: tests simple div of negative and positive ints |
-Test conducted on:  20/11/2018 17:28:11

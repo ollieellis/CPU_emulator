@@ -1,2 +1,0 @@
-lhu, lhu, Pass, ES5017, | expected exit code: 122 actual exit code: 122 | extra info: tests simple case for lhu |
-Test conducted on:  20/11/2018 17:28:13

@@ -1,2 +1,0 @@
-sll, sll, Pass, ES5017, | expected exit code: 24 actual exit code: 24 | extra info: tests simple case for sll |
-Test conducted on:  20/11/2018 17:28:16

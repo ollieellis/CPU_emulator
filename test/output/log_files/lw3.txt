@@ -1,2 +1,0 @@
-lw3, lw, Pass, ES5017, | expected exit code: 19 actual exit code: 19 | extra info: test memory mapped input without memory mapped output |
-Test conducted on:  20/11/2018 17:28:14

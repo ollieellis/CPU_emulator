@@ -1,2 +1,0 @@
-sw1, sw, Pass, ES5017, | expected output: 104 115 actual output: 104 115 | extra info: tests sw with stdout |
-Test conducted on:  20/11/2018 17:28:18

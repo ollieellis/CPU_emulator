@@ -1,2 +1,0 @@
-srav, srav, Pass, ES5017, | expected exit code: -2 actual exit code: -2 | extra info: tests simple case for srav |
-Test conducted on:  20/11/2018 17:28:17

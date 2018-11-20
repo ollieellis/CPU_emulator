@@ -1,2 +1,0 @@
-multu, multu, Pass, ES5017, | expected output: 13 127 actual output: 13 127 | extra info: tests simple multiply unsigned |
-Test conducted on:  20/11/2018 17:28:15

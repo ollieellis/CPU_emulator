@@ -1,2 +1,0 @@
-lwl2, lwl, Pass, ES5017, | expected output: 170 103 actual output: 170 103 | extra info: tests lwl aligned |
-Test conducted on:  20/11/2018 17:28:15

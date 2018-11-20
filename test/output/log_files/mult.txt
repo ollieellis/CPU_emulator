@@ -1,2 +1,0 @@
-mult, mult, Pass, ES5017, | expected output: 13 255 actual output: 13 255 | extra info: tests simple multiply of negative and positive ints |
-Test conducted on:  20/11/2018 17:28:15
