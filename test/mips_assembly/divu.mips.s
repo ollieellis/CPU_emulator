@@ -1,6 +1,6 @@
 #author: ES5017
 #expected_output: 2 243
-#extra_info: tests simple div of unsigned ints
+#extra_info: tests simple divu of unsigned ints
 
 
 lui $3, 0xFFFF
