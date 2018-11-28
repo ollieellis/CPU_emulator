@@ -1,16 +1,16 @@
 #author: ES5017
-#expected_output: 231 2
+#expected_output: 170 3
 #extra_info: tests simple divu of a signed int that should be interpreted as unsigned
 
 
 lui $3, 0xFFFF
-ori $3, $3, 0xFF9E
-#0xffff ff9e = 4294967198 (-98) in $3
+ori $3, $3, 0xAAAB
+#0xffff AAab = 4294945451 in $3
 
 ori $4, $0, 0x4
 #4 in $4
 
-#therefore result should be 231 r 2
+#therefore result should be 170 r 3
 #in binary this is 00000000000000000000000011100111 r 00000000000000000000000000000010
 
 divu $3, $4			
