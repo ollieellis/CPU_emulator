@@ -20,8 +20,10 @@ log_files="$output_files/log_files"
 mkdir -p $output_files
 mkdir -p $log_files
 rm -f $conversion_log_files
+assembly_files=test/mips_assembly
 
-for assembly_file in test/mips_assembly/*
+
+for assembly_file in $assembly_files/*
 do
     test/mips-parser/bin/parser 2>&1 >>$conversion_log_files $assembly_file 'test/mips_binary/#' 2>&1 >>$conversion_log_files
 done
@@ -29,7 +31,6 @@ done
 
 #must be after mips conversion to get all files
 binary_files=test/mips_binary
-assembly_files=test/mips_assembly
 temp_files=test/temp
 test_input_file=test/wibble.txt
 test_output_csv=$output_files/all_results.csv
@@ -109,7 +110,7 @@ do
     convert_ascii_string_to_decimal $sim_stdout
     sim_stdout=$converted_result
     assembly_file="$assembly_files/$basename".s
-    
+
     #extract info
     extract_info $assembly_file author
     author=$extracted_info_field
